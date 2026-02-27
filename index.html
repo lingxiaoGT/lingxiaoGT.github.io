@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Minecraft 工具</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome (仅用于操作图标) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- Chart.js 统计图表 -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+    <!-- pinyin-pro 拼音搜索 -->
+    <script src="https://unpkg.com/pinyin-pro@3.18.3/dist/index.js"></script>
+    <style>
+        :root { --primary: #10b981; --primary-dark: #059669; }
+        .card { transition: transform 0.2s ease, box-shadow 0.2s ease; }
+        .card:hover { transform: translateY(-4px); box-shadow: 0 20px 25px -5px rgba(0,0,0,0.1), 0 8px 10px -6px rgba(0,0,0,0.02); }
+        .dark .card { background-color: #1f2937; border-color: #374151; }
+        .dark body { background-color: #111827; }
+        .copy-toast { position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); background: var(--primary); color: white; padding: 8px 16px; border-radius: 999px; font-size: 14px; z-index: 100; opacity: 0; transition: opacity 0.3s; pointer-events: none; }
+        .copy-toast.show { opacity: 1; }
+        #backToTop { transition: opacity 0.3s, visibility 0.3s; }
+        .modal { display: none; position: fixed; z-index: 200; left:0; top:0; width:100%; height:100%; background-color:rgba(0,0,0,0.5); align-items:center; justify-content:center; }
+        .modal.show { display: flex; }
+        .modal-content { background: white; padding: 2rem; border-radius: 1rem; max-width:500px; width:90%; max-height:80vh; overflow-y:auto; }
+        .dark .modal-content { background: #1f2937; color:white; }
+        #compareBar { transition: transform 0.3s ease; }
+        /* 图表自适应 */
+        canvas { width: 100% !important; height: auto !important; max-width: 100%; }
+    </style>
+    <link rel="manifest" href="/manifest.json">
+    <meta name="theme-color" content="#10b981">
+</head>
+<body class="bg-gray-50 font-sans antialiased transition-colors duration-300 dark:bg-gray-900 relative">
+
+    <div id="copyToast" class="copy-toast">✅ 链接已复制</div>
+    <button id="backToTop" class="fixed bottom-6 right-6 p-3 rounded-full bg-green-600 text-white shadow-lg hover:bg-green-700 transition opacity-0 invisible z-50"><i class="fas fa-arrow-up"></i></button>
+
+    <!-- 详情模态框 -->
+    <div id="detailModal" class="modal">
+        <div class="modal-content">
+            <div class="flex justify-between items-center mb-4">
+                <h3 id="modalTitle" class="text-2xl font-bold"></h3>
+                <button onclick="closeModal()" class="text-gray-500 hover:text-gray-700 dark:hover:text-gray-300"><i class="fas fa-times"></i></button>
+            </div>
+            <p id="modalDesc" class="text-gray-600 dark:text-gray-300 mb-4"></p>
+            <p id="modalDetail" class="text-sm text-gray-500 dark:text-gray-400"></p>
+            <div class="mt-6 flex justify-end">
+                <a id="modalLink" href="#" target="_blank" class="bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700">访问网站</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- 对比栏 -->
+    <div id="compareBar" class="fixed bottom-0 left-0 right-0 bg-white dark:bg-gray-800 shadow-lg border-t dark:border-gray-700 p-3 transform translate-y-full transition-transform z-40">
+        <div class="max-w-7xl mx-auto flex items-center justify-between">
+            <span class="text-sm font-medium"><span id="compareCount">0</span> 个工具已选择</span>
+            <div>
+                <button id="compareBtn" class="bg-green-600 text-white px-4 py-2 rounded-lg text-sm disabled:opacity-50 disabled:cursor-not-allowed" disabled>对比</button>
+                <button id="clearCompare" class="ml-2 text-gray-500 text-sm hover:underline">清空</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 提交工具表单弹窗 -->
+    <div id="submitModal" class="modal">
+        <div class="modal-content">
+            <h3 class="text-xl font-bold mb-4">提交新工具</h3>
+            <form id="submitForm" action="https://api.web3forms.com/submit" method="POST">
+                <input type="hidden" name="access_key" value="bc43e518-f1ff-41e0-b1a3-549259c4ca62">
+                <input type="text" name="name" placeholder="工具名称" class="w-full p-2 border rounded mb-2 dark:bg-gray-700 dark:border-gray-600" required>
+                <input type="url" name="url" placeholder="网址" class="w-full p-2 border rounded mb-2 dark:bg-gray-700 dark:border-gray-600" required>
+                <textarea name="desc" placeholder="简短描述" class="w-full p-2 border rounded mb-2 dark:bg-gray-700 dark:border-gray-600" required></textarea>
+                <select name="category" class="w-full p-2 border rounded mb-4 dark:bg-gray-700 dark:border-gray-600">
+                    <option value="工具类">工具类</option>
+                    <option value="资源搜寻">资源搜寻</option>
+                    <option value="其他资源">其他资源</option>
+                </select>
+                <div class="flex justify-end gap-2">
+                    <button type="button" onclick="closeSubmitModal()" class="px-4 py-2 bg-gray-300 rounded">取消</button>
+                    <button type="submit" class="px-4 py-2 bg-green-600 text-white rounded">提交</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- 主容器 -->
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 pb-20">
+        <div class="flex flex-wrap items-center justify-between gap-4 mb-6">
+            <h1 class="text-4xl font-bold text-gray-900 dark:text-white">Minecraft 工具</h1>
+            <div class="flex flex-wrap items-center gap-3">
+                <button id="randomBtn" class="px-3 py-2 bg-purple-100 dark:bg-purple-900 text-purple-700 dark:text-purple-200 rounded-lg text-sm hover:bg-purple-200"><i class="fas fa-dice"></i> 随机探索</button>
+                <input type="color" id="themeColor" value="#10b981" class="w-8 h-8 rounded-full border-2 border-gray-300 cursor-pointer" title="主题色">
+                <select id="langSelect" class="bg-gray-100 dark:bg-gray-800 border border-gray-300 dark:border-gray-600 rounded-lg text-sm p-2">
+                    <option value="zh">中文</option>
+                    <option value="en">English</option>
+                </select>
+                <button id="darkModeToggle" class="p-2 rounded-full bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-yellow-300 hover:bg-gray-300 dark:hover:bg-gray-600 transition" title="切换暗色模式">
+                    <i id="darkIcon" class="fas fa-moon"></i>
+                </button>
+            </div>
+        </div>
+
+        <div class="text-xs text-gray-400 mb-2 text-right">快捷键: <kbd class="bg-gray-200 dark:bg-gray-700 px-1 rounded">/</kbd> 搜索 · <kbd class="bg-gray-200 dark:bg-gray-700 px-1 rounded">ESC</kbd> 清空</div>
+
+        <div class="flex flex-col lg:flex-row gap-4 mb-4">
+            <div class="relative flex-1">
+                <i class="fas fa-search absolute left-3 top-1/2 -translate-y-1/2 text-gray-400"></i>
+                <input type="text" id="search" placeholder="搜索工具名称或描述 (支持拼音)" 
+                       class="w-full pl-10 pr-4 py-3 border border-gray-300 dark:border-gray-600 dark:bg-gray-800 dark:text-white rounded-xl shadow-sm focus:ring-2 focus:ring-green-500 focus:border-transparent outline-none transition">
+            </div>
+            <div class="flex flex-wrap gap-2 items-center">
+                <button data-category="all" class="cat-btn active px-4 py-2 rounded-full text-sm font-medium bg-green-600 text-white shadow-sm">全部</button>
+                <button data-category="工具类" class="cat-btn px-4 py-2 rounded-full text-sm font-medium bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200 hover:bg-gray-300">工具类</button>
+                <button data-category="资源搜寻" class="cat-btn px-4 py-2 rounded-full text-sm font-medium bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200 hover:bg-gray-300">资源搜寻</button>
+                <button data-category="其他资源" class="cat-btn px-4 py-2 rounded-full text-sm font-medium bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200 hover:bg-gray-300">其他资源</button>
+                <button id="favoriteBtn" class="px-3 py-2 rounded-full text-sm bg-yellow-100 dark:bg-yellow-900 text-yellow-700 dark:text-yellow-200"><i class="far fa-star"></i> 收藏</button>
+            </div>
+        </div>
+
+        <div id="tagFilters" class="flex flex-wrap gap-2 mb-4"></div>
+
+        <!-- 统计图表 (可折叠，自适应) -->
+        <details class="mb-6 bg-white dark:bg-gray-800 rounded-xl p-4 shadow-sm">
+            <summary class="font-medium cursor-pointer">📊 工具统计 (点击展开)</summary>
+            <div class="mt-4 grid grid-cols-1 md:grid-cols-2 gap-4">
+                <canvas id="categoryChart" class="w-full h-auto"></canvas>
+                <canvas id="statusChart" class="w-full h-auto"></canvas>
+            </div>
+        </details>
+
+        <div id="tools-container" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5"></div>
+
+        <footer class="mt-12 text-center text-sm text-gray-500 dark:text-gray-400 border-t dark:border-gray-700 pt-6">
+            <p>最后更新：2026年 · 所有链接均指向官方网站 · <a href="#" id="submitLink" class="text-green-600 hover:underline">提交新工具</a> · <a href="#" id="reportLink" class="text-red-500 hover:underline">报告失效</a></p>
+            <p class="mt-2">⚡ 全功能版 · 支持收藏/对比/拼音搜索/快捷键/统计图表/主题色/PWA</p>
+        </footer>
+    </div>
+
+    <!-- 评论区域 (Giscus) -->
+    <div class="max-w-7xl mx-auto px-4 mt-8">
+        <div class="bg-white dark:bg-gray-800 rounded-xl p-4">
+            <h3 class="text-lg font-medium mb-2">💬 社区讨论</h3>
+            <script src="https://giscus.app/client.js"
+                    data-repo="lingxiaoGT/lingxiaoGT.github.io"
+                    data-repo-id="R_kgDORZ0u1Q"
+                    data-category="Announcements"
+                    data-category-id="DIC_kwDORZ0u1c4C3STR"
+                    data-mapping="pathname"
+                    data-strict="0"
+                    data-reactions-enabled="1"
+                    data-emit-metadata="0"
+                    data-input-position="bottom"
+                    data-theme="preferred_color_scheme"
+                    data-lang="zh-CN"
+                    crossorigin="anonymous"
+                    async>
+            </script>
+        </div>
+    </div>
+
+    <script>
+        // ---------- 工具数据 (包含标签、详情，无图标) ----------
+        const toolsData = [
+            { name: "MCPixelArt", desc: "将图片转换为 Minecraft 像素画 schematic 格式", url: "https://mcpixelart.com/", category: "工具类", tags: ["在线", "免费"], detail: "支持自定义画布大小，输出为.schematic文件。", status: "normal" },
+            { name: "ChunkBase", desc: "在线查找史莱姆区块、生物群系及结构位置", url: "https://www.chunkbase.com/", category: "工具类", tags: ["在线", "免费"], detail: "输入种子即可生成地图，查找特定结构。", status: "normal" },
+            { name: "MCA Selector", desc: "强大的地图文件（.mca）编辑与删除工具", url: "https://github.com/Querz/mcaselector", category: "工具类", tags: ["下载", "免费"], detail: "Java程序，可删除/替换区块。", status: "normal" },
+            { name: "Minecraft Heads", desc: "海量玩家头颅数据库，用于建筑装饰", url: "https://minecraft-heads.com/", category: "工具类", tags: ["在线", "免费"], detail: "提供头颅获取指令。", status: "normal" },
+            { name: "ArmorTrims", desc: "在线预览所有盔甲纹饰的组合效果", url: "https://www.armortrims.com/", category: "工具类", tags: ["在线", "免费"], detail: "支持选择纹饰、材料、颜色。", status: "normal" },
+            { name: "NovaSkin", desc: "使用你的皮肤或模型创建个性化壁纸", url: "https://minecraft.novaskin.me/wallpapers", category: "工具类", tags: ["在线", "免费"], detail: "可调整姿势、背景。", status: "normal" },
+            { name: "MCGIF", desc: "让你的 Minecraft 皮肤动起来，生成 GIF 动图", url: "https://mcgif.cn/", category: "工具类", tags: ["在线", "免费"], detail: "多种动画模板。", status: "normal" },
+            { name: "Minecraft Server Status", desc: "查询任意 Java/基岩版服务器状态与在线人数", url: "https://mcstatus.io/", category: "工具类", tags: ["在线", "免费"], detail: "提供API接口。", status: "normal" },
+            { name: "MCLogs", desc: "上传并分享游戏日志，便于分析崩溃原因", url: "https://mclo.gs/", category: "工具类", tags: ["在线", "免费"], detail: "自动分析错误。", status: "normal" },
+            { name: "Chunker", desc: "在线将世界存档在 Java 版与基岩版之间转换", url: "https://www.chunker.app/", category: "工具类", tags: ["在线", "免费"], detail: "支持多个版本。", status: "normal" },
+            { name: "NameMC", desc: "热门皮肤趋势及玩家名称历史查询", url: "https://zh-cn.namemc.com/", category: "资源搜寻", tags: ["在线", "免费"], detail: "查看皮肤佩戴统计。", status: "normal" },
+            { name: "投影工坊", desc: "Litematica 投影文件分享站", url: "https://www.mcimg.com/", category: "资源搜寻", tags: ["在线", "需验证"], detail: "访问可能需要人机验证。", status: "warning", warningText: "可能需验证" },
+            { name: "Vault (原MCICONS)", desc: "物品/纹理图标搜索引擎", url: "https://mcicons.ccleaf.com/", category: "资源搜寻", tags: ["在线", "更新中"], detail: "网站正在更新。", status: "warning", warningText: "更新中" },
+            { name: "Minecraft Wiki", desc: "最权威的游戏机制、方块、合成表百科全书", url: "https://zh.minecraft.wiki/", category: "资源搜寻", tags: ["在线", "免费"], detail: "社区维护的维基。", status: "normal" },
+            { name: "MC百科", desc: "最大的Minecraft模组百科，收录模组、整合包、教程", url: "https://www.mcmod.cn/", category: "资源搜寻", tags: ["在线", "免费", "模组"], detail: "查询模组资料、下载链接、合成表。", status: "normal" },
+            { name: "Minecraft 中文图形站", desc: "分享光影、材质包资讯与预设下载", url: "https://www.minegraph.cn/", category: "其他资源", tags: ["在线", "免费"], detail: "提供预览图。", status: "normal" },
+            { name: "MCAPPX 版本库", desc: "提供基岩版历史版本下载", url: "https://www.mcappx.com/", category: "其他资源", tags: ["下载", "免费"], detail: "含Android/Windows版本。", status: "normal" }
+        ];
+
+        // ---------- 全局变量 ----------
+        let currentCategory = 'all';
+        let currentSearch = '';
+        let selectedTags = [];
+        let favoriteIds = JSON.parse(localStorage.getItem('favorites')) || [];
+        let compareList = JSON.parse(localStorage.getItem('compareList')) || [];
+        let clickCounts = JSON.parse(localStorage.getItem('clickCounts')) || {};
+        let currentLang = 'zh';
+        const translations = {
+            zh: { normal: '正常', warning: '注意', visit: '访问网站', copy: '复制链接' },
+            en: { normal: 'Normal', warning: 'Warning', visit: 'Visit', copy: 'Copy link' }
+        };
+
+        // DOM 元素
+        const container = document.getElementById('tools-container');
+        const searchInput = document.getElementById('search');
+        const catButtons = document.querySelectorAll('.cat-btn');
+        const copyToast = document.getElementById('copyToast');
+        const backToTop = document.getElementById('backToTop');
+        const modal = document.getElementById('detailModal');
+        const modalTitle = document.getElementById('modalTitle');
+        const modalDesc = document.getElementById('modalDesc');
+        const modalDetail = document.getElementById('modalDetail');
+        const modalLink = document.getElementById('modalLink');
+        const randomBtn = document.getElementById('randomBtn');
+        const langSelect = document.getElementById('langSelect');
+        const themeColor = document.getElementById('themeColor');
+        const darkModeToggle = document.getElementById('darkModeToggle');
+        const darkIcon = document.getElementById('darkIcon');
+        const favoriteBtn = document.getElementById('favoriteBtn');
+        const compareBar = document.getElementById('compareBar');
+        const compareCount = document.getElementById('compareCount');
+        const compareBtn = document.getElementById('compareBtn');
+        const clearCompare = document.getElementById('clearCompare');
+        const submitLink = document.getElementById('submitLink');
+        const submitModal = document.getElementById('submitModal');
+        const reportLink = document.getElementById('reportLink');
+
+        // 初始化
+        function init() {
+            renderTags();
+            renderCards();
+            setupEventListeners();
+            updateCompareBar();
+            initCharts();
+            loadTheme();
+        }
+
+        function renderTags() {
+            const tagSet = new Set();
+            toolsData.forEach(t => t.tags.forEach(tag => tagSet.add(tag)));
+            const tags = Array.from(tagSet);
+            const tagContainer = document.getElementById('tagFilters');
+            tagContainer.innerHTML = '';
+            tags.forEach(tag => {
+                const btn = document.createElement('button');
+                btn.className = `tag-btn px-3 py-1 rounded-full text-xs font-medium bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-200`;
+                btn.dataset.tag = tag;
+                btn.textContent = tag;
+                btn.onclick = () => toggleTag(tag);
+                tagContainer.appendChild(btn);
+            });
+        }
+
+        function toggleTag(tag) {
+            const index = selectedTags.indexOf(tag);
+            if (index === -1) selectedTags.push(tag);
+            else selectedTags.splice(index, 1);
+            document.querySelectorAll('.tag-btn').forEach(btn => {
+                if (selectedTags.includes(btn.dataset.tag)) {
+                    btn.classList.add('bg-green-600', 'text-white');
+                    btn.classList.remove('bg-gray-100', 'dark:bg-gray-700', 'text-gray-700', 'dark:text-gray-300');
+                } else {
+                    btn.classList.remove('bg-green-600', 'text-white');
+                    btn.classList.add('bg-gray-100', 'dark:bg-gray-700', 'text-gray-700', 'dark:text-gray-300');
+                }
+            });
+            renderCards();
+        }
+
+        function renderCards() {
+            let filtered = toolsData.filter(tool => {
+                if (currentCategory !== 'all' && tool.category !== currentCategory) return false;
+                if (selectedTags.length && !selectedTags.every(tag => tool.tags.includes(tag))) return false;
+                if (currentSearch) {
+                    const lowerSearch = currentSearch.toLowerCase();
+                    const match = tool.name.toLowerCase().includes(lowerSearch) || tool.desc.toLowerCase().includes(lowerSearch);
+                    if (!match && window.pinyin) {
+                        const namePinyin = window.pinyin(tool.name, { toneType: 'none' }).join('');
+                        const descPinyin = window.pinyin(tool.desc, { toneType: 'none' }).join('');
+                        if (namePinyin.includes(lowerSearch) || descPinyin.includes(lowerSearch)) return true;
+                    }
+                    return match;
+                }
+                return true;
+            });
+
+            container.innerHTML = '';
+
+            if (filtered.length === 0) {
+                container.innerHTML = '<div class="col-span-full text-center py-12 text-gray-500 dark:text-gray-400 text-lg">没有找到匹配的工具</div>';
+                return;
+            }
+
+            const categories = {};
+            filtered.forEach(tool => {
+                if (!categories[tool.category]) categories[tool.category] = [];
+                categories[tool.category].push(tool);
+            });
+
+            Object.keys(categories).forEach(cat => {
+                const titleDiv = document.createElement('div');
+                titleDiv.className = 'col-span-full mt-4 first:mt-0';
+                titleDiv.innerHTML = `<h2 class="text-2xl font-bold text-gray-800 dark:text-white border-l-8 border-green-500 pl-3 py-1">${cat}</h2>`;
+                container.appendChild(titleDiv);
+
+                categories[cat].forEach(tool => {
+                    const card = document.createElement('div');
+                    card.className = 'card bg-white dark:bg-gray-800 rounded-xl shadow-md overflow-hidden border border-gray-100 dark:border-gray-700 flex flex-col';
+
+                    const statusText = tool.status === 'normal' ? translations[currentLang].normal : (tool.warningText || translations[currentLang].warning);
+                    const isFavorite = favoriteIds.includes(tool.name);
+                    const isCompare = compareList.includes(tool.name);
+
+                    card.innerHTML = `
+                        <div class="p-5 flex-1 card-clickable cursor-pointer" onclick="window.open('${tool.url}', '_blank')">
+                            <div class="flex items-start justify-between mb-2">
+                                <h3 class="text-lg font-semibold text-gray-900 dark:text-white">${tool.name}</h3>
+                                <span class="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium ${tool.status === 'normal' ? 'bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-200' : 'bg-yellow-100 dark:bg-yellow-900 text-yellow-800 dark:text-yellow-200'}">${statusText}</span>
+                            </div>
+                            <p class="text-gray-600 dark:text-gray-300 text-sm mb-3">${tool.desc}</p>
+                            <div class="flex flex-wrap gap-1 mb-3">
+                                ${tool.tags.map(tag => `<span class="px-2 py-0.5 bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 rounded-full text-xs">${tag}</span>`).join('')}
+                            </div>
+                            <div class="mt-auto flex items-center justify-between" onclick="event.stopPropagation()">
+                                <div class="flex items-center gap-2">
+                                    <a href="${tool.url}" target="_blank" rel="noopener noreferrer" class="visit-link text-green-600 dark:text-green-400 hover:text-green-800 dark:hover:text-green-300 font-medium text-sm" data-url="${tool.url}" onclick="event.stopPropagation()">${translations[currentLang].visit}</a>
+                                    <button onclick="showDetail('${tool.name}'); event.stopPropagation()" class="text-blue-500 hover:text-blue-700 text-sm"><i class="far fa-eye"></i></button>
+                                </div>
+                                <div class="flex items-center gap-2">
+                                    <button onclick="toggleFavorite('${tool.name}'); event.stopPropagation()" class="text-yellow-500 hover:text-yellow-600" title="收藏">
+                                        <i class="${isFavorite ? 'fas' : 'far'} fa-star"></i>
+                                    </button>
+                                    <button onclick="toggleCompare('${tool.name}'); event.stopPropagation()" class="text-gray-400 hover:text-gray-600" title="对比">
+                                        <i class="${isCompare ? 'fas fa-check-square' : 'far fa-square'}"></i>
+                                    </button>
+                                    <button onclick="copyToClipboard('${tool.url}'); event.stopPropagation()" class="text-gray-400 hover:text-gray-600" title="复制链接">
+                                        <i class="far fa-copy"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                    container.appendChild(card);
+                });
+            });
+
+            document.querySelectorAll('.visit-link').forEach(link => {
+                link.addEventListener('click', (e) => {
+                    const url = link.dataset.url;
+                    clickCounts[url] = (clickCounts[url] || 0) + 1;
+                    localStorage.setItem('clickCounts', JSON.stringify(clickCounts));
+                });
+            });
+        }
+
+        function copyToClipboard(text) {
+            navigator.clipboard.writeText(text).then(() => {
+                copyToast.classList.add('show');
+                setTimeout(() => copyToast.classList.remove('show'), 2000);
+            }).catch(() => alert('复制失败，请手动复制'));
+        }
+
+        function showDetail(name) {
+            const tool = toolsData.find(t => t.name === name);
+            if (tool) {
+                modalTitle.textContent = tool.name;
+                modalDesc.textContent = tool.desc;
+                modalDetail.textContent = tool.detail || '暂无详细介绍';
+                modalLink.href = tool.url;
+                modal.classList.add('show');
+            }
+        }
+        window.closeModal = () => modal.classList.remove('show');
+
+        function toggleFavorite(name) {
+            const index = favoriteIds.indexOf(name);
+            if (index === -1) favoriteIds.push(name);
+            else favoriteIds.splice(index, 1);
+            localStorage.setItem('favorites', JSON.stringify(favoriteIds));
+            renderCards();
+        }
+
+        function toggleCompare(name) {
+            const index = compareList.indexOf(name);
+            if (index === -1) compareList.push(name);
+            else compareList.splice(index, 1);
+            localStorage.setItem('compareList', JSON.stringify(compareList));
+            updateCompareBar();
+            renderCards();
+        }
+
+        function updateCompareBar() {
+            compareCount.textContent = compareList.length;
+            if (compareList.length >= 2) compareBtn.disabled = false;
+            else compareBtn.disabled = true;
+            if (compareList.length > 0) compareBar.classList.remove('translate-y-full');
+            else compareBar.classList.add('translate-y-full');
+        }
+
+        clearCompare.addEventListener('click', () => {
+            compareList = [];
+            localStorage.setItem('compareList', JSON.stringify(compareList));
+            updateCompareBar();
+            renderCards();
+        });
+
+        compareBtn.addEventListener('click', () => {
+            if (compareList.length < 2) return;
+            const tools = toolsData.filter(t => compareList.includes(t.name));
+            let msg = '对比工具：\n';
+            tools.forEach(t => msg += `${t.name}: ${t.url}\n`);
+            alert(msg);
+        });
+
+        randomBtn.addEventListener('click', () => {
+            const filtered = toolsData.filter(t => {
+                if (currentCategory !== 'all' && t.category !== currentCategory) return false;
+                if (selectedTags.length && !selectedTags.every(tag => t.tags.includes(tag))) return false;
+                return true;
+            });
+            if (filtered.length === 0) return;
+            const random = filtered[Math.floor(Math.random() * filtered.length)];
+            window.open(random.url, '_blank');
+        });
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === '/' && document.activeElement !== searchInput) {
+                e.preventDefault();
+                searchInput.focus();
+            }
+            if (e.key === 'Escape') {
+                searchInput.value = '';
+                currentSearch = '';
+                renderCards();
+            }
+        });
+
+        let catChart, statusChart;
+        function initCharts() {
+            const catCtx = document.getElementById('categoryChart').getContext('2d');
+            const statusCtx = document.getElementById('statusChart').getContext('2d');
+            const catCount = {};
+            const statusCount = { normal: 0, warning: 0 };
+            toolsData.forEach(t => {
+                catCount[t.category] = (catCount[t.category] || 0) + 1;
+                statusCount[t.status] = (statusCount[t.status] || 0) + 1;
+            });
+
+            catChart = new Chart(catCtx, {
+                type: 'pie',
+                data: {
+                    labels: Object.keys(catCount),
+                    datasets: [{ data: Object.values(catCount), backgroundColor: ['#10b981', '#f59e0b', '#3b82f6'] }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: true
+                }
+            });
+
+            statusChart = new Chart(statusCtx, {
+                type: 'doughnut',
+                data: {
+                    labels: ['正常', '注意'],
+                    datasets: [{ data: [statusCount.normal, statusCount.warning], backgroundColor: ['#10b981', '#f59e0b'] }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: true
+                }
+            });
+        }
+
+        themeColor.addEventListener('input', (e) => {
+            document.documentElement.style.setProperty('--primary', e.target.value);
+        });
+
+        darkModeToggle.addEventListener('click', () => {
+            document.documentElement.classList.toggle('dark');
+            if (document.documentElement.classList.contains('dark')) {
+                darkIcon.classList.remove('fa-moon');
+                darkIcon.classList.add('fa-sun');
+                localStorage.setItem('theme', 'dark');
+            } else {
+                darkIcon.classList.remove('fa-sun');
+                darkIcon.classList.add('fa-moon');
+                localStorage.setItem('theme', 'light');
+            }
+        });
+
+        function loadTheme() {
+            if (localStorage.getItem('theme') === 'dark') {
+                document.documentElement.classList.add('dark');
+                darkIcon.classList.remove('fa-moon');
+                darkIcon.classList.add('fa-sun');
+            }
+        }
+
+        langSelect.addEventListener('change', (e) => {
+            currentLang = e.target.value;
+            renderCards();
+        });
+
+        favoriteBtn.addEventListener('click', () => {
+            if (currentCategory === 'favorite') {
+                currentCategory = 'all';
+                favoriteBtn.classList.remove('bg-yellow-500', 'text-white');
+            } else {
+                currentCategory = 'favorite';
+                favoriteBtn.classList.add('bg-yellow-500', 'text-white');
+            }
+            renderCards();
+        });
+
+        submitLink.addEventListener('click', (e) => {
+            e.preventDefault();
+            submitModal.classList.add('show');
+        });
+        window.closeSubmitModal = () => submitModal.classList.remove('show');
+        reportLink.addEventListener('click', (e) => {
+            e.preventDefault();
+            alert('请发送邮件至 admin@example.com 报告失效链接。');
+        });
+
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 300) backToTop.classList.add('opacity-100', 'visible');
+            else backToTop.classList.remove('opacity-100', 'visible');
+        });
+        backToTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+        searchInput.addEventListener('input', (e) => {
+            currentSearch = e.target.value.trim();
+            renderCards();
+        });
+
+        catButtons.forEach(btn => {
+            btn.addEventListener('click', () => {
+                catButtons.forEach(b => {
+                    b.classList.remove('bg-green-600', 'text-white');
+                    b.classList.add('bg-gray-200', 'dark:bg-gray-700', 'text-gray-800', 'dark:text-gray-200');
+                });
+                btn.classList.add('bg-green-600', 'text-white');
+                btn.classList.remove('bg-gray-200', 'dark:bg-gray-700', 'text-gray-800', 'dark:text-gray-200');
+                currentCategory = btn.dataset.category;
+                renderCards();
+            });
+        });
+
+        function setupEventListeners() {}
+
+        init();
+
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('/sw.js').catch(err => console.log('SW注册失败', err));
+        }
+    </script>
+</body>
+</html>
