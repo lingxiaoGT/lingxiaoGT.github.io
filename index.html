@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
     <title>Minecraft 工具</title>
-    <!-- Tailwind CSS -->
+    <!-- Tailwind CSS (生产环境警告可忽略) -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Font Awesome (仅用于操作图标) -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
@@ -26,10 +26,10 @@
         .modal-content { background: white; padding: 2rem; border-radius: 1rem; max-width:500px; width:90%; max-height:80vh; overflow-y:auto; }
         .dark .modal-content { background: #1f2937; color:white; }
         #compareBar { transition: transform 0.3s ease; }
-        /* 图表自适应 */
         canvas { width: 100% !important; height: auto !important; max-width: 100%; }
     </style>
-    <link rel="manifest" href="/manifest.json">
+    <!-- 本地环境不加载 manifest.json 避免跨域错误 -->
+    <!-- <link rel="manifest" href="/manifest.json"> -->
     <meta name="theme-color" content="#10b981">
 </head>
 <body class="bg-gray-50 font-sans antialiased transition-colors duration-300 dark:bg-gray-900 relative">
@@ -55,10 +55,10 @@
     <!-- 对比栏 -->
     <div id="compareBar" class="fixed bottom-0 left-0 right-0 bg-white dark:bg-gray-800 shadow-lg border-t dark:border-gray-700 p-3 transform translate-y-full transition-transform z-40">
         <div class="max-w-7xl mx-auto flex items-center justify-between">
-            <span class="text-sm font-medium"><span id="compareCount">0</span> 个工具已选择</span>
+            <span class="text-sm font-medium"><span id="compareCount">0</span> <span id="compareText">个工具已选择</span></span>
             <div>
-                <button id="compareBtn" class="bg-green-600 text-white px-4 py-2 rounded-lg text-sm disabled:opacity-50 disabled:cursor-not-allowed" disabled>对比</button>
-                <button id="clearCompare" class="ml-2 text-gray-500 text-sm hover:underline">清空</button>
+                <button id="compareBtn" class="bg-green-600 text-white px-4 py-2 rounded-lg text-sm disabled:opacity-50 disabled:cursor-not-allowed" disabled><span id="compareBtnText">对比</span></button>
+                <button id="clearCompare" class="ml-2 text-gray-500 text-sm hover:underline"><span id="clearCompareText">清空</span></button>
             </div>
         </div>
     </div>
@@ -66,20 +66,20 @@
     <!-- 提交工具表单弹窗 -->
     <div id="submitModal" class="modal">
         <div class="modal-content">
-            <h3 class="text-xl font-bold mb-4">提交新工具</h3>
+            <h3 id="submitTitle" class="text-xl font-bold mb-4">提交新工具</h3>
             <form id="submitForm" action="https://api.web3forms.com/submit" method="POST">
                 <input type="hidden" name="access_key" value="bc43e518-f1ff-41e0-b1a3-549259c4ca62">
-                <input type="text" name="name" placeholder="工具名称" class="w-full p-2 border rounded mb-2 dark:bg-gray-700 dark:border-gray-600" required>
-                <input type="url" name="url" placeholder="网址" class="w-full p-2 border rounded mb-2 dark:bg-gray-700 dark:border-gray-600" required>
-                <textarea name="desc" placeholder="简短描述" class="w-full p-2 border rounded mb-2 dark:bg-gray-700 dark:border-gray-600" required></textarea>
-                <select name="category" class="w-full p-2 border rounded mb-4 dark:bg-gray-700 dark:border-gray-600">
+                <input type="text" name="name" id="submitName" placeholder="工具名称" class="w-full p-2 border rounded mb-2 dark:bg-gray-700 dark:border-gray-600" required>
+                <input type="url" name="url" id="submitUrl" placeholder="网址" class="w-full p-2 border rounded mb-2 dark:bg-gray-700 dark:border-gray-600" required>
+                <textarea name="desc" id="submitDesc" placeholder="简短描述" class="w-full p-2 border rounded mb-2 dark:bg-gray-700 dark:border-gray-600" required></textarea>
+                <select name="category" id="submitCategory" class="w-full p-2 border rounded mb-4 dark:bg-gray-700 dark:border-gray-600">
                     <option value="工具类">工具类</option>
                     <option value="资源搜寻">资源搜寻</option>
                     <option value="其他资源">其他资源</option>
                 </select>
                 <div class="flex justify-end gap-2">
-                    <button type="button" onclick="closeSubmitModal()" class="px-4 py-2 bg-gray-300 rounded">取消</button>
-                    <button type="submit" class="px-4 py-2 bg-green-600 text-white rounded">提交</button>
+                    <button type="button" onclick="closeSubmitModal()" id="cancelBtn" class="px-4 py-2 bg-gray-300 rounded">取消</button>
+                    <button type="submit" id="submitBtn" class="px-4 py-2 bg-green-600 text-white rounded">提交</button>
                 </div>
             </form>
         </div>
@@ -88,10 +88,9 @@
     <!-- 主容器 -->
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 pb-20">
         <div class="flex flex-wrap items-center justify-between gap-4 mb-6">
-            <h1 class="text-4xl font-bold text-gray-900 dark:text-white">Minecraft 工具</h1>
+            <h1 id="siteTitle" class="text-4xl font-bold text-gray-900 dark:text-white">Minecraft 工具</h1>
             <div class="flex flex-wrap items-center gap-3">
-                <button id="randomBtn" class="px-3 py-2 bg-purple-100 dark:bg-purple-900 text-purple-700 dark:text-purple-200 rounded-lg text-sm hover:bg-purple-200"><i class="fas fa-dice"></i> 随机探索</button>
-                <input type="color" id="themeColor" value="#10b981" class="w-8 h-8 rounded-full border-2 border-gray-300 cursor-pointer" title="主题色">
+                <button id="randomBtn" class="px-3 py-2 bg-purple-100 dark:bg-purple-900 text-purple-700 dark:text-purple-200 rounded-lg text-sm hover:bg-purple-200"><i class="fas fa-dice"></i> <span id="randomText">随机探索</span></button>
                 <select id="langSelect" class="bg-gray-100 dark:bg-gray-800 border border-gray-300 dark:border-gray-600 rounded-lg text-sm p-2">
                     <option value="zh">中文</option>
                     <option value="en">English</option>
@@ -102,7 +101,7 @@
             </div>
         </div>
 
-        <div class="text-xs text-gray-400 mb-2 text-right">快捷键: <kbd class="bg-gray-200 dark:bg-gray-700 px-1 rounded">/</kbd> 搜索 · <kbd class="bg-gray-200 dark:bg-gray-700 px-1 rounded">ESC</kbd> 清空</div>
+        <div id="shortcutHint" class="text-xs text-gray-400 mb-2 text-right">快捷键: <kbd class="bg-gray-200 dark:bg-gray-700 px-1 rounded">/</kbd> 搜索 · <kbd class="bg-gray-200 dark:bg-gray-700 px-1 rounded">ESC</kbd> 清空</div>
 
         <div class="flex flex-col lg:flex-row gap-4 mb-4">
             <div class="relative flex-1">
@@ -110,12 +109,8 @@
                 <input type="text" id="search" placeholder="搜索工具名称或描述 (支持拼音)" 
                        class="w-full pl-10 pr-4 py-3 border border-gray-300 dark:border-gray-600 dark:bg-gray-800 dark:text-white rounded-xl shadow-sm focus:ring-2 focus:ring-green-500 focus:border-transparent outline-none transition">
             </div>
-            <div class="flex flex-wrap gap-2 items-center">
-                <button data-category="all" class="cat-btn active px-4 py-2 rounded-full text-sm font-medium bg-green-600 text-white shadow-sm">全部</button>
-                <button data-category="工具类" class="cat-btn px-4 py-2 rounded-full text-sm font-medium bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200 hover:bg-gray-300">工具类</button>
-                <button data-category="资源搜寻" class="cat-btn px-4 py-2 rounded-full text-sm font-medium bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200 hover:bg-gray-300">资源搜寻</button>
-                <button data-category="其他资源" class="cat-btn px-4 py-2 rounded-full text-sm font-medium bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200 hover:bg-gray-300">其他资源</button>
-                <button id="favoriteBtn" class="px-3 py-2 rounded-full text-sm bg-yellow-100 dark:bg-yellow-900 text-yellow-700 dark:text-yellow-200"><i class="far fa-star"></i> 收藏</button>
+            <div id="categoryButtons" class="flex flex-wrap gap-2 items-center">
+                <!-- 分类按钮将由JS动态生成，以支持多语言 -->
             </div>
         </div>
 
@@ -123,7 +118,7 @@
 
         <!-- 统计图表 (可折叠，自适应) -->
         <details class="mb-6 bg-white dark:bg-gray-800 rounded-xl p-4 shadow-sm">
-            <summary class="font-medium cursor-pointer">📊 工具统计 (点击展开)</summary>
+            <summary id="statsSummary" class="font-medium cursor-pointer">📊 工具统计 (点击展开)</summary>
             <div class="mt-4 grid grid-cols-1 md:grid-cols-2 gap-4">
                 <canvas id="categoryChart" class="w-full h-auto"></canvas>
                 <canvas id="statusChart" class="w-full h-auto"></canvas>
@@ -132,30 +127,53 @@
 
         <div id="tools-container" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5"></div>
 
+        <!-- 页脚（含鸣谢 GitHub） -->
         <footer class="mt-12 text-center text-sm text-gray-500 dark:text-gray-400 border-t dark:border-gray-700 pt-6">
-            <p>最后更新：2026年 · 所有链接均指向官方网站 · <a href="#" id="submitLink" class="text-green-600 hover:underline">提交新工具</a> · <a href="#" id="reportLink" class="text-red-500 hover:underline">报告失效</a></p>
-            <p class="mt-2">⚡ 全功能版 · 支持收藏/对比/拼音搜索/快捷键/统计图表/主题色/PWA</p>
+            <p>
+                <span id="footerUpdate">最后更新：2026年</span> · 
+                <span id="footerOfficial">所有链接均指向官方网站</span> · 
+                <a href="#" id="submitLink" class="text-green-600 hover:underline"><span id="submitLinkText">提交新工具</span></a> · 
+                <a href="#" id="reportLink" class="text-red-500 hover:underline"><span id="reportLinkText">报告失效</span></a>
+            </p>
+            <!-- 鸣谢 GitHub 图标放大并可点击 -->
+            <div class="mt-4 flex items-center justify-center gap-2 text-xs">
+                <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="text-gray-600 dark:text-gray-400 hover:text-gray-800 dark:hover:text-gray-200">
+                    <i class="fab fa-github fa-2x"></i>
+                </a>
+                <span id="thanksText">鸣谢 GitHub 提供免费托管服务</span>
+            </div>
+            <p class="mt-2" id="footerFeatures">⚡ 全功能版 · 支持收藏/对比/拼音搜索/快捷键/统计图表/暗色模式</p>
         </footer>
     </div>
 
-    <!-- 评论区域 (Giscus) -->
+    <!-- 评论区域 (Giscus) - 本地环境不加载，避免CSP错误 -->
     <div class="max-w-7xl mx-auto px-4 mt-8">
         <div class="bg-white dark:bg-gray-800 rounded-xl p-4">
-            <h3 class="text-lg font-medium mb-2">💬 社区讨论</h3>
-            <script src="https://giscus.app/client.js"
-                    data-repo="lingxiaoGT/lingxiaoGT.github.io"
-                    data-repo-id="R_kgDORZ0u1Q"
-                    data-category="Announcements"
-                    data-category-id="DIC_kwDORZ0u1c4C3STR"
-                    data-mapping="pathname"
-                    data-strict="0"
-                    data-reactions-enabled="1"
-                    data-emit-metadata="0"
-                    data-input-position="bottom"
-                    data-theme="preferred_color_scheme"
-                    data-lang="zh-CN"
-                    crossorigin="anonymous"
-                    async>
+            <h3 id="commentsTitle" class="text-lg font-medium mb-2">💬 社区讨论</h3>
+            <div id="giscus-placeholder" class="text-gray-500 text-sm">评论功能在本地不可用，请部署后访问。</div>
+            <!-- 以下脚本将在非file协议时激活 -->
+            <script>
+                (function() {
+                    if (window.location.protocol !== 'file:') {
+                        document.getElementById('giscus-placeholder').style.display = 'none';
+                        const script = document.createElement('script');
+                        script.src = 'https://giscus.app/client.js';
+                        script.setAttribute('data-repo', 'lingxiaoGT/lingxiaoGT.github.io');
+                        script.setAttribute('data-repo-id', 'R_kgDORZ0u1Q');
+                        script.setAttribute('data-category', 'Announcements');
+                        script.setAttribute('data-category-id', 'DIC_kwDORZ0u1c4C3STR');
+                        script.setAttribute('data-mapping', 'pathname');
+                        script.setAttribute('data-strict', '0');
+                        script.setAttribute('data-reactions-enabled', '1');
+                        script.setAttribute('data-emit-metadata', '0');
+                        script.setAttribute('data-input-position', 'bottom');
+                        script.setAttribute('data-theme', 'preferred_color_scheme');
+                        script.setAttribute('data-lang', 'zh-CN');
+                        script.setAttribute('crossorigin', 'anonymous');
+                        script.async = true;
+                        document.getElementById('giscus-placeholder').parentNode.appendChild(script);
+                    }
+                })();
             </script>
         </div>
     </div>
@@ -190,15 +208,88 @@
         let compareList = JSON.parse(localStorage.getItem('compareList')) || [];
         let clickCounts = JSON.parse(localStorage.getItem('clickCounts')) || {};
         let currentLang = 'zh';
+
+        // 完整翻译对象
         const translations = {
-            zh: { normal: '正常', warning: '注意', visit: '访问网站', copy: '复制链接' },
-            en: { normal: 'Normal', warning: 'Warning', visit: 'Visit', copy: 'Copy link' }
+            zh: {
+                siteTitle: 'Minecraft 工具',
+                randomText: '随机探索',
+                shortcutHint: '快捷键: / 搜索 · ESC 清空',
+                searchPlaceholder: '搜索工具名称或描述 (支持拼音)',
+                categoryAll: '全部',
+                categoryTools: '工具类',
+                categoryResources: '资源搜寻',
+                categoryOther: '其他资源',
+                favoriteBtn: '收藏',
+                statsSummary: '📊 工具统计 (点击展开)',
+                compareText: '个工具已选择',
+                compareBtnText: '对比',
+                clearCompareText: '清空',
+                footerUpdate: '最后更新：2026年',
+                footerOfficial: '所有链接均指向官方网站',
+                submitLinkText: '提交新工具',
+                reportLinkText: '报告失效',
+                thanksText: '鸣谢 GitHub 提供免费托管服务',
+                footerFeatures: '⚡ 全功能版 · 支持收藏/对比/拼音搜索/快捷键/统计图表/暗色模式',
+                commentsTitle: '💬 社区讨论',
+                submitTitle: '提交新工具',
+                submitNamePlaceholder: '工具名称',
+                submitUrlPlaceholder: '网址',
+                submitDescPlaceholder: '简短描述',
+                cancelBtn: '取消',
+                submitBtn: '提交',
+                visit: '访问网站',
+                copy: '复制链接',
+                normal: '正常',
+                warning: '注意',
+                detailDefault: '暂无详细介绍',
+                copySuccess: '✅ 链接已复制',
+                copyFail: '复制失败，请手动复制',
+                noMatch: '没有找到匹配的工具',
+                compareAlert: '对比工具：\n'
+            },
+            en: {
+                siteTitle: 'Minecraft Tools',
+                randomText: 'Random',
+                shortcutHint: 'Shortcut: / Search · ESC Clear',
+                searchPlaceholder: 'Search tool name or description (pinyin supported)',
+                categoryAll: 'All',
+                categoryTools: 'Tools',
+                categoryResources: 'Resources',
+                categoryOther: 'Others',
+                favoriteBtn: 'Favorites',
+                statsSummary: '📊 Statistics (click to expand)',
+                compareText: ' tool(s) selected',
+                compareBtnText: 'Compare',
+                clearCompareText: 'Clear',
+                footerUpdate: 'Last updated: 2026',
+                footerOfficial: 'All links point to official sites',
+                submitLinkText: 'Submit Tool',
+                reportLinkText: 'Report Broken',
+                thanksText: 'Thanks to GitHub for free hosting',
+                footerFeatures: '⚡ Full-featured · Favorites/Compare/Pinyin Search/Shortcuts/Charts/Dark Mode',
+                commentsTitle: '💬 Discussions',
+                submitTitle: 'Submit New Tool',
+                submitNamePlaceholder: 'Tool Name',
+                submitUrlPlaceholder: 'URL',
+                submitDescPlaceholder: 'Short Description',
+                cancelBtn: 'Cancel',
+                submitBtn: 'Submit',
+                visit: 'Visit',
+                copy: 'Copy',
+                normal: 'Normal',
+                warning: 'Warning',
+                detailDefault: 'No details yet.',
+                copySuccess: '✅ Link copied',
+                copyFail: 'Copy failed, please copy manually',
+                noMatch: 'No matching tools found.',
+                compareAlert: 'Compare tools:\n'
+            }
         };
 
-        // DOM 元素
+        // ---------- 获取 DOM 元素并添加判空 ----------
         const container = document.getElementById('tools-container');
         const searchInput = document.getElementById('search');
-        const catButtons = document.querySelectorAll('.cat-btn');
         const copyToast = document.getElementById('copyToast');
         const backToTop = document.getElementById('backToTop');
         const modal = document.getElementById('detailModal');
@@ -208,7 +299,6 @@
         const modalLink = document.getElementById('modalLink');
         const randomBtn = document.getElementById('randomBtn');
         const langSelect = document.getElementById('langSelect');
-        const themeColor = document.getElementById('themeColor');
         const darkModeToggle = document.getElementById('darkModeToggle');
         const darkIcon = document.getElementById('darkIcon');
         const favoriteBtn = document.getElementById('favoriteBtn');
@@ -219,30 +309,129 @@
         const submitLink = document.getElementById('submitLink');
         const submitModal = document.getElementById('submitModal');
         const reportLink = document.getElementById('reportLink');
+        const categoryContainer = document.getElementById('categoryButtons');
+        const tagFilters = document.getElementById('tagFilters');
 
-        // 初始化
+        // 需要翻译的文本元素（静态部分）- 增加判空
+        const i18nElements = {
+            siteTitle: document.getElementById('siteTitle'),
+            randomText: document.getElementById('randomText'),
+            shortcutHint: document.getElementById('shortcutHint'),
+            searchInput: searchInput,
+            favoriteBtn: favoriteBtn ? (favoriteBtn.querySelector('span') || favoriteBtn) : null, // 修复关键错误：判空
+            statsSummary: document.getElementById('statsSummary'),
+            compareText: document.getElementById('compareText'),
+            compareBtnText: document.getElementById('compareBtnText'),
+            clearCompareText: document.getElementById('clearCompareText'),
+            footerUpdate: document.getElementById('footerUpdate'),
+            footerOfficial: document.getElementById('footerOfficial'),
+            submitLinkText: document.getElementById('submitLinkText'),
+            reportLinkText: document.getElementById('reportLinkText'),
+            thanksText: document.getElementById('thanksText'),
+            footerFeatures: document.getElementById('footerFeatures'),
+            commentsTitle: document.getElementById('commentsTitle'),
+            submitTitle: document.getElementById('submitTitle'),
+            submitName: document.getElementById('submitName'),
+            submitUrl: document.getElementById('submitUrl'),
+            submitDesc: document.getElementById('submitDesc'),
+            cancelBtn: document.getElementById('cancelBtn'),
+            submitBtn: document.getElementById('submitBtn')
+        };
+
+        // ---------- 初始化函数，确保所有依赖元素存在后才执行 ----------
         function init() {
+            // 检查关键元素是否存在，若不存在则提前返回
+            if (!container || !categoryContainer || !tagFilters) {
+                console.error('关键容器元素缺失，无法初始化');
+                return;
+            }
+            renderCategoryButtons();
             renderTags();
             renderCards();
-            setupEventListeners();
             updateCompareBar();
             initCharts();
             loadTheme();
+            applyLanguage();
+        }
+
+        // 渲染分类按钮（动态，支持多语言）
+        function renderCategoryButtons() {
+            const categories = [
+                { key: 'all', textKey: 'categoryAll' },
+                { key: '工具类', textKey: 'categoryTools' },
+                { key: '资源搜寻', textKey: 'categoryResources' },
+                { key: '其他资源', textKey: 'categoryOther' }
+            ];
+            categoryContainer.innerHTML = '';
+            categories.forEach(cat => {
+                const btn = document.createElement('button');
+                btn.dataset.category = cat.key;
+                btn.className = `cat-btn px-4 py-2 rounded-full text-sm font-medium ${cat.key === 'all' ? 'bg-green-600 text-white shadow-sm' : 'bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200 hover:bg-gray-300'}`;
+                btn.textContent = translations[currentLang][cat.textKey];
+                btn.onclick = () => {
+                    document.querySelectorAll('.cat-btn').forEach(b => {
+                        b.classList.remove('bg-green-600', 'text-white', 'shadow-sm');
+                        b.classList.add('bg-gray-200', 'dark:bg-gray-700', 'text-gray-800', 'dark:text-gray-200');
+                    });
+                    btn.classList.add('bg-green-600', 'text-white', 'shadow-sm');
+                    btn.classList.remove('bg-gray-200', 'dark:bg-gray-700', 'text-gray-800', 'dark:text-gray-200');
+                    currentCategory = cat.key;
+                    renderCards();
+                };
+                categoryContainer.appendChild(btn);
+            });
+        }
+
+        // 应用语言到静态文本元素（带判空）
+        function applyLanguage() {
+            const t = translations[currentLang];
+            if (i18nElements.siteTitle) i18nElements.siteTitle.textContent = t.siteTitle;
+            if (i18nElements.randomText) i18nElements.randomText.textContent = t.randomText;
+            if (i18nElements.shortcutHint) i18nElements.shortcutHint.innerHTML = t.shortcutHint;
+            if (i18nElements.searchInput) i18nElements.searchInput.placeholder = t.searchPlaceholder;
+            if (i18nElements.favoriteBtn) {
+                // 如果 favoriteBtn 是按钮本身，直接设置 innerHTML；如果是 span，设置 span 的 textContent
+                if (i18nElements.favoriteBtn.tagName === 'SPAN') {
+                    i18nElements.favoriteBtn.textContent = t.favoriteBtn;
+                } else {
+                    i18nElements.favoriteBtn.innerHTML = `<i class="far fa-star"></i> ${t.favoriteBtn}`;
+                }
+            }
+            if (i18nElements.statsSummary) i18nElements.statsSummary.innerHTML = t.statsSummary;
+            if (i18nElements.compareText) i18nElements.compareText.textContent = t.compareText;
+            if (i18nElements.compareBtnText) i18nElements.compareBtnText.textContent = t.compareBtnText;
+            if (i18nElements.clearCompareText) i18nElements.clearCompareText.textContent = t.clearCompareText;
+            if (i18nElements.footerUpdate) i18nElements.footerUpdate.textContent = t.footerUpdate;
+            if (i18nElements.footerOfficial) i18nElements.footerOfficial.textContent = t.footerOfficial;
+            if (i18nElements.submitLinkText) i18nElements.submitLinkText.textContent = t.submitLinkText;
+            if (i18nElements.reportLinkText) i18nElements.reportLinkText.textContent = t.reportLinkText;
+            if (i18nElements.thanksText) i18nElements.thanksText.textContent = t.thanksText;
+            if (i18nElements.footerFeatures) i18nElements.footerFeatures.textContent = t.footerFeatures;
+            if (i18nElements.commentsTitle) i18nElements.commentsTitle.textContent = t.commentsTitle;
+            if (i18nElements.submitTitle) i18nElements.submitTitle.textContent = t.submitTitle;
+            if (i18nElements.submitName) i18nElements.submitName.placeholder = t.submitNamePlaceholder;
+            if (i18nElements.submitUrl) i18nElements.submitUrl.placeholder = t.submitUrlPlaceholder;
+            if (i18nElements.submitDesc) i18nElements.submitDesc.placeholder = t.submitDescPlaceholder;
+            if (i18nElements.cancelBtn) i18nElements.cancelBtn.textContent = t.cancelBtn;
+            if (i18nElements.submitBtn) i18nElements.submitBtn.textContent = t.submitBtn;
+
+            // 重新渲染分类按钮文本
+            renderCategoryButtons();
         }
 
         function renderTags() {
+            if (!tagFilters) return;
             const tagSet = new Set();
             toolsData.forEach(t => t.tags.forEach(tag => tagSet.add(tag)));
             const tags = Array.from(tagSet);
-            const tagContainer = document.getElementById('tagFilters');
-            tagContainer.innerHTML = '';
+            tagFilters.innerHTML = '';
             tags.forEach(tag => {
                 const btn = document.createElement('button');
                 btn.className = `tag-btn px-3 py-1 rounded-full text-xs font-medium bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-200`;
                 btn.dataset.tag = tag;
                 btn.textContent = tag;
                 btn.onclick = () => toggleTag(tag);
-                tagContainer.appendChild(btn);
+                tagFilters.appendChild(btn);
             });
         }
 
@@ -263,6 +452,7 @@
         }
 
         function renderCards() {
+            if (!container) return;
             let filtered = toolsData.filter(tool => {
                 if (currentCategory !== 'all' && tool.category !== currentCategory) return false;
                 if (selectedTags.length && !selectedTags.every(tag => tool.tags.includes(tag))) return false;
@@ -282,7 +472,7 @@
             container.innerHTML = '';
 
             if (filtered.length === 0) {
-                container.innerHTML = '<div class="col-span-full text-center py-12 text-gray-500 dark:text-gray-400 text-lg">没有找到匹配的工具</div>';
+                container.innerHTML = `<div class="col-span-full text-center py-12 text-gray-500 dark:text-gray-400 text-lg">${translations[currentLang].noMatch}</div>`;
                 return;
             }
 
@@ -322,13 +512,13 @@
                                     <button onclick="showDetail('${tool.name}'); event.stopPropagation()" class="text-blue-500 hover:text-blue-700 text-sm"><i class="far fa-eye"></i></button>
                                 </div>
                                 <div class="flex items-center gap-2">
-                                    <button onclick="toggleFavorite('${tool.name}'); event.stopPropagation()" class="text-yellow-500 hover:text-yellow-600" title="收藏">
+                                    <button onclick="toggleFavorite('${tool.name}'); event.stopPropagation()" class="text-yellow-500 hover:text-yellow-600" title="${translations[currentLang].favoriteBtn}">
                                         <i class="${isFavorite ? 'fas' : 'far'} fa-star"></i>
                                     </button>
-                                    <button onclick="toggleCompare('${tool.name}'); event.stopPropagation()" class="text-gray-400 hover:text-gray-600" title="对比">
+                                    <button onclick="toggleCompare('${tool.name}'); event.stopPropagation()" class="text-gray-400 hover:text-gray-600" title="${translations[currentLang].compareBtnText}">
                                         <i class="${isCompare ? 'fas fa-check-square' : 'far fa-square'}"></i>
                                     </button>
-                                    <button onclick="copyToClipboard('${tool.url}'); event.stopPropagation()" class="text-gray-400 hover:text-gray-600" title="复制链接">
+                                    <button onclick="copyToClipboard('${tool.url}'); event.stopPropagation()" class="text-gray-400 hover:text-gray-600" title="${translations[currentLang].copy}">
                                         <i class="far fa-copy"></i>
                                     </button>
                                 </div>
@@ -349,23 +539,27 @@
         }
 
         function copyToClipboard(text) {
+            if (!copyToast) return;
             navigator.clipboard.writeText(text).then(() => {
+                copyToast.textContent = translations[currentLang].copySuccess;
                 copyToast.classList.add('show');
                 setTimeout(() => copyToast.classList.remove('show'), 2000);
-            }).catch(() => alert('复制失败，请手动复制'));
+            }).catch(() => alert(translations[currentLang].copyFail));
         }
 
         function showDetail(name) {
             const tool = toolsData.find(t => t.name === name);
-            if (tool) {
+            if (tool && modal && modalTitle && modalDesc && modalDetail && modalLink) {
                 modalTitle.textContent = tool.name;
                 modalDesc.textContent = tool.desc;
-                modalDetail.textContent = tool.detail || '暂无详细介绍';
+                modalDetail.textContent = tool.detail || translations[currentLang].detailDefault;
                 modalLink.href = tool.url;
                 modal.classList.add('show');
             }
         }
-        window.closeModal = () => modal.classList.remove('show');
+        window.closeModal = () => {
+            if (modal) modal.classList.remove('show');
+        };
 
         function toggleFavorite(name) {
             const index = favoriteIds.indexOf(name);
@@ -385,6 +579,7 @@
         }
 
         function updateCompareBar() {
+            if (!compareCount || !compareBtn || !compareBar) return;
             compareCount.textContent = compareList.length;
             if (compareList.length >= 2) compareBtn.disabled = false;
             else compareBtn.disabled = true;
@@ -392,38 +587,44 @@
             else compareBar.classList.add('translate-y-full');
         }
 
-        clearCompare.addEventListener('click', () => {
-            compareList = [];
-            localStorage.setItem('compareList', JSON.stringify(compareList));
-            updateCompareBar();
-            renderCards();
-        });
-
-        compareBtn.addEventListener('click', () => {
-            if (compareList.length < 2) return;
-            const tools = toolsData.filter(t => compareList.includes(t.name));
-            let msg = '对比工具：\n';
-            tools.forEach(t => msg += `${t.name}: ${t.url}\n`);
-            alert(msg);
-        });
-
-        randomBtn.addEventListener('click', () => {
-            const filtered = toolsData.filter(t => {
-                if (currentCategory !== 'all' && t.category !== currentCategory) return false;
-                if (selectedTags.length && !selectedTags.every(tag => t.tags.includes(tag))) return false;
-                return true;
+        if (clearCompare) {
+            clearCompare.addEventListener('click', () => {
+                compareList = [];
+                localStorage.setItem('compareList', JSON.stringify(compareList));
+                updateCompareBar();
+                renderCards();
             });
-            if (filtered.length === 0) return;
-            const random = filtered[Math.floor(Math.random() * filtered.length)];
-            window.open(random.url, '_blank');
-        });
+        }
+
+        if (compareBtn) {
+            compareBtn.addEventListener('click', () => {
+                if (compareList.length < 2) return;
+                const tools = toolsData.filter(t => compareList.includes(t.name));
+                let msg = translations[currentLang].compareAlert;
+                tools.forEach(t => msg += `${t.name}: ${t.url}\n`);
+                alert(msg);
+            });
+        }
+
+        if (randomBtn) {
+            randomBtn.addEventListener('click', () => {
+                const filtered = toolsData.filter(t => {
+                    if (currentCategory !== 'all' && t.category !== currentCategory) return false;
+                    if (selectedTags.length && !selectedTags.every(tag => t.tags.includes(tag))) return false;
+                    return true;
+                });
+                if (filtered.length === 0) return;
+                const random = filtered[Math.floor(Math.random() * filtered.length)];
+                window.open(random.url, '_blank');
+            });
+        }
 
         document.addEventListener('keydown', (e) => {
-            if (e.key === '/' && document.activeElement !== searchInput) {
+            if (e.key === '/' && document.activeElement !== searchInput && searchInput) {
                 e.preventDefault();
                 searchInput.focus();
             }
-            if (e.key === 'Escape') {
+            if (e.key === 'Escape' && searchInput) {
                 searchInput.value = '';
                 currentSearch = '';
                 renderCards();
@@ -432,8 +633,11 @@
 
         let catChart, statusChart;
         function initCharts() {
-            const catCtx = document.getElementById('categoryChart').getContext('2d');
-            const statusCtx = document.getElementById('statusChart').getContext('2d');
+            const catCanvas = document.getElementById('categoryChart');
+            const statusCanvas = document.getElementById('statusChart');
+            if (!catCanvas || !statusCanvas) return;
+            const catCtx = catCanvas.getContext('2d');
+            const statusCtx = statusCanvas.getContext('2d');
             const catCount = {};
             const statusCount = { normal: 0, warning: 0 };
             toolsData.forEach(t => {
@@ -449,102 +653,118 @@
                 },
                 options: {
                     responsive: true,
-                    maintainAspectRatio: true
+                    maintainAspectRatio: true,
+                    plugins: {
+                        legend: { labels: { color: document.documentElement.classList.contains('dark') ? '#fff' : '#333' } }
+                    }
                 }
             });
 
             statusChart = new Chart(statusCtx, {
                 type: 'doughnut',
                 data: {
-                    labels: ['正常', '注意'],
+                    labels: [translations[currentLang].normal, translations[currentLang].warning],
                     datasets: [{ data: [statusCount.normal, statusCount.warning], backgroundColor: ['#10b981', '#f59e0b'] }]
                 },
                 options: {
                     responsive: true,
-                    maintainAspectRatio: true
+                    maintainAspectRatio: true,
+                    plugins: {
+                        legend: { labels: { color: document.documentElement.classList.contains('dark') ? '#fff' : '#333' } }
+                    }
                 }
             });
         }
 
-        themeColor.addEventListener('input', (e) => {
-            document.documentElement.style.setProperty('--primary', e.target.value);
-        });
-
-        darkModeToggle.addEventListener('click', () => {
-            document.documentElement.classList.toggle('dark');
-            if (document.documentElement.classList.contains('dark')) {
-                darkIcon.classList.remove('fa-moon');
-                darkIcon.classList.add('fa-sun');
-                localStorage.setItem('theme', 'dark');
-            } else {
-                darkIcon.classList.remove('fa-sun');
-                darkIcon.classList.add('fa-moon');
-                localStorage.setItem('theme', 'light');
-            }
-        });
+        if (darkModeToggle && darkIcon) {
+            darkModeToggle.addEventListener('click', () => {
+                document.documentElement.classList.toggle('dark');
+                if (document.documentElement.classList.contains('dark')) {
+                    darkIcon.classList.remove('fa-moon');
+                    darkIcon.classList.add('fa-sun');
+                    localStorage.setItem('theme', 'dark');
+                } else {
+                    darkIcon.classList.remove('fa-sun');
+                    darkIcon.classList.add('fa-moon');
+                    localStorage.setItem('theme', 'light');
+                }
+                if (catChart && statusChart) {
+                    catChart.options.plugins.legend.labels.color = document.documentElement.classList.contains('dark') ? '#fff' : '#333';
+                    statusChart.options.plugins.legend.labels.color = document.documentElement.classList.contains('dark') ? '#fff' : '#333';
+                    catChart.update();
+                    statusChart.update();
+                }
+            });
+        }
 
         function loadTheme() {
-            if (localStorage.getItem('theme') === 'dark') {
+            if (localStorage.getItem('theme') === 'dark' && darkIcon) {
                 document.documentElement.classList.add('dark');
                 darkIcon.classList.remove('fa-moon');
                 darkIcon.classList.add('fa-sun');
             }
         }
 
-        langSelect.addEventListener('change', (e) => {
-            currentLang = e.target.value;
-            renderCards();
-        });
+        if (langSelect) {
+            langSelect.addEventListener('change', (e) => {
+                currentLang = e.target.value;
+                applyLanguage();
+                renderCards();
+                if (statusChart) {
+                    statusChart.data.labels = [translations[currentLang].normal, translations[currentLang].warning];
+                    statusChart.update();
+                }
+            });
+        }
 
-        favoriteBtn.addEventListener('click', () => {
-            if (currentCategory === 'favorite') {
-                currentCategory = 'all';
-                favoriteBtn.classList.remove('bg-yellow-500', 'text-white');
-            } else {
-                currentCategory = 'favorite';
-                favoriteBtn.classList.add('bg-yellow-500', 'text-white');
-            }
-            renderCards();
-        });
-
-        submitLink.addEventListener('click', (e) => {
-            e.preventDefault();
-            submitModal.classList.add('show');
-        });
-        window.closeSubmitModal = () => submitModal.classList.remove('show');
-        reportLink.addEventListener('click', (e) => {
-            e.preventDefault();
-            alert('请发送邮件至 admin@example.com 报告失效链接。');
-        });
-
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 300) backToTop.classList.add('opacity-100', 'visible');
-            else backToTop.classList.remove('opacity-100', 'visible');
-        });
-        backToTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
-
-        searchInput.addEventListener('input', (e) => {
-            currentSearch = e.target.value.trim();
-            renderCards();
-        });
-
-        catButtons.forEach(btn => {
-            btn.addEventListener('click', () => {
-                catButtons.forEach(b => {
-                    b.classList.remove('bg-green-600', 'text-white');
-                    b.classList.add('bg-gray-200', 'dark:bg-gray-700', 'text-gray-800', 'dark:text-gray-200');
-                });
-                btn.classList.add('bg-green-600', 'text-white');
-                btn.classList.remove('bg-gray-200', 'dark:bg-gray-700', 'text-gray-800', 'dark:text-gray-200');
-                currentCategory = btn.dataset.category;
+        if (favoriteBtn) {
+            favoriteBtn.addEventListener('click', () => {
+                if (currentCategory === 'favorite') {
+                    currentCategory = 'all';
+                    favoriteBtn.classList.remove('bg-yellow-500', 'text-white');
+                } else {
+                    currentCategory = 'favorite';
+                    favoriteBtn.classList.add('bg-yellow-500', 'text-white');
+                }
                 renderCards();
             });
-        });
+        }
 
-        function setupEventListeners() {}
+        if (submitLink && submitModal) {
+            submitLink.addEventListener('click', (e) => {
+                e.preventDefault();
+                submitModal.classList.add('show');
+            });
+        }
+        window.closeSubmitModal = () => {
+            if (submitModal) submitModal.classList.remove('show');
+        };
+        if (reportLink) {
+            reportLink.addEventListener('click', (e) => {
+                e.preventDefault();
+                alert(translations[currentLang].reportLinkText === '报告失效' ? '请发送邮件至 admin@example.com 报告失效链接。' : 'Please send an email to admin@example.com to report a broken link.');
+            });
+        }
 
+        if (backToTop) {
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 300) backToTop.classList.add('opacity-100', 'visible');
+                else backToTop.classList.remove('opacity-100', 'visible');
+            });
+            backToTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+        }
+
+        if (searchInput) {
+            searchInput.addEventListener('input', (e) => {
+                currentSearch = e.target.value.trim();
+                renderCards();
+            });
+        }
+
+        // 启动初始化
         init();
 
+        // Service Worker 注册（忽略错误）
         if ('serviceWorker' in navigator) {
             navigator.serviceWorker.register('/sw.js').catch(err => console.log('SW注册失败', err));
         }
