@@ -13,7 +13,6 @@
     <!-- pinyin-pro 拼音搜索，妈妈再也不用担心我打不出中文啦～ -->
     <script src="https://unpkg.com/pinyin-pro@3.18.3/dist/index.js"></script>
     <style>
-        /* 一些私藏的小样式 (✧∇✧)╯ */
         :root { --primary: #10b981; }
         .card { transition: transform 0.2s ease, box-shadow 0.2s ease; }
         .card:hover { transform: translateY(-4px); box-shadow: 0 20px 25px -5px rgba(0,0,0,0.1), 0 8px 10px -6px rgba(0,0,0,0.02); }
@@ -30,7 +29,6 @@
         canvas { width: 100% !important; height: auto !important; max-width: 100%; }
         .feedback-btn { opacity: 0.6; transition: opacity 0.2s; }
         .feedback-btn:hover { opacity: 1; }
-        /* 折叠面板自己搓的 ┗|｀O′|┛ */
         .category-group { margin-bottom: 1.5rem; border-radius: 0.75rem; background-color: #f9fafb; }
         .dark .category-group { background-color: #1f2937; }
         .category-summary { list-style: none; padding: 1rem; cursor: pointer; font-weight: 600; border-radius: 0.75rem; transition: background-color 0.2s; display: flex; justify-content: space-between; align-items: center; }
@@ -43,12 +41,10 @@
 </head>
 <body class="bg-gray-50 font-sans antialiased transition-colors duration-300 dark:bg-gray-900 relative">
 
-    <!-- 复制成功小浮层 (￣▽￣)~* -->
     <div id="copyToast" class="copy-toast">✅ 链接已复制</div>
-    <!-- 嗖的一下回顶部 (ﾉ◕ヮ◕)ﾉ*:･ﾟ✧ -->
     <button id="backToTop" class="fixed bottom-6 right-6 p-3 rounded-full bg-green-600 text-white shadow-lg hover:bg-green-700 transition opacity-0 invisible z-50"><i class="fas fa-arrow-up"></i></button>
 
-    <!-- 详情模态框 —— 想看详细介绍？点那个小眼睛吧！👀 -->
+    <!-- 详情模态框 -->
     <div id="detailModal" class="modal">
         <div class="modal-content">
             <div class="flex justify-between items-center mb-4">
@@ -63,7 +59,7 @@
         </div>
     </div>
 
-    <!-- 对比栏 —— 比一比谁更强！️ -->
+    <!-- 对比栏 -->
     <div id="compareBar" class="fixed bottom-0 left-0 right-0 bg-white dark:bg-gray-800 shadow-lg border-t dark:border-gray-700 p-3 transform translate-y-full transition-transform z-40">
         <div class="max-w-7xl mx-auto flex items-center justify-between">
             <span class="text-sm font-medium"><span id="compareCount">0</span> 个工具已选择</span>
@@ -74,7 +70,7 @@
         </div>
     </div>
 
-    <!-- 提交新工具表单  欢迎安利你喜欢的工具！ -->
+    <!-- 提交新工具表单 -->
     <div id="submitModal" class="modal">
         <div class="modal-content">
             <h3 class="text-xl font-bold mb-4">提交新工具</h3>
@@ -97,11 +93,10 @@
         </div>
     </div>
 
-    <!-- 反馈问题表单 —— 希望不要用到 -->
+    <!-- 反馈问题表单 -->
     <div id="feedbackModal" class="modal">
         <div class="modal-content">
             <h3 class="text-xl font-bold mb-4">反馈工具问题</h3>
-            <!-- 希望不要用到的句子 ↓ -->
             <p class="mb-4 text-sm text-gray-500 dark:text-gray-400">希望不要用到 awq</p>
             <form id="feedbackForm" action="https://api.web3forms.com/submit" method="POST">
                 <input type="hidden" name="access_key" value="bc43e518-f1ff-41e0-b1a3-549259c4ca62">
@@ -117,9 +112,8 @@
         </div>
     </div>
 
-    <!-- 主体内容 (✪ω✪) -->
+    <!-- 主容器 -->
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 pb-20">
-        <!-- 页眉 —— 简洁就是美，不加后缀！ -->
         <div class="flex flex-wrap items-center justify-between gap-4 mb-6">
             <h1 class="text-4xl font-bold text-gray-900 dark:text-white">Minecraft 工具</h1>
             <div class="flex flex-wrap items-center gap-3">
@@ -130,25 +124,26 @@
             </div>
         </div>
 
-        <!-- 快捷键小贴士 (^_−)☆ -->
         <div class="text-xs text-gray-400 mb-2 text-right">快捷键: <kbd class="bg-gray-200 dark:bg-gray-700 px-1 rounded">/</kbd> 搜索 · <kbd class="bg-gray-200 dark:bg-gray-700 px-1 rounded">ESC</kbd> 清空</div>
 
-        <!-- 搜索框 + 分类按钮 + 收藏 -->
+        <!-- 搜索框 + 分类按钮 + 收藏按钮（已补全） -->
         <div class="flex flex-col lg:flex-row gap-4 mb-4">
             <div class="relative flex-1">
                 <i class="fas fa-search absolute left-3 top-1/2 -translate-y-1/2 text-gray-400"></i>
                 <input type="text" id="search" placeholder="搜索工具名称或描述 (支持拼音)"
                        class="w-full pl-10 pr-4 py-3 border border-gray-300 dark:border-gray-600 dark:bg-gray-800 dark:text-white rounded-xl shadow-sm focus:ring-2 focus:ring-green-500 focus:border-transparent outline-none transition">
             </div>
-            <div id="categoryButtons" class="flex flex-wrap gap-2 items-center">
-                <!-- 分类按钮会由JS动态生成，稍等哦～ -->
+            <div class="flex flex-wrap gap-2 items-center">
+                <div id="categoryButtons" class="flex flex-wrap gap-2 items-center">
+                    <!-- 分类按钮会由JS动态生成 -->
+                </div>
+                <!-- ✅ 新增的收藏按钮 -->
+                <button id="favoriteBtn" class="px-3 py-2 rounded-full text-sm bg-yellow-100 dark:bg-yellow-900 text-yellow-700 dark:text-yellow-200"><i class="far fa-star"></i> 收藏</button>
             </div>
         </div>
 
-        <!-- 标签筛选 (ﾉ◕ヮ◕)ﾉ*:･ﾟ✧ -->
         <div id="tagFilters" class="flex flex-wrap gap-2 mb-4"></div>
 
-        <!-- 统计图表 (可折叠) 数据可视化什么的最喜欢了～ -->
         <details class="mb-6 bg-white dark:bg-gray-800 rounded-xl p-4 shadow-sm">
             <summary class="font-medium cursor-pointer">📊 工具统计 (点击展开)</summary>
             <div class="mt-4 grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -157,10 +152,9 @@
             </div>
         </details>
 
-        <!-- 工具卡片容器 —— 所有的工具都住在这里面啦！(๑•̀ㅂ•́)و✧ -->
         <div id="tools-container" class="space-y-4"></div>
 
-        <!-- 页脚 —— 感谢GitHub，感谢每一位贡献者 (´▽`ʃ♡ƪ) -->
+        <!-- 页脚 -->
         <footer class="mt-12 text-center text-sm text-gray-500 dark:text-gray-400 border-t dark:border-gray-700 pt-6">
             <p>
                 <span>最后更新：2026年</span> ·
@@ -174,7 +168,6 @@
                 </a>
                 <span>鸣谢 GitHub 提供免费托管服务 (●'◡'●)</span>
             </div>
-            <!-- 爱发电赞助按钮 -->
             <div class="mt-3">
                 <a href="https://ifdian.net/a/gt0507" target="_blank" rel="noopener noreferrer"
                    class="inline-flex items-center gap-2 px-4 py-2 bg-[#946ce6] hover:bg-[#7b4fd9] text-white rounded-full text-sm font-medium transition-colors">
@@ -185,7 +178,7 @@
         </footer>
     </div>
 
-    <!-- 评论区域 (Giscus) —— 来聊聊吧！ (☞ﾟヮﾟ)☞ -->
+    <!-- 评论区域 (Giscus) 本地测试时可临时注释掉，避免404干扰 -->
     <div class="max-w-7xl mx-auto px-4 mt-8">
         <div class="bg-white dark:bg-gray-800 rounded-xl p-4">
             <h3 class="text-lg font-medium mb-2">💬 社区讨论</h3>
@@ -217,15 +210,10 @@
     </div>
 
     <script>
-        // ═══════════════════════════════════════════
-        //   (◕‿◕) 下面是满满的 JavaScript 逻辑
-        //   所有工具数据都住在 tools.json 里，这里只是个空架子～
-        // ═══════════════════════════════════════════
-
-        // ---------- 工具数据初始为空，待会儿从外部 JSON 加载 ----------
+        // ---------- 工具数据初始为空 ----------
         let toolsData = [];
 
-        // DOM 元素大集合 (～￣▽￣)～
+        // DOM 元素获取（已对每个元素增加控制台警告，但即使缺失也不会中断后续）
         const container = document.getElementById('tools-container');
         const searchInput = document.getElementById('search');
         const copyToast = document.getElementById('copyToast');
@@ -238,7 +226,7 @@
         const randomBtn = document.getElementById('randomBtn');
         const darkModeToggle = document.getElementById('darkModeToggle');
         const darkIcon = document.getElementById('darkIcon');
-        const favoriteBtn = document.getElementById('favoriteBtn');
+        const favoriteBtn = document.getElementById('favoriteBtn');  // 现在存在了
         const compareBar = document.getElementById('compareBar');
         const compareCount = document.getElementById('compareCount');
         const compareBtn = document.getElementById('compareBtn');
@@ -251,7 +239,7 @@
         const categoryContainer = document.getElementById('categoryButtons');
         const tagFilters = document.getElementById('tagFilters');
 
-        // 全局变量们 (✧∇✧)
+        // 全局变量
         let currentCategory = 'all';
         let currentSearch = '';
         let selectedTags = [];
@@ -260,31 +248,28 @@
         let clickCounts = JSON.parse(localStorage.getItem('clickCounts')) || {};
         let catChart, statusChart;
 
-        // ═════════ 异步加载 JSON 数据 ═════════
+        // 异步加载 JSON 数据
         async function loadToolsData() {
             try {
                 const response = await fetch('tools.json');
                 if (!response.ok) throw new Error('加载失败');
                 toolsData = await response.json();
-                // 数据加载完成后初始化一切
                 init();
             } catch (error) {
                 console.error('呜哇～ 工具数据加载失败:', error);
-                container.innerHTML = '<div class="col-span-full text-center py-12 text-red-500">❌ 工具数据加载失败，请稍后重试。 (╥﹏╥)</div>';
+                if (container) container.innerHTML = '<div class="col-span-full text-center py-12 text-red-500">❌ 工具数据加载失败，请稍后重试。 (╥﹏╥)</div>';
             }
         }
 
-        // ═════════ 初始化函数（数据加载后执行） ═════════
         function init() {
-            renderCategoryButtons();
-            renderTags();
+            if (categoryContainer) renderCategoryButtons();
+            if (tagFilters) renderTags();
             renderCards();
             updateCompareBar();
             initCharts();
             loadTheme();
         }
 
-        // 渲染分类按钮 (～￣▽￣)～
         function renderCategoryButtons() {
             const categories = [
                 { key: 'all', name: '全部' },
@@ -318,7 +303,6 @@
             });
         }
 
-        // 渲染标签筛选按钮 (ﾉ◕ヮ◕)ﾉ*:･ﾟ✧
         function renderTags() {
             if (!tagFilters) return;
             const tagSet = new Set();
@@ -335,7 +319,6 @@
             });
         }
 
-        // 点击标签切换选中状态 (●ˇ∀ˇ●)
         function toggleTag(tag) {
             const index = selectedTags.indexOf(tag);
             if (index === -1) selectedTags.push(tag);
@@ -352,7 +335,6 @@
             renderCards();
         }
 
-        // 渲染卡片们 (✪ω✪)
         function renderCards() {
             if (!container) return;
             let filtered = toolsData.filter(tool => {
@@ -378,7 +360,6 @@
                 return;
             }
 
-            // 按分类分组
             const categories = {};
             filtered.forEach(tool => {
                 if (!categories[tool.category]) categories[tool.category] = [];
@@ -390,13 +371,13 @@
                 if (categories[cat]) {
                     const details = document.createElement('details');
                     details.className = 'category-group';
-                    details.open = true; // 默认展开，想折叠就改成 false 叭～
+                    details.open = true;
                     details.innerHTML = `
                         <summary class="category-summary">
                             <span>${cat} (${categories[cat].length})</span>
                             <i class="fas fa-chevron-down transition-transform"></i>
                         </summary>
-                        <div class="category-content" id="group-${cat}"></div>
+                        <div class="category-content"></div>
                     `;
                     container.appendChild(details);
                     const contentDiv = details.querySelector('.category-content');
@@ -408,7 +389,6 @@
             });
         }
 
-        // 创建单个卡片的函数 ( ◕‿◕)
         function createCard(tool) {
             const card = document.createElement('div');
             card.className = 'card bg-white dark:bg-gray-800 rounded-xl shadow-md overflow-hidden border border-gray-100 dark:border-gray-700 flex flex-col';
@@ -452,7 +432,6 @@
             return card;
         }
 
-        // 打开反馈弹窗 (｡•̀ᴗ-)✧
         function openFeedbackModal(toolName) {
             if (feedbackModal && feedbackToolName && feedbackToolNameDisplay) {
                 feedbackToolName.value = toolName;
@@ -464,7 +443,6 @@
             if (feedbackModal) feedbackModal.classList.remove('show');
         };
 
-        // 复制链接到剪贴板 (￣︶￣)↗
         function copyToClipboard(text) {
             if (!copyToast) return;
             navigator.clipboard.writeText(text).then(() => {
@@ -474,7 +452,6 @@
             }).catch(() => alert('复制失败，请手动复制 (；一_一)'));
         }
 
-        // 显示详情
         function showDetail(name) {
             const tool = toolsData.find(t => t.name === name);
             if (tool && modal && modalTitle && modalDesc && modalDetail && modalLink) {
@@ -489,7 +466,6 @@
             if (modal) modal.classList.remove('show');
         };
 
-        // 收藏/取消收藏
         function toggleFavorite(name) {
             const index = favoriteIds.indexOf(name);
             if (index === -1) favoriteIds.push(name);
@@ -498,7 +474,6 @@
             renderCards();
         }
 
-        // 对比 添加/移除
         function toggleCompare(name) {
             const index = compareList.indexOf(name);
             if (index === -1) compareList.push(name);
@@ -508,7 +483,6 @@
             renderCards();
         }
 
-        // 更新对比栏显示
         function updateCompareBar() {
             if (!compareCount || !compareBtn || !compareBar) return;
             compareCount.textContent = compareList.length;
@@ -518,36 +492,38 @@
             else compareBar.classList.add('translate-y-full');
         }
 
-        // 清空对比栏
-        clearCompare.addEventListener('click', () => {
-            compareList = [];
-            localStorage.setItem('compareList', JSON.stringify(compareList));
-            updateCompareBar();
-            renderCards();
-        });
-
-        // 执行对比
-        compareBtn.addEventListener('click', () => {
-            if (compareList.length < 2) return;
-            const tools = toolsData.filter(t => compareList.includes(t.name));
-            let msg = '对比工具：\n';
-            tools.forEach(t => msg += `${t.name}: ${t.url}\n`);
-            alert(msg);
-        });
-
-        // 随机探索按钮
-        randomBtn.addEventListener('click', () => {
-            const filtered = toolsData.filter(t => {
-                if (currentCategory !== 'all' && t.category !== currentCategory) return false;
-                if (selectedTags.length && !selectedTags.every(tag => t.tags.includes(tag))) return false;
-                return true;
+        if (clearCompare) {
+            clearCompare.addEventListener('click', () => {
+                compareList = [];
+                localStorage.setItem('compareList', JSON.stringify(compareList));
+                updateCompareBar();
+                renderCards();
             });
-            if (filtered.length === 0) return;
-            const random = filtered[Math.floor(Math.random() * filtered.length)];
-            window.open(random.url, '_blank');
-        });
+        }
 
-        // 快捷键支持
+        if (compareBtn) {
+            compareBtn.addEventListener('click', () => {
+                if (compareList.length < 2) return;
+                const tools = toolsData.filter(t => compareList.includes(t.name));
+                let msg = '对比工具：\n';
+                tools.forEach(t => msg += `${t.name}: ${t.url}\n`);
+                alert(msg);
+            });
+        }
+
+        if (randomBtn) {
+            randomBtn.addEventListener('click', () => {
+                const filtered = toolsData.filter(t => {
+                    if (currentCategory !== 'all' && t.category !== currentCategory) return false;
+                    if (selectedTags.length && !selectedTags.every(tag => t.tags.includes(tag))) return false;
+                    return true;
+                });
+                if (filtered.length === 0) return;
+                const random = filtered[Math.floor(Math.random() * filtered.length)];
+                window.open(random.url, '_blank');
+            });
+        }
+
         document.addEventListener('keydown', (e) => {
             if (e.key === '/' && document.activeElement !== searchInput && searchInput) {
                 e.preventDefault();
@@ -560,7 +536,6 @@
             }
         });
 
-        // 初始化图表
         function initCharts() {
             const catCanvas = document.getElementById('categoryChart');
             const statusCanvas = document.getElementById('statusChart');
@@ -605,27 +580,27 @@
             });
         }
 
-        // 暗色模式切换
-        darkModeToggle.addEventListener('click', () => {
-            document.documentElement.classList.toggle('dark');
-            if (document.documentElement.classList.contains('dark')) {
-                darkIcon.classList.remove('fa-moon');
-                darkIcon.classList.add('fa-sun');
-                localStorage.setItem('theme', 'dark');
-            } else {
-                darkIcon.classList.remove('fa-sun');
-                darkIcon.classList.add('fa-moon');
-                localStorage.setItem('theme', 'light');
-            }
-            if (catChart && statusChart) {
-                catChart.options.plugins.legend.labels.color = document.documentElement.classList.contains('dark') ? '#fff' : '#333';
-                statusChart.options.plugins.legend.labels.color = document.documentElement.classList.contains('dark') ? '#fff' : '#333';
-                catChart.update();
-                statusChart.update();
-            }
-        });
+        if (darkModeToggle && darkIcon) {
+            darkModeToggle.addEventListener('click', () => {
+                document.documentElement.classList.toggle('dark');
+                if (document.documentElement.classList.contains('dark')) {
+                    darkIcon.classList.remove('fa-moon');
+                    darkIcon.classList.add('fa-sun');
+                    localStorage.setItem('theme', 'dark');
+                } else {
+                    darkIcon.classList.remove('fa-sun');
+                    darkIcon.classList.add('fa-moon');
+                    localStorage.setItem('theme', 'light');
+                }
+                if (catChart && statusChart) {
+                    catChart.options.plugins.legend.labels.color = document.documentElement.classList.contains('dark') ? '#fff' : '#333';
+                    statusChart.options.plugins.legend.labels.color = document.documentElement.classList.contains('dark') ? '#fff' : '#333';
+                    catChart.update();
+                    statusChart.update();
+                }
+            });
+        }
 
-        // 加载保存的主题
         function loadTheme() {
             if (localStorage.getItem('theme') === 'dark' && darkIcon) {
                 document.documentElement.classList.add('dark');
@@ -634,44 +609,50 @@
             }
         }
 
-        // 收藏按钮点击：显示收藏的工具
-        favoriteBtn.addEventListener('click', () => {
-            if (currentCategory === 'favorite') {
-                currentCategory = 'all';
-                favoriteBtn.classList.remove('bg-yellow-500', 'text-white');
-            } else {
-                currentCategory = 'favorite';
-                favoriteBtn.classList.add('bg-yellow-500', 'text-white');
-            }
-            renderCards();
-        });
+        if (favoriteBtn) {
+            favoriteBtn.addEventListener('click', () => {
+                if (currentCategory === 'favorite') {
+                    currentCategory = 'all';
+                    favoriteBtn.classList.remove('bg-yellow-500', 'text-white');
+                } else {
+                    currentCategory = 'favorite';
+                    favoriteBtn.classList.add('bg-yellow-500', 'text-white');
+                }
+                renderCards();
+            });
+        }
 
-        // 提交新工具链接
-        submitLink.addEventListener('click', (e) => {
-            e.preventDefault();
-            submitModal.classList.add('show');
-        });
+        if (submitLink && submitModal) {
+            submitLink.addEventListener('click', (e) => {
+                e.preventDefault();
+                submitModal.classList.add('show');
+            });
+        }
         window.closeSubmitModal = () => {
             if (submitModal) submitModal.classList.remove('show');
         };
 
-        // 滚动显示返回顶部按钮
         window.addEventListener('scroll', () => {
-            if (window.scrollY > 300) backToTop.classList.add('opacity-100', 'visible');
-            else backToTop.classList.remove('opacity-100', 'visible');
+            if (window.scrollY > 300 && backToTop) {
+                backToTop.classList.add('opacity-100', 'visible');
+            } else if (backToTop) {
+                backToTop.classList.remove('opacity-100', 'visible');
+            }
         });
-        backToTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+        if (backToTop) {
+            backToTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+        }
 
-        // 搜索框输入
-        searchInput.addEventListener('input', (e) => {
-            currentSearch = e.target.value.trim();
-            renderCards();
-        });
+        if (searchInput) {
+            searchInput.addEventListener('input', (e) => {
+                currentSearch = e.target.value.trim();
+                renderCards();
+            });
+        }
 
         // 启动一切！
         loadToolsData();
 
-        // Service Worker 注册（失败就失败叭，不影响使用）
         if ('serviceWorker' in navigator) {
             navigator.serviceWorker.register('/sw.js').catch(err => console.log('SW注册失败，不过没关系～', err));
         }
