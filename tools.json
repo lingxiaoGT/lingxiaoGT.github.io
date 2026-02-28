@@ -1212,12 +1212,12 @@
     "status": "normal"
   },
   {
-    "name": "Minecraft 101 红石模拟器",
-    "desc": "网页版红石模拟器，学习红石电路",
-    "url": "http://www.minecraft101.net/redstone/redstone-simulator.html",
-    "category": "工具类",
-    "tags": ["红石", "模拟器", "教程"],
-    "status": "normal"
+  "name": "Minecraft 101 红石模拟器",
+  "desc": "网页版红石模拟器，学习红石电路",
+  "url": "https://www.minecraft101.net/redstone/redstone-basics.html",
+  "category": "工具类",
+  "tags": ["红石", "模拟器", "教程"],
+  "status": "normal"
   },
   {
     "name": "Minecraft Color Codes",
@@ -1249,16 +1249,8 @@
     "url": "https://www.redstone.tips",
     "category": "工具类",
     "tags": ["红石", "计算器"],
-    "status": "normal"
-  },
-  {
-    "name": "Hopper Timer 漏斗时钟计算器",
-    "desc": "计算漏斗时钟所需物品数量（存档链接）",
-    "url": "https://web.archive.org/web/20220701050326/http://monsieurtouf.fr/tools/hopper-timer-calculator",
-    "category": "工具类",
-    "tags": ["红石", "漏斗", "计算器", "存档"],
     "status": "warning",
-    "warningText": "存档页面"
+    "warningText": "可能已失效"
   },
   {
     "name": "Blockbench 3D建模",
