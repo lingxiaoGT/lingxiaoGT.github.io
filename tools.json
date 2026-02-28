@@ -1587,5 +1587,205 @@
     "category": "其他资源",
     "tags": ["官方", "服务器"],
     "status": "normal"
-  }
+  },
+  {
+  "name": "Eaglercraft 网页版MC",
+  "desc": "多个版本的网页版Minecraft，包括Eaglercraft、Eaglercraft 1.8、离线版、多版本等",
+  "url": "https://eaglercraft.com/",
+  "category": "网页版MC",
+  "tags": ["网页版MC", "在线玩"],
+  "status": "normal"
+},
+{
+  "name": "MineAtlas 生物群系地图",
+  "desc": "在线查看Minecraft种子地图，定位生物群系",
+  "url": "http://mineatlas.com/",
+  "category": "工具类",
+  "tags": ["地图", "生物群系"],
+  "status": "normal"
+},
+{
+  "name": "MCVersions 版本下载",
+  "desc": "下载Minecraft各种版本的服务端和客户端",
+  "url": "https://mcversions.net/",
+  "category": "其他资源",
+  "tags": ["版本", "下载"],
+  "status": "normal"
+},
+{
+  "name": "MCJars 服务端下载",
+  "desc": "提供Minecraft服务端Jar文件下载",
+  "url": "https://mcjars.app/",
+  "category": "其他资源",
+  "tags": ["服务端", "下载"],
+  "status": "normal"
+},
+{
+  "name": "MCData 数据包开发",
+  "desc": "数据包开发文档和工具",
+  "url": "https://mcdata.org/",
+  "category": "工具类",
+  "tags": ["数据包", "开发"],
+  "status": "normal"
+},
+{
+  "name": "MCGen 生成器",
+  "desc": "Minecraft命令生成器",
+  "url": "https://mcgen.vercel.app/",
+  "category": "工具类",
+  "tags": ["生成器"],
+  "status": "normal"
+},
+{
+  "name": "MC-Heads 头颅API",
+  "desc": "获取Minecraft玩家头颅的API服务",
+  "url": "https://mc-heads.net/",
+  "category": "工具类",
+  "tags": ["头颅", "API"],
+  "status": "normal"
+},
+{
+  "name": "MCBanners 服务器横幅",
+  "desc": "生成Minecraft服务器状态横幅",
+  "url": "https://mcbanners.com/",
+  "category": "工具类",
+  "tags": ["横幅", "服务器"],
+  "status": "normal"
+},
+{
+  "name": "Spark 性能分析",
+  "desc": "Minecraft服务器性能分析工具",
+  "url": "https://spark.lucko.me/",
+  "category": "服务器/技术",
+  "tags": ["性能", "分析"],
+  "status": "normal"
+},
+{
+  "name": "Timings 分析",
+  "desc": "Minecraft服务器Timings分析工具",
+  "url": "https://timings.aikar.co/",
+  "category": "服务器/技术",
+  "tags": ["性能", "分析"],
+  "status": "normal"
+},
+{
+  "name": "BlueMap 在线地图",
+  "desc": "Minecraft服务器3D地图查看器",
+  "url": "https://bluemap.bluecolored.de/",
+  "category": "服务器/技术",
+  "tags": ["地图", "网页"],
+  "status": "normal"
+},
+{
+  "name": "Dynmap 官网",
+  "desc": "Minecraft服务器动态地图",
+  "url": "https://www.dynmap.org/",
+  "category": "服务器/技术",
+  "tags": ["地图", "网页"],
+  "status": "normal"
+},
+{
+  "name": "Squaremap GitHub",
+  "desc": "轻量级Minecraft服务器地图",
+  "url": "https://github.com/jpenilla/squaremap",
+  "category": "服务器/技术",
+  "tags": ["地图", "网页"],
+  "status": "normal"
+},
+{
+  "name": "ATLauncher",
+  "desc": "多实例Minecraft启动器",
+  "url": "https://atlauncher.com/",
+  "category": "启动器/加载器",
+  "tags": ["启动器"],
+  "status": "normal"
+},
+{
+  "name": "Prism Launcher",
+  "desc": "开源的Minecraft启动器，MultiMC分支",
+  "url": "https://prismlauncher.org/",
+  "category": "启动器/加载器",
+  "tags": ["启动器"],
+  "status": "normal"
+},
+{
+  "name": "GDLauncher",
+  "desc": "现代化的Minecraft启动器",
+  "url": "https://gdlauncher.com/",
+  "category": "启动器/加载器",
+  "tags": ["启动器"],
+  "status": "normal"
+},
+{
+  "name": "PolyMC",
+  "desc": "Minecraft启动器，MultiMC分支",
+  "url": "https://polymc.org/",
+  "category": "启动器/加载器",
+  "tags": ["启动器"],
+  "status": "normal"
+},
+{
+  "name": "Rift 模组加载器",
+  "desc": "轻量级模组加载器，适用于1.13-1.15",
+  "url": "https://www.curseforge.com/minecraft/mc-mods/rift",
+  "category": "启动器/加载器",
+  "tags": ["模组加载器", "Rift"],
+  "status": "normal"
+},
+{
+  "name": "MCBBS 工具板块",
+  "desc": "MCBBS论坛的工具与编辑器板块",
+  "url": "https://www.mcbbs.net/forum.php?gid=33",
+  "category": "社区/论坛",
+  "tags": ["论坛", "工具"],
+  "status": "normal"
+},
+{
+  "name": "苦力怕论坛 工具资源",
+  "desc": "苦力怕论坛的工具资源板块",
+  "url": "https://klpbbs.com/forum-36-1.html",
+  "category": "社区/论坛",
+  "tags": ["论坛", "资源"],
+  "status": "normal"
+},
+{
+  "name": "MineBBS 资源",
+  "desc": "MineBBS论坛的资源板块",
+  "url": "https://www.minebbs.com/resources/",
+  "category": "社区/论坛",
+  "tags": ["论坛", "资源"],
+  "status": "normal"
+},
+{
+  "name": "Planet Minecraft 工具",
+  "desc": "Planet Minecraft网站的工具板块",
+  "url": "https://www.planetminecraft.com/tools/",
+  "category": "模组/资源站",
+  "tags": ["工具"],
+  "status": "normal"
+},
+{
+  "name": "Minecraft Forum 工具",
+  "desc": "Minecraft Forum的工具板块",
+  "url": "https://www.minecraftforum.net/forums/mapping-and-modding-java-edition/minecraft-tools",
+  "category": "社区/论坛",
+  "tags": ["论坛", "工具"],
+  "status": "normal"
+},
+{
+  "name": "Reddit 技术性MC Wiki",
+  "desc": "Reddit技术性Minecraft社区的Wiki",
+  "url": "https://www.reddit.com/r/technicalminecraft/wiki/index/",
+  "category": "社区/论坛",
+  "tags": ["Wiki", "技术"],
+  "status": "normal"
+},
+{
+  "name": "Minecraft Wiki 教程首页",
+  "desc": "Minecraft Wiki的教程页面合集",
+  "url": "https://zh.minecraft.wiki/w/教程",
+  "category": "Wiki与百科",
+  "tags": ["教程"],
+  "status": "normal"
+}
 ]
