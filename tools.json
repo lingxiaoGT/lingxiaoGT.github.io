@@ -655,7 +655,8 @@
     "url": "http://minecraft-mods.org/tag/minecraft-1-7-10-mods/",
     "category": "模组/资源站",
     "tags": ["1.7.10"],
-    "status": "normal"
+    "status": "warning",
+    "warningText": "链接已失效"
   },
   {
     "name": "Mod Minecraft",
@@ -1152,6 +1153,439 @@
     "url": "https://lt.nimbusapex.top/",
     "category": "其他资源",
     "tags": ["论坛"],
+    "status": "normal"
+  },
+  {
+    "name": "MCStacker 命令生成器",
+    "desc": "支持多版本Minecraft Java版命令生成，包含物品、实体、方块等",
+    "url": "https://mcstacker.net",
+    "category": "工具类",
+    "tags": ["命令", "生成器", "多版本"],
+    "status": "normal"
+  },
+  {
+    "name": "Misode 数据包生成器合集",
+    "desc": "战利品表、进度、配方、标签、谓词、函数、维度、世界生成、结构、自定义世界、生物群系、特征、声音事件、伤害类型、语言文件、字体、粒子等生成器",
+    "url": "https://misode.github.io",
+    "category": "工具类",
+    "tags": ["数据包", "生成器", "合集"],
+    "status": "normal"
+  },
+  {
+    "name": "GamerGeeks 命令生成器",
+    "desc": "药水、附魔书、自定义物品等give命令生成",
+    "url": "https://www.gamergeeks.net/apps/minecraft",
+    "category": "工具类",
+    "tags": ["命令", "生成器", "药水", "附魔"],
+    "status": "normal"
+  },
+  {
+    "name": "MCTools.org 工具集",
+    "desc": "附魔模拟器、药水计算、掉落计算、生成蛋命令、属性修饰器、记分板、队伍、粒子、声音、标题、书籍、交易生成等",
+    "url": "https://mctools.org",
+    "category": "工具类",
+    "tags": ["工具集", "命令", "模拟器"],
+    "status": "normal"
+  },
+  {
+    "name": "MC Command 中文指令生成",
+    "desc": "中文界面命令生成器，支持give、summon等",
+    "url": "http://mccommand.com",
+    "category": "工具类",
+    "tags": ["命令", "生成器", "中文"],
+    "status": "normal"
+  },
+  {
+    "name": "NeedCoolShoes 工具站",
+    "desc": "旗帜生成器、地图画生成器、皮肤预览等",
+    "url": "https://www.needcoolshoes.com",
+    "category": "工具类",
+    "tags": ["工具站", "旗帜", "地图画"],
+    "status": "normal"
+  },
+  {
+    "name": "Map.InstantMC 种子地图预览",
+    "desc": "在线查看种子地图，查找生物群系和结构",
+    "url": "https://map.instantmc.com",
+    "category": "工具类",
+    "tags": ["地图", "种子", "预览"],
+    "status": "normal"
+  },
+  {
+    "name": "Minecraft 101 红石模拟器",
+    "desc": "网页版红石模拟器，学习红石电路",
+    "url": "http://www.minecraft101.net/redstone/redstone-simulator.html",
+    "category": "工具类",
+    "tags": ["红石", "模拟器", "教程"],
+    "status": "normal"
+  },
+  {
+    "name": "Minecraft Color Codes",
+    "desc": "颜色代码和格式代码查询工具",
+    "url": "https://www.minecraftcolorcodes.com",
+    "category": "工具类",
+    "tags": ["颜色", "格式", "代码"],
+    "status": "normal"
+  },
+  {
+    "name": "Minecraft JSON 文本生成器",
+    "desc": "生成原始JSON文本，用于告示牌、书籍等",
+    "url": "https://www.minecraftjson.com",
+    "category": "工具类",
+    "tags": ["JSON", "文本", "生成器"],
+    "status": "normal"
+  },
+  {
+    "name": "NBT 编辑器/解析器",
+    "desc": "在线NBT数据编辑和解析工具",
+    "url": "https://nbt.nickac.dev",
+    "category": "工具类",
+    "tags": ["NBT", "编辑器", "解析"],
+    "status": "normal"
+  },
+  {
+    "name": "Redstone Tips 红石计算",
+    "desc": "红石时序计算器，帮助设计红石电路",
+    "url": "https://www.redstone.tips",
+    "category": "工具类",
+    "tags": ["红石", "计算器"],
+    "status": "normal"
+  },
+  {
+    "name": "Hopper Timer 漏斗时钟计算器",
+    "desc": "计算漏斗时钟所需物品数量（存档链接）",
+    "url": "https://web.archive.org/web/20220701050326/http://monsieurtouf.fr/tools/hopper-timer-calculator",
+    "category": "工具类",
+    "tags": ["红石", "漏斗", "计算器", "存档"],
+    "status": "warning",
+    "warningText": "存档页面"
+  },
+  {
+    "name": "Blockbench 3D建模",
+    "desc": "创建模型、纹理和动画，支持实体、物品、方块模型",
+    "url": "https://www.blockbench.net",
+    "category": "工具类",
+    "tags": ["3D", "建模", "模型"],
+    "status": "normal"
+  },
+  {
+    "name": "Chunky 高清渲染",
+    "desc": "Minecraft地图渲染器，生成高质量图像",
+    "url": "https://chunky.llbit.se",
+    "category": "工具类",
+    "tags": ["渲染", "地图", "高清"],
+    "status": "normal"
+  },
+  {
+    "name": "Cubik Studio 建模",
+    "desc": "专业建模软件，支持模型、动画、材质",
+    "url": "https://cubik.studio",
+    "category": "工具类",
+    "tags": ["建模", "3D"],
+    "status": "normal"
+  },
+  {
+    "name": "Mineways 3D模型导出",
+    "desc": "将Minecraft地图导出为3D模型文件（OBJ、STL等）",
+    "url": "https://www.realtimerendering.com/erich/minecraft/public/mineways",
+    "category": "工具类",
+    "tags": ["3D", "导出", "模型"],
+    "status": "normal"
+  },
+  {
+    "name": "3D皮肤查看器",
+    "desc": "在线预览和旋转Minecraft皮肤",
+    "url": "https://www.minecraftskinviewer.net",
+    "category": "工具类",
+    "tags": ["皮肤", "3D", "预览"],
+    "status": "normal"
+  },
+  {
+    "name": "WorldPainter 地形编辑",
+    "desc": "交互式地图生成器，绘制地形、添加生物群系等",
+    "url": "https://www.worldpainter.net",
+    "category": "工具类",
+    "tags": ["地图", "地形", "编辑器"],
+    "status": "normal"
+  },
+  {
+    "name": "MCEdit Unified 地图编辑器",
+    "desc": "经典地图编辑器，支持复制、粘贴、过滤区块",
+    "url": "https://www.mcedit-unified.net",
+    "category": "工具类",
+    "tags": ["地图", "编辑器", "区块"],
+    "status": "normal"
+  },
+  {
+    "name": "Amidst 地图查看器",
+    "desc": "查看种子地图，定位生物群系和结构",
+    "url": "https://github.com/toolbox4minecraft/amidst",
+    "category": "工具类",
+    "tags": ["地图", "种子", "查看器"],
+    "status": "normal"
+  },
+  {
+    "name": "Minecraft Overviewer 地图渲染",
+    "desc": "生成可缩放的高分辨率Minecraft地图",
+    "url": "https://overviewer.org",
+    "category": "工具类",
+    "tags": ["地图", "渲染"],
+    "status": "normal"
+  },
+  {
+    "name": "uNmINeD 地图渲染",
+    "desc": "快速渲染Minecraft地图，支持多种样式",
+    "url": "https://unmined.net",
+    "category": "工具类",
+    "tags": ["地图", "渲染"],
+    "status": "normal"
+  },
+  {
+    "name": "PaperMC 高性能服务端",
+    "desc": "高性能服务端核心，优化插件兼容性",
+    "url": "https://papermc.io/downloads",
+    "category": "服务器/技术",
+    "tags": ["服务端", "Paper"],
+    "status": "normal"
+  },
+  {
+    "name": "Purpur 服务端",
+    "desc": "Paper分支，提供更多配置选项",
+    "url": "https://purpurmc.org/downloads",
+    "category": "服务器/技术",
+    "tags": ["服务端", "Purpur"],
+    "status": "normal"
+  },
+  {
+    "name": "Velocity 代理端",
+    "desc": "现代代理服务端，支持群组服",
+    "url": "https://velocitypowered.com/downloads",
+    "category": "服务器/技术",
+    "tags": ["代理", "Velocity"],
+    "status": "normal"
+  },
+  {
+    "name": "Waterfall 代理端",
+    "desc": "BungeeCord分支，稳定高效",
+    "url": "https://www.waterfallmc.net/download",
+    "category": "服务器/技术",
+    "tags": ["代理", "Waterfall"],
+    "status": "normal"
+  },
+  {
+    "name": "BungeeCord 代理端",
+    "desc": "经典代理服务端，用于群组服",
+    "url": "https://www.md-5.net/bungeecord",
+    "category": "服务器/技术",
+    "tags": ["代理", "BungeeCord"],
+    "status": "normal"
+  },
+  {
+    "name": "GeyserMC 互通",
+    "desc": "允许基岩版玩家加入Java版服务器",
+    "url": "https://geysermc.org",
+    "category": "服务器/技术",
+    "tags": ["互通", "基岩版"],
+    "status": "normal"
+  },
+  {
+    "name": "ViaVersion 版本兼容",
+    "desc": "允许不同版本客户端连接服务器",
+    "url": "https://viaversion.com",
+    "category": "服务器/技术",
+    "tags": ["版本", "兼容"],
+    "status": "normal"
+  },
+  {
+    "name": "ProtocolSupport 版本兼容",
+    "desc": "支持旧版客户端连接",
+    "url": "https://protocolsupport.xyz",
+    "category": "服务器/技术",
+    "tags": ["版本", "兼容"],
+    "status": "normal"
+  },
+  {
+    "name": "网页地图插件 (Dynmap/BlueMap/Squaremap)",
+    "desc": "在网页上实时显示服务器地图",
+    "url": "https://www.spigotmc.org/resources/dynmap.274",
+    "category": "服务器/技术",
+    "tags": ["地图", "网页", "插件"],
+    "status": "normal"
+  },
+  {
+    "name": "EssentialsX 基础插件",
+    "desc": "基础插件集，包含传送、家、经济等",
+    "url": "https://essentialsx.net",
+    "category": "服务器/技术",
+    "tags": ["插件", "基础"],
+    "status": "normal"
+  },
+  {
+    "name": "LuckPerms 权限管理",
+    "desc": "现代权限管理插件，支持多后端",
+    "url": "https://luckperms.net",
+    "category": "服务器/技术",
+    "tags": ["权限", "插件"],
+    "status": "normal"
+  },
+  {
+    "name": "WorldEdit 创世神",
+    "desc": "强大的地图编辑插件",
+    "url": "https://enginehub.org/worldedit",
+    "category": "服务器/技术",
+    "tags": ["编辑", "插件"],
+    "status": "normal"
+  },
+  {
+    "name": "WorldGuard 领地保护",
+    "desc": "区域保护和管理插件",
+    "url": "https://enginehub.org/worldguard",
+    "category": "服务器/技术",
+    "tags": ["保护", "插件"],
+    "status": "normal"
+  },
+  {
+    "name": "FastAsyncWorldEdit",
+    "desc": "WorldEdit异步版本，提升性能",
+    "url": "https://www.spigotmc.org/resources/fastasyncworldedit.13932",
+    "category": "服务器/技术",
+    "tags": ["编辑", "插件", "异步"],
+    "status": "normal"
+  },
+  {
+    "name": "Vault 经济/权限API",
+    "desc": "经济、权限、聊天API接口",
+    "url": "https://www.spigotmc.org/resources/vault.34315",
+    "category": "服务器/技术",
+    "tags": ["API", "经济"],
+    "status": "normal"
+  },
+  {
+    "name": "PlaceholderAPI 变量插件",
+    "desc": "提供占位符变量，供其他插件使用",
+    "url": "https://www.spigotmc.org/resources/placeholderapi.6245",
+    "category": "服务器/技术",
+    "tags": ["API", "变量"],
+    "status": "normal"
+  },
+  {
+    "name": "Citizens NPC插件",
+    "desc": "创建和管理NPC",
+    "url": "https://www.spigotmc.org/resources/citizens.13811",
+    "category": "服务器/技术",
+    "tags": ["NPC", "插件"],
+    "status": "normal"
+  },
+  {
+    "name": "MythicMobs 自定义生物",
+    "desc": "创建自定义生物、技能和掉落",
+    "url": "https://www.spigotmc.org/resources/mythicmobs.5702",
+    "category": "服务器/技术",
+    "tags": ["生物", "插件"],
+    "status": "normal"
+  },
+  {
+    "name": "Skript 脚本语言",
+    "desc": "轻量级脚本语言，快速创建游戏机制",
+    "url": "https://skriptlang.org",
+    "category": "服务器/技术",
+    "tags": ["脚本", "插件"],
+    "status": "normal"
+  },
+  {
+    "name": "SkriptHub / SkUnity 社区",
+    "desc": "Skript脚本社区和资源库",
+    "url": "https://skripthub.net",
+    "category": "服务器/技术",
+    "tags": ["脚本", "社区"],
+    "status": "normal"
+  },
+  {
+    "name": "MCreator 模组制作",
+    "desc": "无需编程的模组制作工具",
+    "url": "https://mcreator.net",
+    "category": "启动器/加载器",
+    "tags": ["模组", "制作", "工具"],
+    "status": "normal"
+  },
+  {
+    "name": "Pokecreator",
+    "desc": "宝可梦模组制作工具",
+    "url": "https://www.pokecreator.com",
+    "category": "启动器/加载器",
+    "tags": ["模组", "宝可梦"],
+    "status": "normal"
+  },
+  {
+    "name": "Vanilla Tweaks",
+    "desc": "数据包和资源包合集，优化原版体验",
+    "url": "https://vanillatweaks.net",
+    "category": "其他资源",
+    "tags": ["数据包", "资源包"],
+    "status": "normal"
+  },
+  {
+    "name": "官方启动器下载",
+    "desc": "Minecraft官网启动器下载页",
+    "url": "https://www.minecraft.net/download",
+    "category": "其他资源",
+    "tags": ["官方", "启动器"],
+    "status": "normal"
+  },
+  {
+    "name": "Mojang 官网",
+    "desc": "Mojang Studios官方网站",
+    "url": "https://mojang.com",
+    "category": "其他资源",
+    "tags": ["官方", "公司"],
+    "status": "normal"
+  },
+  {
+    "name": "Minecraft 帮助中心",
+    "desc": "官方帮助和支持中心",
+    "url": "https://help.minecraft.net",
+    "category": "其他资源",
+    "tags": ["官方", "帮助"],
+    "status": "normal"
+  },
+  {
+    "name": "Mojang 支持",
+    "desc": "官方问题追踪和帮助",
+    "url": "https://help.mojang.com",
+    "category": "其他资源",
+    "tags": ["官方", "支持"],
+    "status": "normal"
+  },
+  {
+    "name": "Minecraft 启动器问题追踪",
+    "desc": "官方启动器Bug追踪系统",
+    "url": "https://bugs.mojang.com/browse/MCL",
+    "category": "其他资源",
+    "tags": ["官方", "Bug追踪"],
+    "status": "normal"
+  },
+  {
+    "name": "Reddit Minecraft 社区",
+    "desc": "r/Minecraft, r/technicalminecraft, r/redstone 等子版块",
+    "url": "https://www.reddit.com/r/Minecraft",
+    "category": "社区/论坛",
+    "tags": ["社区", "Reddit"],
+    "status": "normal"
+  },
+  {
+    "name": "服务器状态查询",
+    "desc": "在线检测Minecraft服务器状态",
+    "url": "https://mcsrvstat.us",
+    "category": "工具类",
+    "tags": ["服务器", "状态"],
+    "status": "normal"
+  },
+  {
+    "name": "Minecraft Realms",
+    "desc": "官方租赁服务器服务",
+    "url": "https://www.minecraft.net/en-us/realms",
+    "category": "其他资源",
+    "tags": ["官方", "服务器"],
     "status": "normal"
   }
 ]
