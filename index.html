@@ -395,10 +395,11 @@
             });
         }
 
-        // 创建单个卡片的函数 ( ◕‿◕)
+        // 创建单个卡片的函数 ( ◕‿◕) —— 修复：整个卡片可点击
         function createCard(tool) {
             const card = document.createElement('div');
-            card.className = 'card bg-white dark:bg-gray-800 rounded-xl shadow-md overflow-hidden border border-gray-100 dark:border-gray-700 flex flex-col';
+            card.className = 'card bg-white dark:bg-gray-800 rounded-xl shadow-md overflow-hidden border border-gray-100 dark:border-gray-700 flex flex-col cursor-pointer';
+            card.onclick = () => window.open(tool.url, '_blank');
 
             const statusText = tool.status === 'normal' ? '正常' : (tool.warningText || '注意');
             const isFavorite = favoriteIds.includes(tool.name);
@@ -414,22 +415,22 @@
                     <div class="flex flex-wrap gap-1 mb-3">
                         ${tool.tags.map(tag => `<span class="px-2 py-0.5 bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 rounded-full text-xs">${tag}</span>`).join('')}
                     </div>
-                    <div class="mt-auto flex items-center justify-between">
+                    <div class="mt-auto flex items-center justify-between" onclick="event.stopPropagation()">
                         <div class="flex items-center gap-2">
-                            <a href="${tool.url}" target="_blank" rel="noopener noreferrer" class="visit-link text-green-600 dark:text-green-400 hover:text-green-800 dark:hover:text-green-300 font-medium text-sm" data-url="${tool.url}">访问网站</a>
-                            <button onclick="showDetail('${tool.name}')" class="text-blue-500 hover:text-blue-700 text-sm"><i class="far fa-eye"></i></button>
+                            <a href="${tool.url}" target="_blank" rel="noopener noreferrer" class="visit-link text-green-600 dark:text-green-400 hover:text-green-800 dark:hover:text-green-300 font-medium text-sm" data-url="${tool.url}" onclick="event.stopPropagation()">访问网站</a>
+                            <button onclick="showDetail('${tool.name}'); event.stopPropagation()" class="text-blue-500 hover:text-blue-700 text-sm"><i class="far fa-eye"></i></button>
                         </div>
                         <div class="flex items-center gap-2">
-                            <button onclick="toggleFavorite('${tool.name}')" class="text-yellow-500 hover:text-yellow-600" title="收藏">
+                            <button onclick="toggleFavorite('${tool.name}'); event.stopPropagation()" class="text-yellow-500 hover:text-yellow-600" title="收藏">
                                 <i class="${isFavorite ? 'fas' : 'far'} fa-star"></i>
                             </button>
-                            <button onclick="toggleCompare('${tool.name}')" class="text-gray-400 hover:text-gray-600" title="对比">
+                            <button onclick="toggleCompare('${tool.name}'); event.stopPropagation()" class="text-gray-400 hover:text-gray-600" title="对比">
                                 <i class="${isCompare ? 'fas fa-check-square' : 'far fa-square'}"></i>
                             </button>
-                            <button onclick="copyToClipboard('${tool.url}')" class="text-gray-400 hover:text-gray-600" title="复制链接">
+                            <button onclick="copyToClipboard('${tool.url}'); event.stopPropagation()" class="text-gray-400 hover:text-gray-600" title="复制链接">
                                 <i class="far fa-copy"></i>
                             </button>
-                            <button onclick="openFeedbackModal('${tool.name}')" class="text-gray-400 hover:text-gray-600 feedback-btn" title="反馈问题">
+                            <button onclick="openFeedbackModal('${tool.name}'); event.stopPropagation()" class="text-gray-400 hover:text-gray-600 feedback-btn" title="反馈问题">
                                 <i class="fas fa-pencil-alt"></i>
                             </button>
                         </div>
