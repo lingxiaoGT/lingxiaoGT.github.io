@@ -38,6 +38,9 @@
         .dark .category-summary:hover { background-color: #374151; }
         .category-summary::-webkit-details-marker { display: none; }
         .category-content { padding: 0 1rem 1rem 1rem; display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 0.75rem; }
+        /* 标签折叠相关样式 */
+        .tag-btn { transition: background-color 0.2s; }
+        .parent-tag-btn i { transition: transform 0.2s; }
     </style>
     <meta name="theme-color" content="#10b981">
 </head>
@@ -147,7 +150,7 @@
             </div>
         </div>
 
-        <!-- 标签筛选 (ﾉ◕ヮ◕)ﾉ*:･ﾟ✧ 点击可以进一步缩小范围 -->
+        <!-- 标签筛选 (ﾉ◕ヮ◕)ﾉ*:･ﾟ✧ 点击可以进一步缩小范围，合并后的标签点击展开子标签 -->
         <div id="tagFilters" class="flex flex-wrap gap-2 mb-4"></div>
 
         <!-- 统计图表 (可折叠) 数据可视化什么的最喜欢了～ 每次点开都有惊喜 -->
@@ -262,6 +265,36 @@
         let clickCounts = JSON.parse(localStorage.getItem('clickCounts')) || {};
         let catChart, statusChart;
 
+        // 标签映射表（原标签 -> 父标签）
+        const tagMapping = {
+            '在线玩': '网页版', '网页版MC': '网页版', 'JS': '网页版', '极速': '网页版',
+            '1.8.8': '网页版', '开发者': '网页版', '教学': '网页版', '备用': '网页版',
+            '免费': '工具', '在线': '工具', '综合': '工具', '工具集': '工具',
+            'API': '工具', '生成器': '工具', '模拟器': '工具', '编辑器': '工具',
+            '分析': '工具', '计算器': '工具', '渲染': '工具', '建模': '工具',
+            '导出': '工具', '预览': '工具', '工具': '工具',
+            '皮肤': '皮肤/装饰', '披风': '皮肤/装饰', '头颅': '皮肤/装饰', '3D': '皮肤/装饰',
+            '壁纸': '皮肤/装饰', '动图': '皮肤/装饰', '像素画': '皮肤/装饰',
+            '模组': '模组', 'Forge': '模组', 'Fabric': '模组', 'Quilt': '模组',
+            'NeoForge': '模组', 'Rift': '模组', '加载器': '模组', '整合包': '模组',
+            '地图': '地图/世界', '种子': '地图/世界', '地形': '地图/世界', '区块': '地图/世界',
+            '世界': '地图/世界',
+            '红石': '教程/命令', '教程': '教程/命令', '命令': '教程/命令', 'JSON': '教程/命令',
+            'NBT': '教程/命令', '颜色': '教程/命令', '文字': '教程/命令', '音频': '教程/命令',
+            '音效': '教程/命令',
+            '论坛': '社区/Wiki', '社区': '社区/Wiki', '国际': '社区/Wiki', '日本': '社区/Wiki',
+            '韩国': '社区/Wiki', '香港': '社区/Wiki', 'Wiki': '社区/Wiki', '维基': '社区/Wiki',
+            '百科': '社区/Wiki',
+            '服务器': '服务器/技术', '服务端': '服务器/技术', '代理': '服务器/技术', '插件': '服务器/技术',
+            '性能': '服务器/技术', '互通': '服务器/技术', '版本': '服务器/技术', '兼容': '服务器/技术',
+            '官方': '官方/实用', '下载': '官方/实用', '启动器': '官方/实用', '公司': '官方/实用',
+            '帮助': '官方/实用', 'Bug追踪': '官方/实用',
+            '光影': '光影', '数据包': '数据包', '建筑': '建筑'
+        };
+
+        // 记录展开/折叠状态的父标签
+        let expandedParents = new Set();
+
         // ═════════ 异步加载 JSON 数据 ═════════
         async function loadToolsData() {
             try {
@@ -325,20 +358,83 @@
             });
         }
 
-        // 渲染标签筛选按钮 (ﾉ◕ヮ◕)ﾉ*:･ﾟ✧
+        // 构建父标签到子标签的映射
+        function buildParentToChildren() {
+            const parentToChildren = {};
+            toolsData.forEach(tool => {
+                tool.tags.forEach(tag => {
+                    const parent = tagMapping[tag] || tag; // 如果没有映射，父标签就是自身
+                    if (!parentToChildren[parent]) {
+                        parentToChildren[parent] = new Set();
+                    }
+                    parentToChildren[parent].add(tag);
+                });
+            });
+            // 将Set转为数组并排序
+            for (let parent in parentToChildren) {
+                parentToChildren[parent] = Array.from(parentToChildren[parent]).sort();
+            }
+            return parentToChildren;
+        }
+
+        // 创建单个标签按钮的辅助函数
+        function createTagButton(tag) {
+            const btn = document.createElement('button');
+            btn.className = `tag-btn px-3 py-1 rounded-full text-xs font-medium ${selectedTags.includes(tag) ? 'bg-green-600 text-white' : 'bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-200'}`;
+            btn.dataset.tag = tag;
+            btn.textContent = tag;
+            btn.onclick = () => toggleTag(tag);
+            return btn;
+        }
+
+        // 渲染标签筛选按钮 (ﾉ◕ヮ◕)ﾉ*:･ﾟ✧ —— 新版，支持折叠
         function renderTags() {
             if (!tagFilters) return;
-            const tagSet = new Set();
-            toolsData.forEach(t => t.tags.forEach(tag => tagSet.add(tag)));
-            const tags = Array.from(tagSet).sort();
+
+            const parentToChildren = buildParentToChildren();
+            const parents = Object.keys(parentToChildren).sort();
+
             tagFilters.innerHTML = '';
-            tags.forEach(tag => {
-                const btn = document.createElement('button');
-                btn.className = `tag-btn px-3 py-1 rounded-full text-xs font-medium bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-200`;
-                btn.dataset.tag = tag;
-                btn.textContent = tag;
-                btn.onclick = () => toggleTag(tag);
-                tagFilters.appendChild(btn);
+
+            parents.forEach(parent => {
+                const children = parentToChildren[parent];
+                // 如果父标签下只有一个子标签且就是自身（无映射），则直接显示为普通标签
+                if (children.length === 1 && children[0] === parent) {
+                    const btn = createTagButton(parent);
+                    tagFilters.appendChild(btn);
+                    return;
+                }
+
+                // 创建父标签容器
+                const parentContainer = document.createElement('div');
+                parentContainer.className = 'flex flex-col mb-1';
+
+                // 父标签展开/折叠按钮
+                const parentBtn = document.createElement('button');
+                parentBtn.className = `flex items-center gap-1 px-3 py-1 rounded-full text-xs font-medium bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-300 dark:hover:bg-gray-600`;
+                parentBtn.innerHTML = `<span>${parent}</span> <i class="fas fa-chevron-down transition-transform ${expandedParents.has(parent) ? 'rotate-180' : ''}"></i>`;
+                parentBtn.onclick = (e) => {
+                    e.stopPropagation();
+                    if (expandedParents.has(parent)) {
+                        expandedParents.delete(parent);
+                    } else {
+                        expandedParents.add(parent);
+                    }
+                    // 重新渲染标签区域
+                    renderTags();
+                };
+                parentContainer.appendChild(parentBtn);
+
+                // 子标签容器（默认隐藏）
+                const childContainer = document.createElement('div');
+                childContainer.className = `flex flex-wrap gap-2 mt-2 ml-2 ${expandedParents.has(parent) ? '' : 'hidden'}`;
+                children.forEach(childTag => {
+                    const childBtn = createTagButton(childTag);
+                    childContainer.appendChild(childBtn);
+                });
+                parentContainer.appendChild(childContainer);
+
+                tagFilters.appendChild(parentContainer);
             });
         }
 
@@ -347,15 +443,7 @@
             const index = selectedTags.indexOf(tag);
             if (index === -1) selectedTags.push(tag);
             else selectedTags.splice(index, 1);
-            document.querySelectorAll('.tag-btn').forEach(btn => {
-                if (selectedTags.includes(btn.dataset.tag)) {
-                    btn.classList.add('bg-green-600', 'text-white');
-                    btn.classList.remove('bg-gray-100', 'dark:bg-gray-700', 'text-gray-700', 'dark:text-gray-300');
-                } else {
-                    btn.classList.remove('bg-green-600', 'text-white');
-                    btn.classList.add('bg-gray-100', 'dark:bg-gray-700', 'text-gray-700', 'dark:text-gray-300');
-                }
-            });
+            renderTags(); // 重新渲染标签区域以更新高亮
             renderCards();
         }
 
