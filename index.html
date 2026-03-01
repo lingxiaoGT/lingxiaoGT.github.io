@@ -13,7 +13,6 @@
     <!-- pinyin-pro 拼音搜索 -->
     <script src="https://unpkg.com/pinyin-pro@3.18.3/dist/index.js"></script>
     <style>
-        /* 一些私藏的小样式 (✧∇✧)╯ */
         :root { --primary: #10b981; }
         .card { transition: transform 0.2s ease, box-shadow 0.2s ease; }
         .card:hover { transform: translateY(-4px); box-shadow: 0 20px 25px -5px rgba(0,0,0,0.1), 0 8px 10px -6px rgba(0,0,0,0.02); }
@@ -41,18 +40,16 @@
         /* 标签折叠相关样式 */
         .tag-btn { transition: background-color 0.2s; }
         .parent-tag-btn i { transition: transform 0.2s; }
-        /* 父标签容器增加下边距，区分不同分组 */
-        .parent-tag-container { margin-bottom: 0.5rem; }
-        /* 子标签容器增加左边距，视觉上更清晰 */
-        .child-tag-container { margin-left: 1rem; }
+        /* 父标签容器占满宽度 */
+        .parent-tag-container { width: 100%; }
+        /* 子标签容器缩进并与父标签有间距 */
+        .child-tag-container { margin-left: 1rem; margin-top: 0.25rem; }
     </style>
     <meta name="theme-color" content="#10b981">
 </head>
 <body class="bg-gray-50 font-sans antialiased transition-colors duration-300 dark:bg-gray-900 relative">
 
-    <!-- 复制成功小浮层 (￣▽￣)~* -->
     <div id="copyToast" class="copy-toast">✅ 链接已复制</div>
-    <!-- 返回顶部按钮 (ﾉ◕ヮ◕)ﾉ*:･ﾟ✧ -->
     <button id="backToTop" class="fixed bottom-6 right-6 p-3 rounded-full bg-green-600 text-white shadow-lg hover:bg-green-700 transition opacity-0 invisible z-50"><i class="fas fa-arrow-up"></i></button>
 
     <!-- 详情模态框 -->
@@ -70,7 +67,6 @@
         </div>
     </div>
 
-    <!-- 对比栏 -->
     <div id="compareBar" class="fixed bottom-0 left-0 right-0 bg-white dark:bg-gray-800 shadow-lg border-t dark:border-gray-700 p-3 transform translate-y-full transition-transform z-40">
         <div class="max-w-7xl mx-auto flex items-center justify-between">
             <span class="text-sm font-medium"><span id="compareCount">0</span> 个工具已选择</span>
@@ -81,7 +77,6 @@
         </div>
     </div>
 
-    <!-- 提交新工具表单 -->
     <div id="submitModal" class="modal">
         <div class="modal-content">
             <h3 class="text-xl font-bold mb-4">提交新工具</h3>
@@ -104,7 +99,6 @@
         </div>
     </div>
 
-    <!-- 反馈问题表单 -->
     <div id="feedbackModal" class="modal">
         <div class="modal-content">
             <h3 class="text-xl font-bold mb-4">反馈工具问题</h3>
@@ -125,7 +119,6 @@
 
     <!-- 主容器 (✪ω✪) -->
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 pb-20">
-        <!-- 页眉 -->
         <div class="flex flex-wrap items-center justify-between gap-4 mb-6">
             <h1 class="text-4xl font-bold text-gray-900 dark:text-white">Minecraft 工具</h1>
             <div class="flex flex-wrap items-center gap-3">
@@ -136,10 +129,8 @@
             </div>
         </div>
 
-        <!-- 快捷键提示 -->
         <div class="text-xs text-gray-400 mb-2 text-right">快捷键: <kbd class="bg-gray-200 dark:bg-gray-700 px-1 rounded">/</kbd> 搜索 · <kbd class="bg-gray-200 dark:bg-gray-700 px-1 rounded">ESC</kbd> 清空</div>
 
-        <!-- 搜索框 + 分类按钮 + 收藏 -->
         <div class="flex flex-col gap-4 mb-4">
             <div class="relative flex-1 min-w-0 w-full">
                 <i class="fas fa-search absolute left-3 top-1/2 -translate-y-1/2 text-gray-400"></i>
@@ -148,16 +139,15 @@
             </div>
             <div class="flex flex-wrap gap-2 items-center flex-shrink-0">
                 <div id="categoryButtons" class="flex flex-wrap gap-2 items-center">
-                    <!-- 分类按钮由JS动态生成 -->
+                    <!-- 分类按钮由JS生成 -->
                 </div>
                 <button id="favoriteBtn" class="px-3 py-2 rounded-full text-sm bg-yellow-100 dark:bg-yellow-900 text-yellow-700 dark:text-yellow-200 flex-shrink-0"><i class="far fa-star"></i> 收藏</button>
             </div>
         </div>
 
-        <!-- 标签筛选 -->
-        <div id="tagFilters" class="flex flex-col gap-2 mb-4"></div>
+        <!-- 标签筛选容器，使用 gap 控制垂直间距 -->
+        <div id="tagFilters" class="flex flex-col gap-3 mb-4"></div>
 
-        <!-- 统计图表 -->
         <details class="mb-6 bg-white dark:bg-gray-800 rounded-xl p-4 shadow-sm">
             <summary class="font-medium cursor-pointer">📊 工具统计 (点击展开)</summary>
             <div class="mt-4 grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -166,10 +156,8 @@
             </div>
         </details>
 
-        <!-- 工具卡片容器 -->
         <div id="tools-container" class="space-y-4"></div>
 
-        <!-- 页脚 -->
         <footer class="mt-12 text-center text-sm text-gray-500 dark:text-gray-400 border-t dark:border-gray-700 pt-6">
             <p>
                 <span>最后更新：2026年</span> ·
@@ -193,7 +181,6 @@
         </footer>
     </div>
 
-    <!-- 评论区域 (Giscus) -->
     <div class="max-w-7xl mx-auto px-4 mt-8">
         <div class="bg-white dark:bg-gray-800 rounded-xl p-4">
             <h3 class="text-lg font-medium mb-2">💬 社区讨论</h3>
@@ -231,7 +218,6 @@
 
         let toolsData = [];
 
-        // DOM 元素
         const container = document.getElementById('tools-container');
         const searchInput = document.getElementById('search');
         const copyToast = document.getElementById('copyToast');
@@ -257,7 +243,6 @@
         const categoryContainer = document.getElementById('categoryButtons');
         const tagFilters = document.getElementById('tagFilters');
 
-        // 全局变量
         let currentCategory = 'all';
         let currentSearch = '';
         let selectedTags = [];
@@ -266,9 +251,7 @@
         let clickCounts = JSON.parse(localStorage.getItem('clickCounts')) || {};
         let catChart, statusChart;
 
-        // 标签映射表（根据实际标签列表更新）
         const tagMapping = {
-            // 网页版
             '在线玩': '网页版',
             '网页版MC': '网页版',
             'JS': '网页版',
@@ -278,7 +261,6 @@
             '教学': '网页版',
             '备用': '网页版',
 
-            // 工具
             '工具': '工具',
             '工具集': '工具',
             '工具站': '工具',
@@ -324,7 +306,6 @@
             '图腾': '工具',
             '地图画': '工具',
 
-            // 皮肤/装饰
             '皮肤': '皮肤/装饰',
             '披风': '皮肤/装饰',
             '头颅': '皮肤/装饰',
@@ -334,7 +315,6 @@
             '像素画': '皮肤/装饰',
             '旗帜': '皮肤/装饰',
 
-            // 模组
             '模组': '模组',
             'Forge': '模组',
             'Fabric': '模组',
@@ -348,7 +328,6 @@
             '宝可梦': '模组',
             '模组加载器': '模组',
 
-            // 地图/世界
             '地图': '地图/世界',
             '种子': '地图/世界',
             '地形': '地图/世界',
@@ -357,7 +336,6 @@
             '生物': '地图/世界',
             '生物群系': '地图/世界',
 
-            // 教程/命令
             '红石': '教程/命令',
             '教程': '教程/命令',
             '命令': '教程/命令',
@@ -368,7 +346,6 @@
             '音频': '教程/命令',
             '音效': '教程/命令',
 
-            // 社区/Wiki
             '论坛': '社区/Wiki',
             '社区': '社区/Wiki',
             '国际': '社区/Wiki',
@@ -382,7 +359,6 @@
             '中文': '社区/Wiki',
             '法语': '社区/Wiki',
 
-            // 服务器/技术
             '服务器': '服务器/技术',
             '服务端': '服务器/技术',
             '代理': '服务器/技术',
@@ -405,21 +381,17 @@
             '基岩版': '服务器/技术',
             '多版本': '服务器/技术',
 
-            // 启动器/加载器
             '启动器': '启动器/加载器',
             '加载器': '启动器/加载器',
             'LiteLoader': '启动器/加载器',
 
-            // 光影
             '光影': '光影',
             'Iris': '光影',
             'Optifine': '光影',
 
-            // 材质/光影
             '材质': '材质/光影',
             '资源包': '材质/光影',
 
-            // 官方/实用
             '官方': '官方/实用',
             '下载': '官方/实用',
             '公司': '官方/实用',
@@ -427,13 +399,9 @@
             'Bug追踪': '官方/实用',
             '支持': '官方/实用',
 
-            // 数据包
             '数据包': '数据包',
-
-            // 建筑
             '建筑': '建筑',
 
-            // 其他未归类的标签
             '团队': '其他',
             '视频': '其他',
             '资源': '其他',
@@ -441,10 +409,8 @@
             '镜像': '其他'
         };
 
-        // 记录展开/折叠状态的父标签
         let expandedParents = new Set();
 
-        // ═════════ 异步加载 JSON 数据 ═════════
         async function loadToolsData() {
             try {
                 const response = await fetch('tools.json');
@@ -457,7 +423,6 @@
             }
         }
 
-        // ═════════ 初始化函数 ═════════
         function init() {
             if (categoryContainer) renderCategoryButtons();
             if (tagFilters) renderTags();
@@ -465,13 +430,11 @@
             updateCompareBar();
             initCharts();
             loadTheme();
-
             console.log('%c✨ 嘿嘿，你发现隐藏彩蛋啦！ ✨', 'color: #10b981; font-size: 16px; font-weight: bold;');
             console.log('%c如果你喜欢这个导航站，欢迎去爱发电支持作者～', 'color: #946ce6; font-size: 14px;');
             console.log('%chttps://ifdian.net/a/gt0507', 'color: #3b82f6; text-decoration: underline;');
         }
 
-        // 渲染分类按钮
         function renderCategoryButtons() {
             const categories = [
                 { key: 'all', name: '全部' },
@@ -505,7 +468,6 @@
             });
         }
 
-        // 构建父标签到子标签的映射（排除父标签自身）
         function buildParentToChildren() {
             const parentToChildren = {};
             toolsData.forEach(tool => {
@@ -514,20 +476,17 @@
                     if (!parentToChildren[parent]) {
                         parentToChildren[parent] = new Set();
                     }
-                    // 如果原标签等于父标签，不添加到子标签集合（避免父标签下出现自身）
                     if (tag !== parent) {
                         parentToChildren[parent].add(tag);
                     }
                 });
             });
-            // 将Set转为数组并排序
             for (let parent in parentToChildren) {
                 parentToChildren[parent] = Array.from(parentToChildren[parent]).sort();
             }
             return parentToChildren;
         }
 
-        // 创建单个标签按钮
         function createTagButton(tag) {
             const btn = document.createElement('button');
             btn.className = `tag-btn px-3 py-1 rounded-full text-xs font-medium ${selectedTags.includes(tag) ? 'bg-green-600 text-white' : 'bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-200'}`;
@@ -537,7 +496,6 @@
             return btn;
         }
 
-        // 渲染标签区域
         function renderTags() {
             if (!tagFilters) return;
 
@@ -548,18 +506,15 @@
 
             parents.forEach(parent => {
                 const children = parentToChildren[parent];
-                // 如果父标签没有子标签（即所有原标签都是自身，被排除），则直接作为普通标签显示
                 if (children.length === 0) {
                     const btn = createTagButton(parent);
                     tagFilters.appendChild(btn);
                     return;
                 }
 
-                // 创建父标签容器，增加下边距区分分组
                 const parentContainer = document.createElement('div');
-                parentContainer.className = 'flex flex-col parent-tag-container';
+                parentContainer.className = 'parent-tag-container';
 
-                // 父标签展开/折叠按钮
                 const parentBtn = document.createElement('button');
                 parentBtn.className = `flex items-center gap-1 px-3 py-1 rounded-full text-xs font-medium bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-300 dark:hover:bg-gray-600`;
                 parentBtn.innerHTML = `<span>${parent}</span> <i class="fas fa-chevron-down transition-transform ${expandedParents.has(parent) ? 'rotate-180' : ''}"></i>`;
@@ -574,9 +529,8 @@
                 };
                 parentContainer.appendChild(parentBtn);
 
-                // 子标签容器
                 const childContainer = document.createElement('div');
-                childContainer.className = `flex flex-wrap gap-2 mt-2 child-tag-container ${expandedParents.has(parent) ? '' : 'hidden'}`;
+                childContainer.className = `flex flex-wrap gap-2 child-tag-container ${expandedParents.has(parent) ? '' : 'hidden'}`;
                 children.forEach(childTag => {
                     const childBtn = createTagButton(childTag);
                     childContainer.appendChild(childBtn);
@@ -587,7 +541,6 @@
             });
         }
 
-        // 点击标签切换选中状态
         function toggleTag(tag) {
             const index = selectedTags.indexOf(tag);
             if (index === -1) selectedTags.push(tag);
@@ -596,7 +549,6 @@
             renderCards();
         }
 
-        // 渲染卡片
         function renderCards() {
             if (!container) return;
             let filtered = toolsData.filter(tool => {
@@ -651,7 +603,6 @@
             });
         }
 
-        // 创建卡片
         function createCard(tool) {
             const card = document.createElement('div');
             card.className = 'card bg-white dark:bg-gray-800 rounded-xl shadow-md overflow-hidden border border-gray-100 dark:border-gray-700 flex flex-col cursor-pointer';
@@ -696,7 +647,6 @@
             return card;
         }
 
-        // 反馈弹窗
         function openFeedbackModal(toolName) {
             if (feedbackModal && feedbackToolName && feedbackToolNameDisplay) {
                 feedbackToolName.value = toolName;
