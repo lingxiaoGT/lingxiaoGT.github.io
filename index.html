@@ -4,16 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
     <title>Minecraft 工具</title>
-    <!-- Tailwind CSS (◕‿◕) 快速搭架子，虽然生产环境不建议用 CDN，但省事嘛～ -->
+    <!-- Tailwind CSS (◕‿◕) 快速搭架子 -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Font Awesome 图标库 ヾ(≧▽≦*)o 喜欢那个小图标 -->
+    <!-- Font Awesome 图标库 ヾ(≧▽≦*)o -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <!-- Chart.js 画小饼饼 (～￣▽￣)～ 统计分类用的 -->
+    <!-- Chart.js 画小饼饼 (～￣▽￣)～ -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
-    <!-- pinyin-pro 拼音搜索，妈妈再也不用担心我打不出中文啦～ 感谢大佬开源！ -->
+    <!-- pinyin-pro 拼音搜索 -->
     <script src="https://unpkg.com/pinyin-pro@3.18.3/dist/index.js"></script>
     <style>
-        /* 一些私藏的小样式 (✧∇✧)╯ 强迫症看了都说好 */
+        /* 一些私藏的小样式 (✧∇✧)╯ */
         :root { --primary: #10b981; }
         .card { transition: transform 0.2s ease, box-shadow 0.2s ease; }
         .card:hover { transform: translateY(-4px); box-shadow: 0 20px 25px -5px rgba(0,0,0,0.1), 0 8px 10px -6px rgba(0,0,0,0.02); }
@@ -30,7 +30,7 @@
         canvas { width: 100% !important; height: auto !important; max-width: 100%; }
         .feedback-btn { opacity: 0.6; transition: opacity 0.2s; }
         .feedback-btn:hover { opacity: 1; }
-        /* 折叠面板自己搓的 ┗|｀O′|┛ 参考了好多地方才弄出来 */
+        /* 折叠面板样式 */
         .category-group { margin-bottom: 1.5rem; border-radius: 0.75rem; background-color: #f9fafb; }
         .dark .category-group { background-color: #1f2937; }
         .category-summary { list-style: none; padding: 1rem; cursor: pointer; font-weight: 600; border-radius: 0.75rem; transition: background-color 0.2s; display: flex; justify-content: space-between; align-items: center; }
@@ -41,17 +41,21 @@
         /* 标签折叠相关样式 */
         .tag-btn { transition: background-color 0.2s; }
         .parent-tag-btn i { transition: transform 0.2s; }
+        /* 父标签容器增加下边距，区分不同分组 */
+        .parent-tag-container { margin-bottom: 0.5rem; }
+        /* 子标签容器增加左边距，视觉上更清晰 */
+        .child-tag-container { margin-left: 1rem; }
     </style>
     <meta name="theme-color" content="#10b981">
 </head>
 <body class="bg-gray-50 font-sans antialiased transition-colors duration-300 dark:bg-gray-900 relative">
 
-    <!-- 复制成功小浮层 (￣▽￣)~* 每次复制都会弹一下，贼好用 -->
+    <!-- 复制成功小浮层 (￣▽￣)~* -->
     <div id="copyToast" class="copy-toast">✅ 链接已复制</div>
-    <!-- 嗖的一下回顶部 (ﾉ◕ヮ◕)ﾉ*:･ﾟ✧ 长页面必备良药 -->
+    <!-- 返回顶部按钮 (ﾉ◕ヮ◕)ﾉ*:･ﾟ✧ -->
     <button id="backToTop" class="fixed bottom-6 right-6 p-3 rounded-full bg-green-600 text-white shadow-lg hover:bg-green-700 transition opacity-0 invisible z-50"><i class="fas fa-arrow-up"></i></button>
 
-    <!-- 详情模态框 —— 想看详细介绍？点那个小眼睛吧！👀 里面有详细描述（如果有的话） -->
+    <!-- 详情模态框 -->
     <div id="detailModal" class="modal">
         <div class="modal-content">
             <div class="flex justify-between items-center mb-4">
@@ -66,7 +70,7 @@
         </div>
     </div>
 
-    <!-- 对比栏 —— 比一比谁更强！⚔️ 选两个以上工具就能对比啦 -->
+    <!-- 对比栏 -->
     <div id="compareBar" class="fixed bottom-0 left-0 right-0 bg-white dark:bg-gray-800 shadow-lg border-t dark:border-gray-700 p-3 transform translate-y-full transition-transform z-40">
         <div class="max-w-7xl mx-auto flex items-center justify-between">
             <span class="text-sm font-medium"><span id="compareCount">0</span> 个工具已选择</span>
@@ -77,7 +81,7 @@
         </div>
     </div>
 
-    <!-- 提交新工具表单 ✨ 欢迎安利你喜欢的工具！ -->
+    <!-- 提交新工具表单 -->
     <div id="submitModal" class="modal">
         <div class="modal-content">
             <h3 class="text-xl font-bold mb-4">提交新工具</h3>
@@ -100,7 +104,7 @@
         </div>
     </div>
 
-    <!-- 反馈问题表单 —— 希望不要用到 awq 真的不希望 -->
+    <!-- 反馈问题表单 -->
     <div id="feedbackModal" class="modal">
         <div class="modal-content">
             <h3 class="text-xl font-bold mb-4">反馈工具问题</h3>
@@ -119,9 +123,9 @@
         </div>
     </div>
 
-    <!-- 主容器 (✪ω✪)  -->
+    <!-- 主容器 (✪ω✪) -->
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 pb-20">
-        <!-- 页眉 —— 简洁就是美，不加后缀！ -->
+        <!-- 页眉 -->
         <div class="flex flex-wrap items-center justify-between gap-4 mb-6">
             <h1 class="text-4xl font-bold text-gray-900 dark:text-white">Minecraft 工具</h1>
             <div class="flex flex-wrap items-center gap-3">
@@ -132,10 +136,10 @@
             </div>
         </div>
 
-        <!-- 快捷键小贴士 (^_−)☆ 摸鱼必备 -->
+        <!-- 快捷键提示 -->
         <div class="text-xs text-gray-400 mb-2 text-right">快捷键: <kbd class="bg-gray-200 dark:bg-gray-700 px-1 rounded">/</kbd> 搜索 · <kbd class="bg-gray-200 dark:bg-gray-700 px-1 rounded">ESC</kbd> 清空</div>
 
-        <!-- 搜索框 + 分类按钮 + 收藏（搜索框移至上，按钮组在下） -->
+        <!-- 搜索框 + 分类按钮 + 收藏 -->
         <div class="flex flex-col gap-4 mb-4">
             <div class="relative flex-1 min-w-0 w-full">
                 <i class="fas fa-search absolute left-3 top-1/2 -translate-y-1/2 text-gray-400"></i>
@@ -144,16 +148,16 @@
             </div>
             <div class="flex flex-wrap gap-2 items-center flex-shrink-0">
                 <div id="categoryButtons" class="flex flex-wrap gap-2 items-center">
-                    <!-- 分类按钮会由JS动态生成，稍等哦～ -->
+                    <!-- 分类按钮由JS动态生成 -->
                 </div>
                 <button id="favoriteBtn" class="px-3 py-2 rounded-full text-sm bg-yellow-100 dark:bg-yellow-900 text-yellow-700 dark:text-yellow-200 flex-shrink-0"><i class="far fa-star"></i> 收藏</button>
             </div>
         </div>
 
-        <!-- 标签筛选 (ﾉ◕ヮ◕)ﾉ*:･ﾟ✧ 点击可以进一步缩小范围，合并后的标签点击展开子标签 -->
-        <div id="tagFilters" class="flex flex-wrap gap-2 mb-4"></div>
+        <!-- 标签筛选 -->
+        <div id="tagFilters" class="flex flex-col gap-2 mb-4"></div>
 
-        <!-- 统计图表 (可折叠) 数据可视化什么的最喜欢了～ 每次点开都有惊喜 -->
+        <!-- 统计图表 -->
         <details class="mb-6 bg-white dark:bg-gray-800 rounded-xl p-4 shadow-sm">
             <summary class="font-medium cursor-pointer">📊 工具统计 (点击展开)</summary>
             <div class="mt-4 grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -162,10 +166,10 @@
             </div>
         </details>
 
-        <!-- 工具卡片容器 —— 所有的工具都住在这里面啦！(๑•̀ㅂ•́)و✧ -->
+        <!-- 工具卡片容器 -->
         <div id="tools-container" class="space-y-4"></div>
 
-        <!-- 页脚 —— 感谢GitHub，感谢每一位贡献者 (´▽`ʃ♡ƪ) -->
+        <!-- 页脚 -->
         <footer class="mt-12 text-center text-sm text-gray-500 dark:text-gray-400 border-t dark:border-gray-700 pt-6">
             <p>
                 <span>最后更新：2026年</span> ·
@@ -189,7 +193,7 @@
         </footer>
     </div>
 
-    <!-- 评论区域 (Giscus) —— 来聊聊吧！ (☞ﾟヮﾟ)☞ 需要登录GitHub才能发言哦 -->
+    <!-- 评论区域 (Giscus) -->
     <div class="max-w-7xl mx-auto px-4 mt-8">
         <div class="bg-white dark:bg-gray-800 rounded-xl p-4">
             <h3 class="text-lg font-medium mb-2">💬 社区讨论</h3>
@@ -223,14 +227,11 @@
     <script>
         // ═══════════════════════════════════════════
         //   (◕‿◕) 下面是满满的 JavaScript 逻辑
-        //   所有工具数据都住在 tools.json 里，这里只是个空架子～
-        //   写代码的时候一边听着音乐一边敲，心情美滋滋
         // ═══════════════════════════════════════════
 
-        // ---------- 工具数据初始为空，待会儿从外部 JSON 加载 ----------
         let toolsData = [];
 
-        // DOM 元素大集合 (～￣▽￣)～ 一个个抓出来真不容易
+        // DOM 元素
         const container = document.getElementById('tools-container');
         const searchInput = document.getElementById('search');
         const copyToast = document.getElementById('copyToast');
@@ -256,7 +257,7 @@
         const categoryContainer = document.getElementById('categoryButtons');
         const tagFilters = document.getElementById('tagFilters');
 
-        // 全局变量们 (✧∇✧) 收藏、对比都靠它们
+        // 全局变量
         let currentCategory = 'all';
         let currentSearch = '';
         let selectedTags = [];
@@ -265,7 +266,7 @@
         let clickCounts = JSON.parse(localStorage.getItem('clickCounts')) || {};
         let catChart, statusChart;
 
-        // ==================== 标签映射表（根据实际标签列表更新） ====================
+        // 标签映射表（根据实际标签列表更新）
         const tagMapping = {
             // 网页版
             '在线玩': '网页版',
@@ -432,7 +433,7 @@
             // 建筑
             '建筑': '建筑',
 
-            // 其他未归类的标签（统一归入“其他”）
+            // 其他未归类的标签
             '团队': '其他',
             '视频': '其他',
             '资源': '其他',
@@ -449,7 +450,6 @@
                 const response = await fetch('tools.json');
                 if (!response.ok) throw new Error('加载失败');
                 toolsData = await response.json();
-                // 数据加载完成后初始化一切
                 init();
             } catch (error) {
                 console.error('呜哇～ 工具数据加载失败:', error);
@@ -457,7 +457,7 @@
             }
         }
 
-        // ═════════ 初始化函数（数据加载后执行） ═════════
+        // ═════════ 初始化函数 ═════════
         function init() {
             if (categoryContainer) renderCategoryButtons();
             if (tagFilters) renderTags();
@@ -466,13 +466,12 @@
             initCharts();
             loadTheme();
 
-            // 彩蛋：在控制台里藏一句话，只有好奇心强的玩家才会打开控制台吧(>ω<)
             console.log('%c✨ 嘿嘿，你发现隐藏彩蛋啦！ ✨', 'color: #10b981; font-size: 16px; font-weight: bold;');
             console.log('%c如果你喜欢这个导航站，欢迎去爱发电支持作者～', 'color: #946ce6; font-size: 14px;');
             console.log('%chttps://ifdian.net/a/gt0507', 'color: #3b82f6; text-decoration: underline;');
         }
 
-        // 渲染分类按钮 (～￣▽￣)～
+        // 渲染分类按钮
         function renderCategoryButtons() {
             const categories = [
                 { key: 'all', name: '全部' },
@@ -506,16 +505,19 @@
             });
         }
 
-        // 构建父标签到子标签的映射
+        // 构建父标签到子标签的映射（排除父标签自身）
         function buildParentToChildren() {
             const parentToChildren = {};
             toolsData.forEach(tool => {
                 tool.tags.forEach(tag => {
-                    const parent = tagMapping[tag] || tag; // 如果没有映射，父标签就是自身
+                    const parent = tagMapping[tag] || tag;
                     if (!parentToChildren[parent]) {
                         parentToChildren[parent] = new Set();
                     }
-                    parentToChildren[parent].add(tag);
+                    // 如果原标签等于父标签，不添加到子标签集合（避免父标签下出现自身）
+                    if (tag !== parent) {
+                        parentToChildren[parent].add(tag);
+                    }
                 });
             });
             // 将Set转为数组并排序
@@ -525,7 +527,7 @@
             return parentToChildren;
         }
 
-        // 创建单个标签按钮的辅助函数
+        // 创建单个标签按钮
         function createTagButton(tag) {
             const btn = document.createElement('button');
             btn.className = `tag-btn px-3 py-1 rounded-full text-xs font-medium ${selectedTags.includes(tag) ? 'bg-green-600 text-white' : 'bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-200'}`;
@@ -535,7 +537,7 @@
             return btn;
         }
 
-        // 渲染标签筛选按钮 (ﾉ◕ヮ◕)ﾉ*:･ﾟ✧ —— 新版，支持折叠
+        // 渲染标签区域
         function renderTags() {
             if (!tagFilters) return;
 
@@ -546,16 +548,16 @@
 
             parents.forEach(parent => {
                 const children = parentToChildren[parent];
-                // 如果父标签下只有一个子标签且就是自身（无映射），则直接显示为普通标签
-                if (children.length === 1 && children[0] === parent) {
+                // 如果父标签没有子标签（即所有原标签都是自身，被排除），则直接作为普通标签显示
+                if (children.length === 0) {
                     const btn = createTagButton(parent);
                     tagFilters.appendChild(btn);
                     return;
                 }
 
-                // 创建父标签容器
+                // 创建父标签容器，增加下边距区分分组
                 const parentContainer = document.createElement('div');
-                parentContainer.className = 'flex flex-col mb-1';
+                parentContainer.className = 'flex flex-col parent-tag-container';
 
                 // 父标签展开/折叠按钮
                 const parentBtn = document.createElement('button');
@@ -568,14 +570,13 @@
                     } else {
                         expandedParents.add(parent);
                     }
-                    // 重新渲染标签区域
                     renderTags();
                 };
                 parentContainer.appendChild(parentBtn);
 
-                // 子标签容器（默认隐藏）
+                // 子标签容器
                 const childContainer = document.createElement('div');
-                childContainer.className = `flex flex-wrap gap-2 mt-2 ml-2 ${expandedParents.has(parent) ? '' : 'hidden'}`;
+                childContainer.className = `flex flex-wrap gap-2 mt-2 child-tag-container ${expandedParents.has(parent) ? '' : 'hidden'}`;
                 children.forEach(childTag => {
                     const childBtn = createTagButton(childTag);
                     childContainer.appendChild(childBtn);
@@ -586,16 +587,16 @@
             });
         }
 
-        // 点击标签切换选中状态 (●ˇ∀ˇ●)
+        // 点击标签切换选中状态
         function toggleTag(tag) {
             const index = selectedTags.indexOf(tag);
             if (index === -1) selectedTags.push(tag);
             else selectedTags.splice(index, 1);
-            renderTags(); // 重新渲染标签区域以更新高亮
+            renderTags();
             renderCards();
         }
 
-        // 渲染卡片们 (✪ω✪) 这里花了最多心思，每个卡片都是一个独立的小世界
+        // 渲染卡片
         function renderCards() {
             if (!container) return;
             let filtered = toolsData.filter(tool => {
@@ -621,7 +622,6 @@
                 return;
             }
 
-            // 按分类分组
             const categories = {};
             filtered.forEach(tool => {
                 if (!categories[tool.category]) categories[tool.category] = [];
@@ -633,7 +633,7 @@
                 if (categories[cat]) {
                     const details = document.createElement('details');
                     details.className = 'category-group';
-                    details.open = true; // 默认展开，方便浏览
+                    details.open = true;
                     details.innerHTML = `
                         <summary class="category-summary">
                             <span>${cat} (${categories[cat].length})</span>
@@ -651,7 +651,7 @@
             });
         }
 
-        // 创建单个卡片的函数 ( ◕‿◕) 整个卡片都可以点击，内部按钮单独处理
+        // 创建卡片
         function createCard(tool) {
             const card = document.createElement('div');
             card.className = 'card bg-white dark:bg-gray-800 rounded-xl shadow-md overflow-hidden border border-gray-100 dark:border-gray-700 flex flex-col cursor-pointer';
@@ -696,7 +696,7 @@
             return card;
         }
 
-        // 打开反馈弹窗 (｡•̀ᴗ-)✧
+        // 反馈弹窗
         function openFeedbackModal(toolName) {
             if (feedbackModal && feedbackToolName && feedbackToolNameDisplay) {
                 feedbackToolName.value = toolName;
@@ -708,7 +708,6 @@
             if (feedbackModal) feedbackModal.classList.remove('show');
         };
 
-        // 复制链接到剪贴板 (￣︶￣)↗ 现代浏览器都支持，稳！
         function copyToClipboard(text) {
             if (!copyToast) return;
             navigator.clipboard.writeText(text).then(() => {
@@ -718,7 +717,6 @@
             }).catch(() => alert('复制失败，请手动复制 (；一_一)'));
         }
 
-        // 显示详情
         function showDetail(name) {
             const tool = toolsData.find(t => t.name === name);
             if (tool && modal && modalTitle && modalDesc && modalDetail && modalLink) {
@@ -733,7 +731,6 @@
             if (modal) modal.classList.remove('show');
         };
 
-        // 收藏/取消收藏
         function toggleFavorite(name) {
             const index = favoriteIds.indexOf(name);
             if (index === -1) favoriteIds.push(name);
@@ -742,7 +739,6 @@
             renderCards();
         }
 
-        // 对比 添加/移除
         function toggleCompare(name) {
             const index = compareList.indexOf(name);
             if (index === -1) compareList.push(name);
@@ -752,7 +748,6 @@
             renderCards();
         }
 
-        // 更新对比栏显示
         function updateCompareBar() {
             if (!compareCount || !compareBtn || !compareBar) return;
             compareCount.textContent = compareList.length;
@@ -920,7 +915,6 @@
             });
         }
 
-        // 启动一切！
         loadToolsData();
 
         if ('serviceWorker' in navigator) {
