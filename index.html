@@ -40,9 +40,7 @@
         /* 标签折叠相关样式 */
         .tag-btn { transition: background-color 0.2s; }
         .parent-tag-btn i { transition: transform 0.2s; }
-        /* 父标签容器占满宽度 */
         .parent-tag-container { width: 100%; }
-        /* 子标签容器缩进并与父标签有间距 */
         .child-tag-container { margin-left: 1rem; margin-top: 0.25rem; }
     </style>
     <meta name="theme-color" content="#10b981">
@@ -145,7 +143,7 @@
             </div>
         </div>
 
-        <!-- 标签筛选容器，使用 gap 控制垂直间距 -->
+        <!-- 标签筛选容器 -->
         <div id="tagFilters" class="flex flex-col gap-3 mb-4"></div>
 
         <details class="mb-6 bg-white dark:bg-gray-800 rounded-xl p-4 shadow-sm">
@@ -251,6 +249,7 @@
         let clickCounts = JSON.parse(localStorage.getItem('clickCounts')) || {};
         let catChart, statusChart;
 
+        // 标签映射表（硬编码，你可以随时添加新映射）
         const tagMapping = {
             '在线玩': '网页版',
             '网页版MC': '网页版',
@@ -400,13 +399,7 @@
             '支持': '官方/实用',
 
             '数据包': '数据包',
-            '建筑': '建筑',
-
-            '团队': '其他',
-            '视频': '其他',
-            '资源': '其他',
-            '资讯': '其他',
-            '镜像': '其他'
+            '建筑': '建筑'
         };
 
         let expandedParents = new Set();
@@ -468,19 +461,24 @@
             });
         }
 
+        // 构建父标签到子标签的映射
+        // 所有未在 tagMapping 中定义的标签都将归入“其他”
         function buildParentToChildren() {
             const parentToChildren = {};
             toolsData.forEach(tool => {
                 tool.tags.forEach(tag => {
-                    const parent = tagMapping[tag] || tag;
+                    // 关键修改：未映射的标签强制归入“其他”
+                    const parent = tagMapping[tag] || '其他';
                     if (!parentToChildren[parent]) {
                         parentToChildren[parent] = new Set();
                     }
+                    // 如果原标签不等于父标签，才加入子标签集合（避免父标签下出现自身）
                     if (tag !== parent) {
                         parentToChildren[parent].add(tag);
                     }
                 });
             });
+            // 将Set转为数组并排序
             for (let parent in parentToChildren) {
                 parentToChildren[parent] = Array.from(parentToChildren[parent]).sort();
             }
@@ -500,12 +498,18 @@
             if (!tagFilters) return;
 
             const parentToChildren = buildParentToChildren();
-            const parents = Object.keys(parentToChildren).sort();
+            let parents = Object.keys(parentToChildren).sort();
+            // 确保“其他”在最后（如果存在）
+            if (parents.includes('其他')) {
+                parents = parents.filter(p => p !== '其他');
+                parents.push('其他');
+            }
 
             tagFilters.innerHTML = '';
 
             parents.forEach(parent => {
                 const children = parentToChildren[parent];
+                // 如果父标签下没有子标签（即所有原标签都是自身，被排除），则直接作为普通标签显示
                 if (children.length === 0) {
                     const btn = createTagButton(parent);
                     tagFilters.appendChild(btn);
