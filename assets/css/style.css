@@ -1,0 +1,94 @@
+/* 一些私藏的小样式 (✧∇✧)╯ 强迫症看了都说好 */
+.copy-toast {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--primary, #10b981);
+    color: white;
+    padding: 8px 16px;
+    border-radius: 999px;
+    font-size: 14px;
+    z-index: 100;
+    opacity: 0;
+    transition: opacity 0.3s;
+    pointer-events: none;
+}
+.copy-toast.show { opacity: 1; }
+#backToTop { transition: opacity 0.3s, visibility 0.3s; }
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 200;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.5);
+    align-items: center;
+    justify-content: center;
+}
+.modal.show { display: flex; }
+.modal-content {
+    background: white;
+    padding: 2rem;
+    border-radius: 1rem;
+    max-width: 500px;
+    width: 90%;
+    max-height: 80vh;
+    overflow-y: auto;
+}
+.dark .modal-content { background: #1f2937; color: white; }
+#compareBar { transition: transform 0.3s ease; }
+canvas { width: 100% !important; height: auto !important; max-width: 100%; }
+.feedback-btn { opacity: 0.6; transition: opacity 0.2s; }
+.feedback-btn:hover { opacity: 1; }
+
+/* 折叠面板自己搓的 ┗|｀O′|┛ */
+.category-group {
+    margin-bottom: 1.5rem;
+    border-radius: 0.75rem;
+    background-color: #f9fafb;
+}
+.dark .category-group { background-color: #1f2937; }
+.category-summary {
+    list-style: none;
+    padding: 1rem;
+    cursor: pointer;
+    font-weight: 600;
+    border-radius: 0.75rem;
+    transition: background-color 0.2s;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.category-summary:hover { background-color: #e5e7eb; }
+.dark .category-summary:hover { background-color: #374151; }
+.category-summary::-webkit-details-marker { display: none; }
+.category-content {
+    padding: 0 1rem 1rem 1rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 0.75rem;
+}
+
+/* 标签折叠相关样式 */
+.tag-btn { transition: background-color 0.2s; }
+.parent-tag-container { width: 100%; }
+.child-tag-container { margin-left: 1rem; margin-top: 0.25rem; }
+
+/* 卡片点击反馈动画 */
+.card:active {
+    transform: scale(0.98);
+    transition: transform 0.1s ease;
+}
+button:active {
+    transform: scale(0.97);
+}
+.card {
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 20px 25px -5px rgba(0,0,0,0.1), 0 8px 10px -6px rgba(0,0,0,0.02);
+}

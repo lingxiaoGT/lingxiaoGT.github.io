@@ -4,7 +4,10 @@
     "desc": "浏览器直接玩MC经典版",
     "url": "https://poki.cn/g/minecraft-classic",
     "category": "网页版MC",
-    "tags": ["在线玩", "免费"],
+    "tags": [
+      "在线玩",
+      "免费"
+    ],
     "status": "normal"
   },
   {
@@ -12,7 +15,10 @@
     "desc": "官方经典版",
     "url": "https://classic.minecraft.net/?join=ir4YWFzaftcHneXM",
     "category": "网页版MC",
-    "tags": ["在线玩", "官方"],
+    "tags": [
+      "在线玩",
+      "官方"
+    ],
     "status": "normal"
   },
   {
@@ -20,23 +26,22 @@
     "desc": "网友自制的网页MC",
     "url": "http://ws.imc.re/",
     "category": "网页版MC",
-    "tags": ["在线玩", "免费"],
+    "tags": [
+      "在线玩",
+      "免费"
+    ],
     "status": "normal"
   },
-  {
-    "name": "MCJS在线玩",
-    "desc": "基于JS的网页MC",
-    "url": "https://www.mcjs.cn",
-    "category": "网页版MC",
-    "tags": ["在线玩", "JS"],
-    "status": "normal"
-  },
+
   {
     "name": "MCJS极速版",
     "desc": "极速版网页MC",
     "url": "https://mc.js.cool",
     "category": "网页版MC",
-    "tags": ["在线玩", "极速"],
+    "tags": [
+      "在线玩",
+      "极速"
+    ],
     "status": "normal"
   },
   {
@@ -44,39 +49,24 @@
     "desc": "1.8.8版本网页MC",
     "url": "https://play.mc.js.cool/1.8/",
     "category": "网页版MC",
-    "tags": ["在线玩", "1.8.8"],
+    "tags": [
+      "在线玩",
+      "1.8.8"
+    ],
     "status": "normal"
   },
-  {
-    "name": "MCJS开发者入口",
-    "desc": "开发者版本",
-    "url": "https://mcjs.dev",
-    "category": "网页版MC",
-    "tags": ["开发者"],
-    "status": "normal"
-  },
-  {
-    "name": "MCJS教学入口",
-    "desc": "教学版",
-    "url": "https://www.mcjs.org",
-    "category": "网页版MC",
-    "tags": ["教学"],
-    "status": "normal"
-  },
-  {
-    "name": "MCJS备用入口",
-    "desc": "备用地址",
-    "url": "http://mcjs.cn",
-    "category": "网页版MC",
-    "tags": ["备用"],
-    "status": "normal"
-  },
+
+
+
   {
     "name": "Minecraft Plot",
     "desc": "20多种专业工具集合",
     "url": "https://minecraftplot.com",
     "category": "工具类",
-    "tags": ["综合", "在线"],
+    "tags": [
+      "综合",
+      "在线"
+    ],
     "status": "normal"
   },
   {
@@ -84,7 +74,10 @@
     "desc": "史莱姆区块、结构查找",
     "url": "https://www.chunkbase.com",
     "category": "工具类",
-    "tags": ["生成器", "地图"],
+    "tags": [
+      "生成器",
+      "地图"
+    ],
     "status": "normal"
   },
   {
@@ -92,7 +85,9 @@
     "desc": "通用工具站",
     "url": "https://minecraft.tools",
     "category": "工具类",
-    "tags": ["综合"],
+    "tags": [
+      "综合"
+    ],
     "status": "normal"
   },
   {
@@ -100,7 +95,9 @@
     "desc": "存档转换器",
     "url": "https://www.chunker.app",
     "category": "工具类",
-    "tags": ["转换"],
+    "tags": [
+      "转换"
+    ],
     "status": "normal"
   },
   {
@@ -108,7 +105,9 @@
     "desc": "日志分析",
     "url": "https://mclo.gs",
     "category": "工具类",
-    "tags": ["分析"],
+    "tags": [
+      "分析"
+    ],
     "status": "normal"
   },
   {
@@ -116,23 +115,21 @@
     "desc": "头像/皮肤生成器",
     "url": "https://mcskins.top/avatar-maker",
     "category": "工具类",
-    "tags": ["皮肤", "生成器"],
+    "tags": [
+      "皮肤",
+      "生成器"
+    ],
     "status": "normal"
   },
-  {
-    "name": "Nova Skin",
-    "desc": "皮肤编辑/壁纸",
-    "url": "https://novaskin.me",
-    "category": "工具类",
-    "tags": ["皮肤", "壁纸"],
-    "status": "normal"
-  },
+
   {
     "name": "The Skindex",
     "desc": "元老级皮肤站",
     "url": "https://www.minecraftskins.com",
     "category": "工具类",
-    "tags": ["皮肤"],
+    "tags": [
+      "皮肤"
+    ],
     "status": "normal"
   },
   {
@@ -140,7 +137,9 @@
     "desc": "皮肤站",
     "url": "https://minecraftskins.net",
     "category": "工具类",
-    "tags": ["皮肤"],
+    "tags": [
+      "皮肤"
+    ],
     "status": "normal"
   },
   {
@@ -148,7 +147,9 @@
     "desc": "皮肤查询/编辑",
     "url": "https://skinmc.net",
     "category": "工具类",
-    "tags": ["皮肤"],
+    "tags": [
+      "皮肤"
+    ],
     "status": "normal"
   },
   {
@@ -156,7 +157,10 @@
     "desc": "正版皮肤/披风查询",
     "url": "https://zh-cn.namemc.com",
     "category": "工具类",
-    "tags": ["皮肤", "查询"],
+    "tags": [
+      "皮肤",
+      "查询"
+    ],
     "status": "normal"
   },
   {
@@ -164,7 +168,10 @@
     "desc": "皮肤搜索",
     "url": "https://mcskinsearch.com",
     "category": "工具类",
-    "tags": ["皮肤", "搜索"],
+    "tags": [
+      "皮肤",
+      "搜索"
+    ],
     "status": "normal"
   },
   {
@@ -172,7 +179,9 @@
     "desc": "皮肤动图生成",
     "url": "https://mcgif.cn",
     "category": "工具类",
-    "tags": ["动图"],
+    "tags": [
+      "动图"
+    ],
     "status": "normal"
   },
   {
@@ -180,49 +189,51 @@
     "desc": "图片转像素画",
     "url": "https://mcpixelart.com",
     "category": "工具类",
-    "tags": ["像素画"],
+    "tags": [
+      "像素画"
+    ],
     "status": "normal"
   },
-  {
-    "name": "Nova Skin壁纸",
-    "desc": "壁纸生成",
-    "url": "http://minecraft.novaskin.me/wallpapers",
-    "category": "工具类",
-    "tags": ["壁纸"],
-    "status": "normal"
-  },
+
   {
     "name": "MineGraph",
     "desc": "光影/材质预设",
     "url": "https://www.minegraph.cn",
     "category": "工具类",
-    "tags": ["光影", "预设"],
+    "tags": [
+      "光影",
+      "预设"
+    ],
     "status": "normal"
   },
   {
     "name": "MC图标贴图",
     "desc": "物品图标搜索引擎",
-    "url": "https://mcicons.ccleaf.com",
+    "url": "https://ccvaults.com",
     "category": "工具类",
-    "tags": ["图标"],
-    "status": "warning",
-    "warningText": "需JS"
+    "tags": [
+      "图标"
+    ],
+    "status": "normal"
   },
   {
     "name": "MCIMG",
     "desc": "投影文件分享",
     "url": "https://www.mcimg.com",
     "category": "工具类",
-    "tags": ["投影"],
-    "status": "warning",
-    "warningText": "需验证"
+    "tags": [
+      "投影"
+    ],
+    "status": "normal"
   },
   {
     "name": "MC地图物品工具",
     "desc": "地图物品编辑",
     "url": "https://mc-map.djfun.de",
     "category": "工具类",
-    "tags": ["地图"],
+    "tags": [
+      "地图"
+    ],
     "status": "normal"
   },
   {
@@ -230,7 +241,9 @@
     "desc": "彩色文本生成",
     "url": "https://colorize.fun",
     "category": "工具类",
-    "tags": ["文字"],
+    "tags": [
+      "文字"
+    ],
     "status": "normal"
   },
   {
@@ -238,7 +251,9 @@
     "desc": "艺术字生成",
     "url": "https://textcraft.net",
     "category": "工具类",
-    "tags": ["文字"],
+    "tags": [
+      "文字"
+    ],
     "status": "normal"
   },
   {
@@ -246,7 +261,9 @@
     "desc": "盔甲纹饰预览",
     "url": "https://www.armortrims.com",
     "category": "工具类",
-    "tags": ["盔甲"],
+    "tags": [
+      "盔甲"
+    ],
     "status": "normal"
   },
   {
@@ -254,7 +271,9 @@
     "desc": "建筑形状生成",
     "url": "https://minecraftshapes.com",
     "category": "工具类",
-    "tags": ["建筑"],
+    "tags": [
+      "建筑"
+    ],
     "status": "normal"
   },
   {
@@ -262,7 +281,10 @@
     "desc": "可视化编辑区块",
     "url": "https://github.com/Querz/mcaselector",
     "category": "工具类",
-    "tags": ["区块", "编辑器"],
+    "tags": [
+      "区块",
+      "编辑器"
+    ],
     "status": "normal"
   },
   {
@@ -270,7 +292,9 @@
     "desc": "UUID查询",
     "url": "https://mcuuid.net",
     "category": "工具类",
-    "tags": ["UUID"],
+    "tags": [
+      "UUID"
+    ],
     "status": "normal"
   },
   {
@@ -278,7 +302,9 @@
     "desc": "服务器在线监测",
     "url": "https://mcstatus.io",
     "category": "工具类",
-    "tags": ["服务器"],
+    "tags": [
+      "服务器"
+    ],
     "status": "normal"
   },
   {
@@ -286,7 +312,9 @@
     "desc": "音频转换",
     "url": "https://www.aconvert.com/cn/audio/ogg-to-mp3/",
     "category": "工具类",
-    "tags": ["音频"],
+    "tags": [
+      "音频"
+    ],
     "status": "normal"
   },
   {
@@ -294,7 +322,9 @@
     "desc": "音效搜索",
     "url": "https://o.xbottle.top/mcsounds/?ref=www.cuiuc.com",
     "category": "工具类",
-    "tags": ["音效"],
+    "tags": [
+      "音效"
+    ],
     "status": "normal"
   },
   {
@@ -302,7 +332,10 @@
     "desc": "基岩版下载",
     "url": "https://www.mcappx.com",
     "category": "工具类",
-    "tags": ["基岩版", "下载"],
+    "tags": [
+      "基岩版",
+      "下载"
+    ],
     "status": "normal"
   },
   {
@@ -310,7 +343,10 @@
     "desc": "LiteLoader模组",
     "url": "http://www.liteloader.com/mods",
     "category": "工具类",
-    "tags": ["模组", "加载器"],
+    "tags": [
+      "模组",
+      "加载器"
+    ],
     "status": "normal"
   },
   {
@@ -318,7 +354,9 @@
     "desc": "AI生成建筑",
     "url": "https://osu.ai",
     "category": "工具类",
-    "tags": ["AI"],
+    "tags": [
+      "AI"
+    ],
     "status": "normal"
   },
   {
@@ -326,7 +364,9 @@
     "desc": "国际MC维基",
     "url": "https://minecraft.wiki",
     "category": "Wiki与百科",
-    "tags": ["维基"],
+    "tags": [
+      "维基"
+    ],
     "status": "normal"
   },
   {
@@ -334,7 +374,10 @@
     "desc": "中文MC维基",
     "url": "https://zh.minecraft.wiki",
     "category": "Wiki与百科",
-    "tags": ["维基", "中文"],
+    "tags": [
+      "维基",
+      "中文"
+    ],
     "status": "normal"
   },
   {
@@ -342,7 +385,10 @@
     "desc": "B站镜像",
     "url": "https://wiki.biligame.com/mc/",
     "category": "Wiki与百科",
-    "tags": ["维基", "镜像"],
+    "tags": [
+      "维基",
+      "镜像"
+    ],
     "status": "normal"
   },
   {
@@ -350,7 +396,9 @@
     "desc": "辅助程序与编辑器",
     "url": "https://wiki.biligame.com/mc/辅助程序与编辑器/Mod工具",
     "category": "Wiki与百科",
-    "tags": ["工具"],
+    "tags": [
+      "工具"
+    ],
     "status": "normal"
   },
   {
@@ -358,7 +406,9 @@
     "desc": "教程/资料",
     "url": "https://www.digminecraft.com",
     "category": "Wiki与百科",
-    "tags": ["教程"],
+    "tags": [
+      "教程"
+    ],
     "status": "normal"
   },
   {
@@ -366,7 +416,10 @@
     "desc": "模组百科主站",
     "url": "http://mcmod.cn",
     "category": "Wiki与百科",
-    "tags": ["模组", "百科"],
+    "tags": [
+      "模组",
+      "百科"
+    ],
     "status": "normal"
   },
   {
@@ -374,7 +427,9 @@
     "desc": "插件百科",
     "url": "http://mineplugin.org",
     "category": "Wiki与百科",
-    "tags": ["插件"],
+    "tags": [
+      "插件"
+    ],
     "status": "normal"
   },
   {
@@ -382,7 +437,9 @@
     "desc": "基岩版开发",
     "url": "https://wiki.mcbe-dev.net",
     "category": "Wiki与百科",
-    "tags": ["开发"],
+    "tags": [
+      "开发"
+    ],
     "status": "normal"
   },
   {
@@ -390,23 +447,20 @@
     "desc": "基岩版知识",
     "url": "https://wiki.bedrock.dev",
     "category": "Wiki与百科",
-    "tags": ["基岩版"],
+    "tags": [
+      "基岩版"
+    ],
     "status": "normal"
   },
-  {
-    "name": "Wiki.vg",
-    "desc": "协议/技术文档",
-    "url": "https://wiki.vg",
-    "category": "Wiki与百科",
-    "tags": ["技术"],
-    "status": "normal"
-  },
+
   {
     "name": "MCBBS Wiki",
     "desc": "MCBBS社区维基",
     "url": "https://mcbbs.wiki",
     "category": "Wiki与百科",
-    "tags": ["社区"],
+    "tags": [
+      "社区"
+    ],
     "status": "normal"
   },
   {
@@ -414,7 +468,9 @@
     "desc": "中文MC社区",
     "url": "https://klpbbs.com",
     "category": "社区/论坛",
-    "tags": ["论坛"],
+    "tags": [
+      "论坛"
+    ],
     "status": "normal"
   },
   {
@@ -422,7 +478,9 @@
     "desc": "苦力怕论坛维基",
     "url": "https://klpwiki.com",
     "category": "社区/论坛",
-    "tags": ["维基"],
+    "tags": [
+      "维基"
+    ],
     "status": "normal"
   },
   {
@@ -430,7 +488,9 @@
     "desc": "模组/整合包分享",
     "url": "https://www.minebbs.com",
     "category": "社区/论坛",
-    "tags": ["论坛"],
+    "tags": [
+      "论坛"
+    ],
     "status": "normal"
   },
   {
@@ -438,7 +498,9 @@
     "desc": "备用地址",
     "url": "http://www.minebbs.com",
     "category": "社区/论坛",
-    "tags": ["备用"],
+    "tags": [
+      "备用"
+    ],
     "status": "normal"
   },
   {
@@ -446,23 +508,20 @@
     "desc": "原MCBBS重建",
     "url": "https://www.mcbbs.co",
     "category": "社区/论坛",
-    "tags": ["论坛"],
+    "tags": [
+      "论坛"
+    ],
     "status": "normal"
   },
-  {
-    "name": "我的世界中文论坛新站",
-    "desc": "新社区",
-    "url": "https://www.mcbsbbs.com",
-    "category": "社区/论坛",
-    "tags": ["论坛"],
-    "status": "normal"
-  },
+
   {
     "name": "MChk香港社区",
     "desc": "香港MC社区",
     "url": "https://www.minecraft-hk.com",
     "category": "社区/论坛",
-    "tags": ["香港"],
+    "tags": [
+      "香港"
+    ],
     "status": "normal"
   },
   {
@@ -470,7 +529,9 @@
     "desc": "BMCLAPI作者论坛",
     "url": "https://www.bangbang93.com",
     "category": "社区/论坛",
-    "tags": ["论坛"],
+    "tags": [
+      "论坛"
+    ],
     "status": "normal"
   },
   {
@@ -478,7 +539,9 @@
     "desc": "草方块社区",
     "url": "https://mccfk.cn/",
     "category": "社区/论坛",
-    "tags": ["社区"],
+    "tags": [
+      "社区"
+    ],
     "status": "normal"
   },
   {
@@ -486,7 +549,9 @@
     "desc": "新兴社区",
     "url": "https://mineclub.net",
     "category": "社区/论坛",
-    "tags": ["社区"],
+    "tags": [
+      "社区"
+    ],
     "status": "normal"
   },
   {
@@ -494,7 +559,9 @@
     "desc": "国际论坛",
     "url": "https://www.minecraftforum.net",
     "category": "社区/论坛",
-    "tags": ["国际"],
+    "tags": [
+      "国际"
+    ],
     "status": "normal"
   },
   {
@@ -502,7 +569,9 @@
     "desc": "日本论坛",
     "url": "https://forum.civa.jp",
     "category": "社区/论坛",
-    "tags": ["日本"],
+    "tags": [
+      "日本"
+    ],
     "status": "normal"
   },
   {
@@ -510,7 +579,9 @@
     "desc": "韩国论坛",
     "url": "https://www.koreaminecraft.net",
     "category": "社区/论坛",
-    "tags": ["韩国"],
+    "tags": [
+      "韩国"
+    ],
     "status": "normal"
   },
   {
@@ -518,23 +589,20 @@
     "desc": "通用论坛",
     "url": "http://minecraft-forum.net/",
     "category": "社区/论坛",
-    "tags": ["论坛"],
+    "tags": [
+      "论坛"
+    ],
     "status": "normal"
   },
-  {
-    "name": "日本MC用户论坛",
-    "desc": "日本用户论坛",
-    "url": "https://forum.minecraftuser.jp/index.php",
-    "category": "社区/论坛",
-    "tags": ["日本"],
-    "status": "normal"
-  },
+
   {
     "name": "MC模组论坛",
     "desc": "模组讨论",
     "url": "http://www.mc-mod.net/",
     "category": "社区/论坛",
-    "tags": ["模组"],
+    "tags": [
+      "模组"
+    ],
     "status": "normal"
   },
   {
@@ -542,7 +610,9 @@
     "desc": "攻略/资源社区",
     "url": "https://www.mcfuz.com",
     "category": "社区/论坛",
-    "tags": ["社区"],
+    "tags": [
+      "社区"
+    ],
     "status": "normal"
   },
   {
@@ -550,7 +620,9 @@
     "desc": "全球最大模组站",
     "url": "https://www.curseforge.com/minecraft",
     "category": "模组/资源站",
-    "tags": ["模组"],
+    "tags": [
+      "模组"
+    ],
     "status": "normal"
   },
   {
@@ -558,7 +630,9 @@
     "desc": "主站",
     "url": "https://www.curseforge.com",
     "category": "模组/资源站",
-    "tags": ["综合"],
+    "tags": [
+      "综合"
+    ],
     "status": "normal"
   },
   {
@@ -566,7 +640,9 @@
     "desc": "新兴模组站",
     "url": "https://modrinth.com",
     "category": "模组/资源站",
-    "tags": ["模组"],
+    "tags": [
+      "模组"
+    ],
     "status": "normal"
   },
   {
@@ -574,7 +650,9 @@
     "desc": "全球创意平台",
     "url": "https://www.planetminecraft.com",
     "category": "模组/资源站",
-    "tags": ["综合"],
+    "tags": [
+      "综合"
+    ],
     "status": "normal"
   },
   {
@@ -582,7 +660,9 @@
     "desc": "基岩版资源",
     "url": "https://mcpedl.com",
     "category": "模组/资源站",
-    "tags": ["基岩版"],
+    "tags": [
+      "基岩版"
+    ],
     "status": "normal"
   },
   {
@@ -590,7 +670,9 @@
     "desc": "地图站",
     "url": "https://www.minecraftmaps.com",
     "category": "模组/资源站",
-    "tags": ["地图"],
+    "tags": [
+      "地图"
+    ],
     "status": "normal"
   },
   {
@@ -598,7 +680,9 @@
     "desc": "地图排行榜",
     "url": "http://www.minecraftmaps.com/popular-maps",
     "category": "模组/资源站",
-    "tags": ["地图"],
+    "tags": [
+      "地图"
+    ],
     "status": "normal"
   },
   {
@@ -606,7 +690,9 @@
     "desc": "模组站",
     "url": "https://www.minecraftmods.com/",
     "category": "模组/资源站",
-    "tags": ["模组"],
+    "tags": [
+      "模组"
+    ],
     "status": "normal"
   },
   {
@@ -614,56 +700,33 @@
     "desc": "综合资源站",
     "url": "http://www.9minecraft.net/",
     "category": "模组/资源站",
-    "tags": ["综合"],
+    "tags": [
+      "综合"
+    ],
     "status": "normal"
   },
-  {
-    "name": "AZ Minecraft",
-    "desc": "资讯/下载",
-    "url": "https://azminecraft.info/",
-    "category": "模组/资源站",
-    "tags": ["资讯"],
-    "status": "normal"
-  },
+
   {
     "name": "File Minecraft",
     "desc": "文件下载",
     "url": "http://file-minecraft.com/",
     "category": "模组/资源站",
-    "tags": ["下载"],
+    "tags": [
+      "下载"
+    ],
     "status": "normal"
   },
-  {
-    "name": "5Minecraft",
-    "desc": "资源下载",
-    "url": "http://www.5minecraft.net/",
-    "category": "模组/资源站",
-    "tags": ["下载"],
-    "status": "normal"
-  },
-  {
-    "name": "Minecraft-mods.org",
-    "desc": "模组站",
-    "url": "http://minecraft-mods.org/minecraft-mods/",
-    "category": "模组/资源站",
-    "tags": ["模组"],
-    "status": "normal"
-  },
-  {
-    "name": "1.7.10模组",
-    "desc": "旧版本模组",
-    "url": "http://minecraft-mods.org/tag/minecraft-1-7-10-mods/",
-    "category": "模组/资源站",
-    "tags": ["1.7.10"],
-    "status": "warning",
-    "warningText": "链接已失效"
-  },
+
+
+
   {
     "name": "Mod Minecraft",
     "desc": "模组分站",
     "url": "http://mod-minecraft.net/category/minecraft-mods/",
     "category": "模组/资源站",
-    "tags": ["模组"],
+    "tags": [
+      "模组"
+    ],
     "status": "normal"
   },
   {
@@ -671,32 +734,21 @@
     "desc": "模组/材质/地图",
     "url": "https://www.minecraftxl.com/category/minecraft-mods/",
     "category": "模组/资源站",
-    "tags": ["综合"],
+    "tags": [
+      "综合"
+    ],
     "status": "normal"
   },
-  {
-    "name": "Minecraft Modpacks",
-    "desc": "整合包站",
-    "url": "http://minecraftmodpacks.net/",
-    "category": "模组/资源站",
-    "tags": ["整合包"],
-    "status": "warning",
-    "warningText": "需验证"
-  },
-  {
-    "name": "Modpacks Mods",
-    "desc": "整合包内模组",
-    "url": "http://minecraftmodpacks.net/mods/",
-    "category": "模组/资源站",
-    "tags": ["整合包"],
-    "status": "normal"
-  },
+
+
   {
     "name": "24H Minecraft",
     "desc": "资源下载",
     "url": "http://24hminecraft.com/",
     "category": "模组/资源站",
-    "tags": ["下载"],
+    "tags": [
+      "下载"
+    ],
     "status": "normal"
   },
   {
@@ -704,7 +756,9 @@
     "desc": "免费模组",
     "url": "https://pcminecraft-mods.com/category/download-minecraft-free/",
     "category": "模组/资源站",
-    "tags": ["模组"],
+    "tags": [
+      "模组"
+    ],
     "status": "normal"
   },
   {
@@ -712,7 +766,9 @@
     "desc": "游戏模组库",
     "url": "https://www.moddb.com/games/minecraft/mods",
     "category": "模组/资源站",
-    "tags": ["模组"],
+    "tags": [
+      "模组"
+    ],
     "status": "normal"
   },
   {
@@ -720,7 +776,9 @@
     "desc": "资源站",
     "url": "http://minecraftsix.com/",
     "category": "模组/资源站",
-    "tags": ["资源"],
+    "tags": [
+      "资源"
+    ],
     "status": "normal"
   },
   {
@@ -728,7 +786,9 @@
     "desc": "模组分析",
     "url": "https://openeye.openmods.info/",
     "category": "模组/资源站",
-    "tags": ["分析"],
+    "tags": [
+      "分析"
+    ],
     "status": "normal"
   },
   {
@@ -736,7 +796,9 @@
     "desc": "模组/光影/材质",
     "url": "https://mc-mods.org/",
     "category": "模组/资源站",
-    "tags": ["综合"],
+    "tags": [
+      "综合"
+    ],
     "status": "normal"
   },
   {
@@ -744,7 +806,9 @@
     "desc": "模组加载器",
     "url": "https://www.minecraftforge.net",
     "category": "启动器/加载器",
-    "tags": ["Forge"],
+    "tags": [
+      "Forge"
+    ],
     "status": "normal"
   },
   {
@@ -752,7 +816,9 @@
     "desc": "Forge下载页",
     "url": "https://files.minecraftforge.net",
     "category": "启动器/加载器",
-    "tags": ["Forge"],
+    "tags": [
+      "Forge"
+    ],
     "status": "normal"
   },
   {
@@ -760,7 +826,9 @@
     "desc": "Forge分支",
     "url": "https://neoforged.net",
     "category": "启动器/加载器",
-    "tags": ["NeoForge"],
+    "tags": [
+      "NeoForge"
+    ],
     "status": "normal"
   },
   {
@@ -768,7 +836,9 @@
     "desc": "高清修复",
     "url": "https://www.optifine.net",
     "category": "启动器/加载器",
-    "tags": ["Optifine"],
+    "tags": [
+      "Optifine"
+    ],
     "status": "normal"
   },
   {
@@ -776,7 +846,9 @@
     "desc": "Optifine下载",
     "url": "https://optifine.net/downloads",
     "category": "启动器/加载器",
-    "tags": ["Optifine"],
+    "tags": [
+      "Optifine"
+    ],
     "status": "normal"
   },
   {
@@ -784,7 +856,9 @@
     "desc": "轻量级加载器",
     "url": "https://fabricmc.net",
     "category": "启动器/加载器",
-    "tags": ["Fabric"],
+    "tags": [
+      "Fabric"
+    ],
     "status": "normal"
   },
   {
@@ -792,7 +866,9 @@
     "desc": "Fabric安装",
     "url": "https://fabricmc.net/use",
     "category": "启动器/加载器",
-    "tags": ["Fabric"],
+    "tags": [
+      "Fabric"
+    ],
     "status": "normal"
   },
   {
@@ -800,7 +876,9 @@
     "desc": "Fabric分支",
     "url": "https://quiltmc.org",
     "category": "启动器/加载器",
-    "tags": ["Quilt"],
+    "tags": [
+      "Quilt"
+    ],
     "status": "normal"
   },
   {
@@ -808,7 +886,9 @@
     "desc": "Quilt安装",
     "url": "https://quiltmc.org/install/",
     "category": "启动器/加载器",
-    "tags": ["Quilt"],
+    "tags": [
+      "Quilt"
+    ],
     "status": "normal"
   },
   {
@@ -816,7 +896,9 @@
     "desc": "光影加载器",
     "url": "https://irisshaders.dev",
     "category": "启动器/加载器",
-    "tags": ["Iris"],
+    "tags": [
+      "Iris"
+    ],
     "status": "normal"
   },
   {
@@ -824,7 +906,9 @@
     "desc": "Iris下载",
     "url": "https://irisshaders.dev/download",
     "category": "启动器/加载器",
-    "tags": ["Iris"],
+    "tags": [
+      "Iris"
+    ],
     "status": "normal"
   },
   {
@@ -832,7 +916,9 @@
     "desc": "轻量级加载器",
     "url": "http://www.liteloader.com",
     "category": "启动器/加载器",
-    "tags": ["LiteLoader"],
+    "tags": [
+      "LiteLoader"
+    ],
     "status": "normal"
   },
   {
@@ -840,7 +926,9 @@
     "desc": "下载页",
     "url": "http://www.liteloader.com/download",
     "category": "启动器/加载器",
-    "tags": ["LiteLoader"],
+    "tags": [
+      "LiteLoader"
+    ],
     "status": "normal"
   },
   {
@@ -848,7 +936,9 @@
     "desc": "服务端核心",
     "url": "https://www.spigotmc.org",
     "category": "启动器/加载器",
-    "tags": ["服务端"],
+    "tags": [
+      "服务端"
+    ],
     "status": "normal"
   },
   {
@@ -856,23 +946,20 @@
     "desc": "多实例启动器",
     "url": "https://multimc.org",
     "category": "启动器/加载器",
-    "tags": ["启动器"],
+    "tags": [
+      "启动器"
+    ],
     "status": "normal"
   },
-  {
-    "name": "PCL2启动器",
-    "desc": "国内知名启动器",
-    "url": "https://pcl2.cn/",
-    "category": "启动器/加载器",
-    "tags": ["启动器"],
-    "status": "normal"
-  },
+
   {
     "name": "BDCraft材质",
     "desc": "方块风格材质",
     "url": "https://bdcraft.net/downloads/",
     "category": "材质/光影/皮肤装饰",
-    "tags": ["材质"],
+    "tags": [
+      "材质"
+    ],
     "status": "normal"
   },
   {
@@ -880,23 +967,20 @@
     "desc": "材质包站",
     "url": "https://resourcepack.net",
     "category": "材质/光影/皮肤装饰",
-    "tags": ["材质"],
+    "tags": [
+      "材质"
+    ],
     "status": "normal"
   },
-  {
-    "name": "Minecraft Shaders",
-    "desc": "光影站",
-    "url": "https://minecraftshader.com",
-    "category": "材质/光影/皮肤装饰",
-    "tags": ["光影"],
-    "status": "normal"
-  },
+
   {
     "name": "Shaders Mods",
     "desc": "光影模组",
     "url": "http://shadersmods.com/",
     "category": "材质/光影/皮肤装饰",
-    "tags": ["光影"],
+    "tags": [
+      "光影"
+    ],
     "status": "normal"
   },
   {
@@ -904,7 +988,9 @@
     "desc": "头颅数据库",
     "url": "https://minecraft-heads.com",
     "category": "材质/光影/皮肤装饰",
-    "tags": ["头颅"],
+    "tags": [
+      "头颅"
+    ],
     "status": "normal"
   },
   {
@@ -912,7 +998,9 @@
     "desc": "披风资源",
     "url": "https://minecraftcapes.co.uk/",
     "category": "材质/光影/皮肤装饰",
-    "tags": ["披风"],
+    "tags": [
+      "披风"
+    ],
     "status": "normal"
   },
   {
@@ -920,7 +1008,9 @@
     "desc": "资源站",
     "url": "https://www.minecraftyard.com/",
     "category": "材质/光影/皮肤装饰",
-    "tags": ["综合"],
+    "tags": [
+      "综合"
+    ],
     "status": "normal"
   },
   {
@@ -928,7 +1018,9 @@
     "desc": "高性能服务端",
     "url": "https://www.papermc.io/",
     "category": "服务器/技术",
-    "tags": ["服务端"],
+    "tags": [
+      "服务端"
+    ],
     "status": "normal"
   },
   {
@@ -936,7 +1028,9 @@
     "desc": "Paper分支",
     "url": "https://purpurmc.org/",
     "category": "服务器/技术",
-    "tags": ["服务端"],
+    "tags": [
+      "服务端"
+    ],
     "status": "normal"
   },
   {
@@ -944,23 +1038,21 @@
     "desc": "代理端",
     "url": "https://velocitypowered.com/",
     "category": "服务器/技术",
-    "tags": ["代理"],
+    "tags": [
+      "代理"
+    ],
     "status": "normal"
   },
-  {
-    "name": "Waterfall",
-    "desc": "Bungee分支",
-    "url": "https://www.waterfallmc.net/",
-    "category": "服务器/技术",
-    "tags": ["代理"],
-    "status": "normal"
-  },
+
   {
     "name": "BungeeCord",
-    "desc": "代理端",
-    "url": "https://www.bungeecord.com/",
+    "desc": "经典代理服务端，用于群组服",
+    "url": "https://www.spigotmc.org/wiki/bungeecord/",
     "category": "服务器/技术",
-    "tags": ["代理"],
+    "tags": [
+      "代理",
+      "BungeeCord"
+    ],
     "status": "normal"
   },
   {
@@ -968,47 +1060,41 @@
     "desc": "跨版本API",
     "url": "https://www.spongepowered.org/",
     "category": "服务器/技术",
-    "tags": ["API"],
+    "tags": [
+      "API"
+    ],
     "status": "normal"
   },
-  {
-    "name": "Magma",
-    "desc": "混合服务端",
-    "url": "https://www.magmafoundation.org/",
-    "category": "服务器/技术",
-    "tags": ["服务端"],
-    "status": "normal"
-  },
+
   {
     "name": "Mohist",
     "desc": "混合服务端",
     "url": "https://mohistmc.com/",
     "category": "服务器/技术",
-    "tags": ["服务端"],
+    "tags": [
+      "服务端"
+    ],
     "status": "normal"
   },
-  {
-    "name": "CatServer",
-    "desc": "混合服务端",
-    "url": "https://catmc.top/",
-    "category": "服务器/技术",
-    "tags": ["服务端"],
-    "status": "normal"
-  },
+
   {
     "name": "Leaves",
     "desc": "服务端核心",
     "url": "https://www.leavesmc.org/",
     "category": "服务器/技术",
-    "tags": ["服务端"],
+    "tags": [
+      "服务端"
+    ],
     "status": "normal"
   },
   {
     "name": "NukkitX",
     "desc": "基岩版服务端",
-    "url": "https://www.nukkitx.com/",
+    "url": "https://cloudburstmc.org/",
     "category": "服务器/技术",
-    "tags": ["基岩版"],
+    "tags": [
+      "基岩版"
+    ],
     "status": "normal"
   },
   {
@@ -1016,7 +1102,9 @@
     "desc": "基岩版服务端",
     "url": "https://www.pmmp.io/",
     "category": "服务器/技术",
-    "tags": ["基岩版"],
+    "tags": [
+      "基岩版"
+    ],
     "status": "normal"
   },
   {
@@ -1024,7 +1112,9 @@
     "desc": "建筑结构分享",
     "url": "https://www.minecraft-schematics.com/",
     "category": "其他资源",
-    "tags": ["建筑"],
+    "tags": [
+      "建筑"
+    ],
     "status": "normal"
   },
   {
@@ -1032,7 +1122,9 @@
     "desc": "世界推荐",
     "url": "https://www.recommend.world/",
     "category": "其他资源",
-    "tags": ["世界"],
+    "tags": [
+      "世界"
+    ],
     "status": "normal"
   },
   {
@@ -1040,7 +1132,9 @@
     "desc": "材质包站",
     "url": "https://www.mcresourcepack.com/",
     "category": "其他资源",
-    "tags": ["材质"],
+    "tags": [
+      "材质"
+    ],
     "status": "normal"
   },
   {
@@ -1048,7 +1142,9 @@
     "desc": "材质包",
     "url": "https://www.minecrafttexturepacks.com/",
     "category": "其他资源",
-    "tags": ["材质"],
+    "tags": [
+      "材质"
+    ],
     "status": "normal"
   },
   {
@@ -1056,7 +1152,9 @@
     "desc": "法语资源站",
     "url": "https://www.minecraft-france.fr/",
     "category": "其他资源",
-    "tags": ["法语"],
+    "tags": [
+      "法语"
+    ],
     "status": "normal"
   },
   {
@@ -1064,7 +1162,9 @@
     "desc": "B站MC视频",
     "url": "https://b23.tv/42tJrlz",
     "category": "其他资源",
-    "tags": ["视频"],
+    "tags": [
+      "视频"
+    ],
     "status": "normal"
   },
   {
@@ -1072,7 +1172,9 @@
     "desc": "B站MC视频",
     "url": "https://b23.tv/dWb73ew",
     "category": "其他资源",
-    "tags": ["视频"],
+    "tags": [
+      "视频"
+    ],
     "status": "normal"
   },
   {
@@ -1080,7 +1182,9 @@
     "desc": "盔甲属性预览",
     "url": "https://www.mcmod.cn/tools/armor/",
     "category": "其他资源",
-    "tags": ["工具"],
+    "tags": [
+      "工具"
+    ],
     "status": "normal"
   },
   {
@@ -1088,7 +1192,9 @@
     "desc": "自定义药水",
     "url": "https://www.mcmod.cn/tools/potion/",
     "category": "其他资源",
-    "tags": ["工具"],
+    "tags": [
+      "工具"
+    ],
     "status": "normal"
   },
   {
@@ -1096,7 +1202,9 @@
     "desc": "附魔组合",
     "url": "https://www.mcmod.cn/tools/enchant/",
     "category": "其他资源",
-    "tags": ["工具"],
+    "tags": [
+      "工具"
+    ],
     "status": "normal"
   },
   {
@@ -1104,7 +1212,9 @@
     "desc": "烟花自定义",
     "url": "https://www.mcmod.cn/tools/firework/",
     "category": "其他资源",
-    "tags": ["工具"],
+    "tags": [
+      "工具"
+    ],
     "status": "normal"
   },
   {
@@ -1112,7 +1222,9 @@
     "desc": "旗帜设计",
     "url": "https://www.mcmod.cn/tools/banner/",
     "category": "其他资源",
-    "tags": ["工具"],
+    "tags": [
+      "工具"
+    ],
     "status": "normal"
   },
   {
@@ -1120,7 +1232,9 @@
     "desc": "头颅生成",
     "url": "https://www.mcmod.cn/tools/head/",
     "category": "其他资源",
-    "tags": ["工具"],
+    "tags": [
+      "工具"
+    ],
     "status": "normal"
   },
   {
@@ -1128,7 +1242,9 @@
     "desc": "自定义成就",
     "url": "https://www.mcmod.cn/tools/achievements/#google_vignette",
     "category": "其他资源",
-    "tags": ["成就"],
+    "tags": [
+      "成就"
+    ],
     "status": "normal"
   },
   {
@@ -1136,7 +1252,9 @@
     "desc": "3D图腾生成",
     "url": "https://www.mcneko.com/tools/3dtotem/",
     "category": "其他资源",
-    "tags": ["图腾"],
+    "tags": [
+      "图腾"
+    ],
     "status": "normal"
   },
   {
@@ -1144,7 +1262,9 @@
     "desc": "团队官网",
     "url": "http://www.nimbusapex.top/",
     "category": "其他资源",
-    "tags": ["团队"],
+    "tags": [
+      "团队"
+    ],
     "status": "normal"
   },
   {
@@ -1152,7 +1272,9 @@
     "desc": "团队论坛",
     "url": "https://lt.nimbusapex.top/",
     "category": "其他资源",
-    "tags": ["论坛"],
+    "tags": [
+      "论坛"
+    ],
     "status": "normal"
   },
   {
@@ -1160,7 +1282,11 @@
     "desc": "支持多版本Minecraft Java版命令生成，包含物品、实体、方块等",
     "url": "https://mcstacker.net",
     "category": "工具类",
-    "tags": ["命令", "生成器", "多版本"],
+    "tags": [
+      "命令",
+      "生成器",
+      "多版本"
+    ],
     "status": "normal"
   },
   {
@@ -1168,7 +1294,11 @@
     "desc": "战利品表、进度、配方、标签、谓词、函数、维度、世界生成、结构、自定义世界、生物群系、特征、声音事件、伤害类型、语言文件、字体、粒子等生成器",
     "url": "https://misode.github.io",
     "category": "工具类",
-    "tags": ["数据包", "生成器", "合集"],
+    "tags": [
+      "数据包",
+      "生成器",
+      "合集"
+    ],
     "status": "normal"
   },
   {
@@ -1176,7 +1306,12 @@
     "desc": "药水、附魔书、自定义物品等give命令生成",
     "url": "https://www.gamergeeks.net/apps/minecraft",
     "category": "工具类",
-    "tags": ["命令", "生成器", "药水", "附魔"],
+    "tags": [
+      "命令",
+      "生成器",
+      "药水",
+      "附魔"
+    ],
     "status": "normal"
   },
   {
@@ -1184,7 +1319,11 @@
     "desc": "附魔模拟器、药水计算、掉落计算、生成蛋命令、属性修饰器、记分板、队伍、粒子、声音、标题、书籍、交易生成等",
     "url": "https://mctools.org",
     "category": "工具类",
-    "tags": ["工具集", "命令", "模拟器"],
+    "tags": [
+      "工具集",
+      "命令",
+      "模拟器"
+    ],
     "status": "normal"
   },
   {
@@ -1192,7 +1331,11 @@
     "desc": "中文界面命令生成器，支持give、summon等",
     "url": "http://mccommand.com",
     "category": "工具类",
-    "tags": ["命令", "生成器", "中文"],
+    "tags": [
+      "命令",
+      "生成器",
+      "中文"
+    ],
     "status": "normal"
   },
   {
@@ -1200,7 +1343,11 @@
     "desc": "旗帜生成器、地图画生成器、皮肤预览等",
     "url": "https://www.needcoolshoes.com",
     "category": "工具类",
-    "tags": ["工具站", "旗帜", "地图画"],
+    "tags": [
+      "工具站",
+      "旗帜",
+      "地图画"
+    ],
     "status": "normal"
   },
   {
@@ -1208,23 +1355,35 @@
     "desc": "在线查看种子地图，查找生物群系和结构",
     "url": "https://map.instantmc.com",
     "category": "工具类",
-    "tags": ["地图", "种子", "预览"],
+    "tags": [
+      "地图",
+      "种子",
+      "预览"
+    ],
     "status": "normal"
   },
   {
-  "name": "Minecraft 101 红石模拟器",
-  "desc": "网页版红石模拟器，学习红石电路",
-  "url": "https://www.minecraft101.net/redstone/redstone-basics.html",
-  "category": "工具类",
-  "tags": ["红石", "模拟器", "教程"],
-  "status": "normal"
+    "name": "Minecraft 101 红石模拟器",
+    "desc": "网页版红石模拟器，学习红石电路",
+    "url": "https://www.minecraft101.net/redstone/redstone-basics.html",
+    "category": "工具类",
+    "tags": [
+      "红石",
+      "模拟器",
+      "教程"
+    ],
+    "status": "normal"
   },
   {
     "name": "Minecraft Color Codes",
     "desc": "颜色代码和格式代码查询工具",
     "url": "https://www.minecraftcolorcodes.com",
     "category": "工具类",
-    "tags": ["颜色", "格式", "代码"],
+    "tags": [
+      "颜色",
+      "格式",
+      "代码"
+    ],
     "status": "normal"
   },
   {
@@ -1232,7 +1391,11 @@
     "desc": "生成原始JSON文本，用于告示牌、书籍等",
     "url": "https://www.minecraftjson.com",
     "category": "工具类",
-    "tags": ["JSON", "文本", "生成器"],
+    "tags": [
+      "JSON",
+      "文本",
+      "生成器"
+    ],
     "status": "normal"
   },
   {
@@ -1240,24 +1403,24 @@
     "desc": "在线NBT数据编辑和解析工具",
     "url": "https://nbt.nickac.dev",
     "category": "工具类",
-    "tags": ["NBT", "编辑器", "解析"],
+    "tags": [
+      "NBT",
+      "编辑器",
+      "解析"
+    ],
     "status": "normal"
   },
-  {
-    "name": "Redstone Tips 红石计算",
-    "desc": "红石时序计算器，帮助设计红石电路",
-    "url": "https://www.redstone.tips",
-    "category": "工具类",
-    "tags": ["红石", "计算器"],
-    "status": "warning",
-    "warningText": "可能已失效"
-  },
+
   {
     "name": "Blockbench 3D建模",
     "desc": "创建模型、纹理和动画，支持实体、物品、方块模型",
     "url": "https://www.blockbench.net",
     "category": "工具类",
-    "tags": ["3D", "建模", "模型"],
+    "tags": [
+      "3D",
+      "建模",
+      "模型"
+    ],
     "status": "normal"
   },
   {
@@ -1265,7 +1428,11 @@
     "desc": "Minecraft地图渲染器，生成高质量图像",
     "url": "https://chunky.llbit.se",
     "category": "工具类",
-    "tags": ["渲染", "地图", "高清"],
+    "tags": [
+      "渲染",
+      "地图",
+      "高清"
+    ],
     "status": "normal"
   },
   {
@@ -1273,7 +1440,10 @@
     "desc": "专业建模软件，支持模型、动画、材质",
     "url": "https://cubik.studio",
     "category": "工具类",
-    "tags": ["建模", "3D"],
+    "tags": [
+      "建模",
+      "3D"
+    ],
     "status": "normal"
   },
   {
@@ -1281,39 +1451,37 @@
     "desc": "将Minecraft地图导出为3D模型文件（OBJ、STL等）",
     "url": "https://www.realtimerendering.com/erich/minecraft/public/mineways",
     "category": "工具类",
-    "tags": ["3D", "导出", "模型"],
+    "tags": [
+      "3D",
+      "导出",
+      "模型"
+    ],
     "status": "normal"
   },
-  {
-    "name": "3D皮肤查看器",
-    "desc": "在线预览和旋转Minecraft皮肤",
-    "url": "https://www.minecraftskinviewer.net",
-    "category": "工具类",
-    "tags": ["皮肤", "3D", "预览"],
-    "status": "normal"
-  },
+
   {
     "name": "WorldPainter 地形编辑",
     "desc": "交互式地图生成器，绘制地形、添加生物群系等",
     "url": "https://www.worldpainter.net",
     "category": "工具类",
-    "tags": ["地图", "地形", "编辑器"],
+    "tags": [
+      "地图",
+      "地形",
+      "编辑器"
+    ],
     "status": "normal"
   },
-  {
-    "name": "MCEdit Unified 地图编辑器",
-    "desc": "经典地图编辑器，支持复制、粘贴、过滤区块",
-    "url": "https://www.mcedit-unified.net",
-    "category": "工具类",
-    "tags": ["地图", "编辑器", "区块"],
-    "status": "normal"
-  },
+
   {
     "name": "Amidst 地图查看器",
     "desc": "查看种子地图，定位生物群系和结构",
     "url": "https://github.com/toolbox4minecraft/amidst",
     "category": "工具类",
-    "tags": ["地图", "种子", "查看器"],
+    "tags": [
+      "地图",
+      "种子",
+      "查看器"
+    ],
     "status": "normal"
   },
   {
@@ -1321,7 +1489,10 @@
     "desc": "生成可缩放的高分辨率Minecraft地图",
     "url": "https://overviewer.org",
     "category": "工具类",
-    "tags": ["地图", "渲染"],
+    "tags": [
+      "地图",
+      "渲染"
+    ],
     "status": "normal"
   },
   {
@@ -1329,7 +1500,10 @@
     "desc": "快速渲染Minecraft地图，支持多种样式",
     "url": "https://unmined.net",
     "category": "工具类",
-    "tags": ["地图", "渲染"],
+    "tags": [
+      "地图",
+      "渲染"
+    ],
     "status": "normal"
   },
   {
@@ -1337,7 +1511,10 @@
     "desc": "高性能服务端核心，优化插件兼容性",
     "url": "https://papermc.io/downloads",
     "category": "服务器/技术",
-    "tags": ["服务端", "Paper"],
+    "tags": [
+      "服务端",
+      "Paper"
+    ],
     "status": "normal"
   },
   {
@@ -1345,7 +1522,10 @@
     "desc": "Paper分支，提供更多配置选项",
     "url": "https://purpurmc.org/downloads",
     "category": "服务器/技术",
-    "tags": ["服务端", "Purpur"],
+    "tags": [
+      "服务端",
+      "Purpur"
+    ],
     "status": "normal"
   },
   {
@@ -1353,31 +1533,33 @@
     "desc": "现代代理服务端，支持群组服",
     "url": "https://velocitypowered.com/downloads",
     "category": "服务器/技术",
-    "tags": ["代理", "Velocity"],
+    "tags": [
+      "代理",
+      "Velocity"
+    ],
     "status": "normal"
   },
   {
-    "name": "Waterfall 代理端",
-    "desc": "BungeeCord分支，稳定高效",
-    "url": "https://www.waterfallmc.net/download",
+    "name": "Waterfall",
+    "desc": "BungeeCord分支，PaperMC维护",
+    "url": "https://papermc.io/downloads",
     "category": "服务器/技术",
-    "tags": ["代理", "Waterfall"],
+    "tags": [
+      "代理",
+      "Waterfall"
+    ],
     "status": "normal"
   },
-  {
-    "name": "BungeeCord 代理端",
-    "desc": "经典代理服务端，用于群组服",
-    "url": "https://www.md-5.net/bungeecord",
-    "category": "服务器/技术",
-    "tags": ["代理", "BungeeCord"],
-    "status": "normal"
-  },
+
   {
     "name": "GeyserMC 互通",
     "desc": "允许基岩版玩家加入Java版服务器",
     "url": "https://geysermc.org",
     "category": "服务器/技术",
-    "tags": ["互通", "基岩版"],
+    "tags": [
+      "互通",
+      "基岩版"
+    ],
     "status": "normal"
   },
   {
@@ -1385,23 +1567,23 @@
     "desc": "允许不同版本客户端连接服务器",
     "url": "https://viaversion.com",
     "category": "服务器/技术",
-    "tags": ["版本", "兼容"],
+    "tags": [
+      "版本",
+      "兼容"
+    ],
     "status": "normal"
   },
-  {
-    "name": "ProtocolSupport 版本兼容",
-    "desc": "支持旧版客户端连接",
-    "url": "https://protocolsupport.xyz",
-    "category": "服务器/技术",
-    "tags": ["版本", "兼容"],
-    "status": "normal"
-  },
+
   {
     "name": "网页地图插件 (Dynmap/BlueMap/Squaremap)",
     "desc": "在网页上实时显示服务器地图",
     "url": "https://www.spigotmc.org/resources/dynmap.274",
     "category": "服务器/技术",
-    "tags": ["地图", "网页", "插件"],
+    "tags": [
+      "地图",
+      "网页",
+      "插件"
+    ],
     "status": "normal"
   },
   {
@@ -1409,7 +1591,10 @@
     "desc": "基础插件集，包含传送、家、经济等",
     "url": "https://essentialsx.net",
     "category": "服务器/技术",
-    "tags": ["插件", "基础"],
+    "tags": [
+      "插件",
+      "基础"
+    ],
     "status": "normal"
   },
   {
@@ -1417,7 +1602,10 @@
     "desc": "现代权限管理插件，支持多后端",
     "url": "https://luckperms.net",
     "category": "服务器/技术",
-    "tags": ["权限", "插件"],
+    "tags": [
+      "权限",
+      "插件"
+    ],
     "status": "normal"
   },
   {
@@ -1425,7 +1613,10 @@
     "desc": "强大的地图编辑插件",
     "url": "https://enginehub.org/worldedit",
     "category": "服务器/技术",
-    "tags": ["编辑", "插件"],
+    "tags": [
+      "编辑",
+      "插件"
+    ],
     "status": "normal"
   },
   {
@@ -1433,7 +1624,10 @@
     "desc": "区域保护和管理插件",
     "url": "https://enginehub.org/worldguard",
     "category": "服务器/技术",
-    "tags": ["保护", "插件"],
+    "tags": [
+      "保护",
+      "插件"
+    ],
     "status": "normal"
   },
   {
@@ -1441,7 +1635,11 @@
     "desc": "WorldEdit异步版本，提升性能",
     "url": "https://www.spigotmc.org/resources/fastasyncworldedit.13932",
     "category": "服务器/技术",
-    "tags": ["编辑", "插件", "异步"],
+    "tags": [
+      "编辑",
+      "插件",
+      "异步"
+    ],
     "status": "normal"
   },
   {
@@ -1449,7 +1647,10 @@
     "desc": "经济、权限、聊天API接口",
     "url": "https://www.spigotmc.org/resources/vault.34315",
     "category": "服务器/技术",
-    "tags": ["API", "经济"],
+    "tags": [
+      "API",
+      "经济"
+    ],
     "status": "normal"
   },
   {
@@ -1457,7 +1658,10 @@
     "desc": "提供占位符变量，供其他插件使用",
     "url": "https://www.spigotmc.org/resources/placeholderapi.6245",
     "category": "服务器/技术",
-    "tags": ["API", "变量"],
+    "tags": [
+      "API",
+      "变量"
+    ],
     "status": "normal"
   },
   {
@@ -1465,7 +1669,10 @@
     "desc": "创建和管理NPC",
     "url": "https://www.spigotmc.org/resources/citizens.13811",
     "category": "服务器/技术",
-    "tags": ["NPC", "插件"],
+    "tags": [
+      "NPC",
+      "插件"
+    ],
     "status": "normal"
   },
   {
@@ -1473,7 +1680,10 @@
     "desc": "创建自定义生物、技能和掉落",
     "url": "https://www.spigotmc.org/resources/mythicmobs.5702",
     "category": "服务器/技术",
-    "tags": ["生物", "插件"],
+    "tags": [
+      "生物",
+      "插件"
+    ],
     "status": "normal"
   },
   {
@@ -1481,7 +1691,10 @@
     "desc": "轻量级脚本语言，快速创建游戏机制",
     "url": "https://skriptlang.org",
     "category": "服务器/技术",
-    "tags": ["脚本", "插件"],
+    "tags": [
+      "脚本",
+      "插件"
+    ],
     "status": "normal"
   },
   {
@@ -1489,7 +1702,10 @@
     "desc": "Skript脚本社区和资源库",
     "url": "https://skripthub.net",
     "category": "服务器/技术",
-    "tags": ["脚本", "社区"],
+    "tags": [
+      "脚本",
+      "社区"
+    ],
     "status": "normal"
   },
   {
@@ -1497,7 +1713,11 @@
     "desc": "无需编程的模组制作工具",
     "url": "https://mcreator.net",
     "category": "启动器/加载器",
-    "tags": ["模组", "制作", "工具"],
+    "tags": [
+      "模组",
+      "制作",
+      "工具"
+    ],
     "status": "normal"
   },
   {
@@ -1505,7 +1725,10 @@
     "desc": "宝可梦模组制作工具",
     "url": "https://www.pokecreator.com",
     "category": "启动器/加载器",
-    "tags": ["模组", "宝可梦"],
+    "tags": [
+      "模组",
+      "宝可梦"
+    ],
     "status": "normal"
   },
   {
@@ -1513,7 +1736,10 @@
     "desc": "数据包和资源包合集，优化原版体验",
     "url": "https://vanillatweaks.net",
     "category": "其他资源",
-    "tags": ["数据包", "资源包"],
+    "tags": [
+      "数据包",
+      "资源包"
+    ],
     "status": "normal"
   },
   {
@@ -1521,7 +1747,10 @@
     "desc": "Minecraft官网启动器下载页",
     "url": "https://www.minecraft.net/download",
     "category": "其他资源",
-    "tags": ["官方", "启动器"],
+    "tags": [
+      "官方",
+      "启动器"
+    ],
     "status": "normal"
   },
   {
@@ -1529,7 +1758,10 @@
     "desc": "Mojang Studios官方网站",
     "url": "https://mojang.com",
     "category": "其他资源",
-    "tags": ["官方", "公司"],
+    "tags": [
+      "官方",
+      "公司"
+    ],
     "status": "normal"
   },
   {
@@ -1537,7 +1769,10 @@
     "desc": "官方帮助和支持中心",
     "url": "https://help.minecraft.net",
     "category": "其他资源",
-    "tags": ["官方", "帮助"],
+    "tags": [
+      "官方",
+      "帮助"
+    ],
     "status": "normal"
   },
   {
@@ -1545,7 +1780,10 @@
     "desc": "官方问题追踪和帮助",
     "url": "https://help.mojang.com",
     "category": "其他资源",
-    "tags": ["官方", "支持"],
+    "tags": [
+      "官方",
+      "支持"
+    ],
     "status": "normal"
   },
   {
@@ -1553,7 +1791,10 @@
     "desc": "官方启动器Bug追踪系统",
     "url": "https://bugs.mojang.com/browse/MCL",
     "category": "其他资源",
-    "tags": ["官方", "Bug追踪"],
+    "tags": [
+      "官方",
+      "Bug追踪"
+    ],
     "status": "normal"
   },
   {
@@ -1561,7 +1802,10 @@
     "desc": "r/Minecraft, r/technicalminecraft, r/redstone 等子版块",
     "url": "https://www.reddit.com/r/Minecraft",
     "category": "社区/论坛",
-    "tags": ["社区", "Reddit"],
+    "tags": [
+      "社区",
+      "Reddit"
+    ],
     "status": "normal"
   },
   {
@@ -1569,7 +1813,10 @@
     "desc": "在线检测Minecraft服务器状态",
     "url": "https://mcsrvstat.us",
     "category": "工具类",
-    "tags": ["服务器", "状态"],
+    "tags": [
+      "服务器",
+      "状态"
+    ],
     "status": "normal"
   },
   {
@@ -1577,207 +1824,249 @@
     "desc": "官方租赁服务器服务",
     "url": "https://www.minecraft.net/en-us/realms",
     "category": "其他资源",
-    "tags": ["官方", "服务器"],
+    "tags": [
+      "官方",
+      "服务器"
+    ],
     "status": "normal"
   },
   {
-  "name": "Eaglercraft 网页版MC",
-  "desc": "多个版本的网页版Minecraft，包括Eaglercraft、Eaglercraft 1.8、离线版、多版本等",
-  "url": "https://eaglercraft.com/",
-  "category": "网页版MC",
-  "tags": ["网页版MC", "在线玩"],
-  "status": "normal"
-},
-{
-  "name": "MineAtlas 生物群系地图",
-  "desc": "在线查看Minecraft种子地图，定位生物群系",
-  "url": "http://mineatlas.com/",
-  "category": "工具类",
-  "tags": ["地图", "生物群系"],
-  "status": "normal"
-},
-{
-  "name": "MCVersions 版本下载",
-  "desc": "下载Minecraft各种版本的服务端和客户端",
-  "url": "https://mcversions.net/",
-  "category": "其他资源",
-  "tags": ["版本", "下载"],
-  "status": "normal"
-},
-{
-  "name": "MCJars 服务端下载",
-  "desc": "提供Minecraft服务端Jar文件下载",
-  "url": "https://mcjars.app/",
-  "category": "其他资源",
-  "tags": ["服务端", "下载"],
-  "status": "normal"
-},
-{
-  "name": "MCData 数据包开发",
-  "desc": "数据包开发文档和工具",
-  "url": "https://mcdata.org/",
-  "category": "工具类",
-  "tags": ["数据包", "开发"],
-  "status": "normal"
-},
-{
-  "name": "MCGen 生成器",
-  "desc": "Minecraft命令生成器",
-  "url": "https://mcgen.vercel.app/",
-  "category": "工具类",
-  "tags": ["生成器"],
-  "status": "normal"
-},
-{
-  "name": "MC-Heads 头颅API",
-  "desc": "获取Minecraft玩家头颅的API服务",
-  "url": "https://mc-heads.net/",
-  "category": "工具类",
-  "tags": ["头颅", "API"],
-  "status": "normal"
-},
-{
-  "name": "MCBanners 服务器横幅",
-  "desc": "生成Minecraft服务器状态横幅",
-  "url": "https://mcbanners.com/",
-  "category": "工具类",
-  "tags": ["横幅", "服务器"],
-  "status": "normal"
-},
-{
-  "name": "Spark 性能分析",
-  "desc": "Minecraft服务器性能分析工具",
-  "url": "https://spark.lucko.me/",
-  "category": "服务器/技术",
-  "tags": ["性能", "分析"],
-  "status": "normal"
-},
-{
-  "name": "Timings 分析",
-  "desc": "Minecraft服务器Timings分析工具",
-  "url": "https://timings.aikar.co/",
-  "category": "服务器/技术",
-  "tags": ["性能", "分析"],
-  "status": "normal"
-},
-{
-  "name": "BlueMap 在线地图",
-  "desc": "Minecraft服务器3D地图查看器",
-  "url": "https://bluemap.bluecolored.de/",
-  "category": "服务器/技术",
-  "tags": ["地图", "网页"],
-  "status": "normal"
-},
-{
-  "name": "Dynmap 官网",
-  "desc": "Minecraft服务器动态地图",
-  "url": "https://www.dynmap.org/",
-  "category": "服务器/技术",
-  "tags": ["地图", "网页"],
-  "status": "normal"
-},
-{
-  "name": "Squaremap GitHub",
-  "desc": "轻量级Minecraft服务器地图",
-  "url": "https://github.com/jpenilla/squaremap",
-  "category": "服务器/技术",
-  "tags": ["地图", "网页"],
-  "status": "normal"
-},
-{
-  "name": "ATLauncher",
-  "desc": "多实例Minecraft启动器",
-  "url": "https://atlauncher.com/",
-  "category": "启动器/加载器",
-  "tags": ["启动器"],
-  "status": "normal"
-},
-{
-  "name": "Prism Launcher",
-  "desc": "开源的Minecraft启动器，MultiMC分支",
-  "url": "https://prismlauncher.org/",
-  "category": "启动器/加载器",
-  "tags": ["启动器"],
-  "status": "normal"
-},
-{
-  "name": "GDLauncher",
-  "desc": "现代化的Minecraft启动器",
-  "url": "https://gdlauncher.com/",
-  "category": "启动器/加载器",
-  "tags": ["启动器"],
-  "status": "normal"
-},
-{
-  "name": "PolyMC",
-  "desc": "Minecraft启动器，MultiMC分支",
-  "url": "https://polymc.org/",
-  "category": "启动器/加载器",
-  "tags": ["启动器"],
-  "status": "normal"
-},
-{
-  "name": "Rift 模组加载器",
-  "desc": "轻量级模组加载器，适用于1.13-1.15",
-  "url": "https://www.curseforge.com/minecraft/mc-mods/rift",
-  "category": "启动器/加载器",
-  "tags": ["模组加载器", "Rift"],
-  "status": "normal"
-},
-{
-  "name": "MCBBS 工具板块",
-  "desc": "MCBBS论坛的工具与编辑器板块",
-  "url": "https://www.mcbbs.net/forum.php?gid=33",
-  "category": "社区/论坛",
-  "tags": ["论坛", "工具"],
-  "status": "normal"
-},
-{
-  "name": "苦力怕论坛 工具资源",
-  "desc": "苦力怕论坛的工具资源板块",
-  "url": "https://klpbbs.com/forum-36-1.html",
-  "category": "社区/论坛",
-  "tags": ["论坛", "资源"],
-  "status": "normal"
-},
-{
-  "name": "MineBBS 资源",
-  "desc": "MineBBS论坛的资源板块",
-  "url": "https://www.minebbs.com/resources/",
-  "category": "社区/论坛",
-  "tags": ["论坛", "资源"],
-  "status": "normal"
-},
-{
-  "name": "Planet Minecraft 工具",
-  "desc": "Planet Minecraft网站的工具板块",
-  "url": "https://www.planetminecraft.com/tools/",
-  "category": "模组/资源站",
-  "tags": ["工具"],
-  "status": "normal"
-},
-{
-  "name": "Minecraft Forum 工具",
-  "desc": "Minecraft Forum的工具板块",
-  "url": "https://www.minecraftforum.net/forums/mapping-and-modding-java-edition/minecraft-tools",
-  "category": "社区/论坛",
-  "tags": ["论坛", "工具"],
-  "status": "normal"
-},
-{
-  "name": "Reddit 技术性MC Wiki",
-  "desc": "Reddit技术性Minecraft社区的Wiki",
-  "url": "https://www.reddit.com/r/technicalminecraft/wiki/index/",
-  "category": "社区/论坛",
-  "tags": ["Wiki", "技术"],
-  "status": "normal"
-},
-{
-  "name": "Minecraft Wiki 教程首页",
-  "desc": "Minecraft Wiki的教程页面合集",
-  "url": "https://zh.minecraft.wiki/w/教程",
-  "category": "Wiki与百科",
-  "tags": ["教程"],
-  "status": "normal"
-}
+    "name": "Eaglercraft 网页版MC",
+    "desc": "多个版本的网页版Minecraft，包括Eaglercraft、Eaglercraft 1.8、离线版、多版本等",
+    "url": "https://eaglercraft.com/",
+    "category": "网页版MC",
+    "tags": [
+      "网页版MC",
+      "在线玩"
+    ],
+    "status": "normal"
+  },
+  {
+    "name": "MineAtlas 生物群系地图",
+    "desc": "在线查看Minecraft种子地图，定位生物群系",
+    "url": "http://mineatlas.com/",
+    "category": "工具类",
+    "tags": [
+      "地图",
+      "生物群系"
+    ],
+    "status": "normal"
+  },
+  {
+    "name": "MCVersions 版本下载",
+    "desc": "下载Minecraft各种版本的服务端和客户端",
+    "url": "https://mcversions.net/",
+    "category": "其他资源",
+    "tags": [
+      "版本",
+      "下载"
+    ],
+    "status": "normal"
+  },
+  {
+    "name": "MCJars 服务端下载",
+    "desc": "提供Minecraft服务端Jar文件下载",
+    "url": "https://mcjars.app/",
+    "category": "其他资源",
+    "tags": [
+      "服务端",
+      "下载"
+    ],
+    "status": "normal"
+  },
+  {
+    "name": "MCData 数据包开发",
+    "desc": "数据包开发文档和工具",
+    "url": "https://mcdata.org/",
+    "category": "工具类",
+    "tags": [
+      "数据包",
+      "开发"
+    ],
+    "status": "normal"
+  },
+
+  {
+    "name": "MC-Heads 头颅API",
+    "desc": "获取Minecraft玩家头颅的API服务",
+    "url": "https://mc-heads.net/",
+    "category": "工具类",
+    "tags": [
+      "头颅",
+      "API"
+    ],
+    "status": "normal"
+  },
+  {
+    "name": "MCBanners 服务器横幅",
+    "desc": "生成Minecraft服务器状态横幅",
+    "url": "https://mcbanners.com/",
+    "category": "工具类",
+    "tags": [
+      "横幅",
+      "服务器"
+    ],
+    "status": "normal"
+  },
+  {
+    "name": "Spark 性能分析",
+    "desc": "Minecraft服务器性能分析工具",
+    "url": "https://spark.lucko.me/",
+    "category": "服务器/技术",
+    "tags": [
+      "性能",
+      "分析"
+    ],
+    "status": "normal"
+  },
+  {
+    "name": "Timings 分析",
+    "desc": "Minecraft服务器Timings分析工具",
+    "url": "https://timings.aikar.co/",
+    "category": "服务器/技术",
+    "tags": [
+      "性能",
+      "分析"
+    ],
+    "status": "normal"
+  },
+  {
+    "name": "BlueMap 在线地图",
+    "desc": "Minecraft服务器3D地图查看器",
+    "url": "https://bluemap.bluecolored.de/",
+    "category": "服务器/技术",
+    "tags": [
+      "地图",
+      "网页"
+    ],
+    "status": "normal"
+  },
+
+  {
+    "name": "Squaremap GitHub",
+    "desc": "轻量级Minecraft服务器地图",
+    "url": "https://github.com/jpenilla/squaremap",
+    "category": "服务器/技术",
+    "tags": [
+      "地图",
+      "网页"
+    ],
+    "status": "normal"
+  },
+  {
+    "name": "ATLauncher",
+    "desc": "多实例Minecraft启动器",
+    "url": "https://atlauncher.com/",
+    "category": "启动器/加载器",
+    "tags": [
+      "启动器"
+    ],
+    "status": "normal"
+  },
+  {
+    "name": "Prism Launcher",
+    "desc": "开源的Minecraft启动器，MultiMC分支",
+    "url": "https://prismlauncher.org/",
+    "category": "启动器/加载器",
+    "tags": [
+      "启动器"
+    ],
+    "status": "normal"
+  },
+  {
+    "name": "GDLauncher",
+    "desc": "现代化的Minecraft启动器",
+    "url": "https://gdlauncher.com/",
+    "category": "启动器/加载器",
+    "tags": [
+      "启动器"
+    ],
+    "status": "normal"
+  },
+  {
+    "name": "PolyMC",
+    "desc": "Minecraft启动器，MultiMC分支",
+    "url": "https://polymc.org/",
+    "category": "启动器/加载器",
+    "tags": [
+      "启动器"
+    ],
+    "status": "normal"
+  },
+  {
+    "name": "Rift 模组加载器",
+    "desc": "轻量级模组加载器，适用于1.13-1.15",
+    "url": "https://www.curseforge.com/minecraft/mc-mods/rift",
+    "category": "启动器/加载器",
+    "tags": [
+      "模组加载器",
+      "Rift"
+    ],
+    "status": "normal"
+  },
+
+  {
+    "name": "苦力怕论坛 工具资源",
+    "desc": "苦力怕论坛的工具资源板块",
+    "url": "https://klpbbs.com/forum-36-1.html",
+    "category": "社区/论坛",
+    "tags": [
+      "论坛",
+      "资源"
+    ],
+    "status": "normal"
+  },
+  {
+    "name": "MineBBS 资源",
+    "desc": "MineBBS论坛的资源板块",
+    "url": "https://www.minebbs.com/resources/",
+    "category": "社区/论坛",
+    "tags": [
+      "论坛",
+      "资源"
+    ],
+    "status": "normal"
+  },
+  {
+    "name": "Planet Minecraft 工具",
+    "desc": "Planet Minecraft网站的工具板块",
+    "url": "https://www.planetminecraft.com/tools/",
+    "category": "模组/资源站",
+    "tags": [
+      "工具"
+    ],
+    "status": "normal"
+  },
+  {
+    "name": "Minecraft Forum 工具",
+    "desc": "Minecraft Forum的工具板块",
+    "url": "https://www.minecraftforum.net/forums/mapping-and-modding-java-edition/minecraft-tools",
+    "category": "社区/论坛",
+    "tags": [
+      "论坛",
+      "工具"
+    ],
+    "status": "normal"
+  },
+  {
+    "name": "Reddit 技术性MC Wiki",
+    "desc": "Reddit技术性Minecraft社区的Wiki",
+    "url": "https://www.reddit.com/r/technicalminecraft/wiki/index/",
+    "category": "社区/论坛",
+    "tags": [
+      "Wiki",
+      "技术"
+    ],
+    "status": "normal"
+  },
+  {
+    "name": "Minecraft Wiki 教程首页",
+    "desc": "Minecraft Wiki的教程页面合集",
+    "url": "https://zh.minecraft.wiki/w/教程",
+    "category": "Wiki与百科",
+    "tags": [
+      "教程"
+    ],
+    "status": "normal"
+  }
 ]

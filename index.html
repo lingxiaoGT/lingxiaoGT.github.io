@@ -4,56 +4,46 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
     <title>Minecraft 工具</title>
-    <!-- Tailwind CSS (◕‿◕) 快速搭架子，虽然生产环境不建议用 CDN，但省事嘛～ -->
+    <!-- Tailwind CSS (◕‿◕) 快速搭架子 -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Font Awesome 图标库 ヾ(≧▽≦*)o 喜欢那个小图标，但浏览器老提示什么跟踪防护，烦死了 (｀へ´) -->
+    <!-- Font Awesome 图标库 ヾ(≧▽≦*)o -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <!-- Chart.js 画小饼饼 (～￣▽￣)～ 统计分类用的，虽然很少人点开但得有 -->
+    <!-- Chart.js 画小饼饼 (～￣▽￣)～ -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
-    <!-- pinyin-pro 拼音搜索，妈妈再也不用担心我打不出中文啦～ 感谢大佬开源！ -->
+    <!-- pinyin-pro 拼音搜索 -->
     <script src="https://unpkg.com/pinyin-pro@3.18.3/dist/index.js"></script>
-    <style>
-        /* 一些私藏的小样式 (✧∇✧)╯ 强迫症看了都说好 */
-        :root { --primary: #10b981; }
-        .card { transition: transform 0.2s ease, box-shadow 0.2s ease; }
-        .card:hover { transform: translateY(-4px); box-shadow: 0 20px 25px -5px rgba(0,0,0,0.1), 0 8px 10px -6px rgba(0,0,0,0.02); }
-        .dark .card { background-color: #1f2937; border-color: #374151; }
-        .dark body { background-color: #111827; }
-        .copy-toast { position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); background: var(--primary); color: white; padding: 8px 16px; border-radius: 999px; z-index: 100; opacity: 0; transition: opacity 0.3s; pointer-events: none; }
-        .copy-toast.show { opacity: 1; }
-        #backToTop { transition: opacity 0.3s, visibility 0.3s; }
-        .modal { display: none; position: fixed; z-index: 200; left:0; top:0; width:100%; height:100%; background:rgba(0,0,0,0.5); align-items:center; justify-content:center; }
-        .modal.show { display: flex; }
-        .modal-content { background: white; padding: 2rem; border-radius: 1rem; max-width:500px; width:90%; max-height:80vh; overflow-y:auto; }
-        .dark .modal-content { background: #1f2937; color:white; }
-        #compareBar { transition: transform 0.3s ease; }
-        canvas { width: 100% !important; height: auto !important; max-width: 100%; }
-        .feedback-btn { opacity: 0.6; transition: opacity 0.2s; }
-        .feedback-btn:hover { opacity: 1; }
-        /* 折叠面板自己搓的 ┗|｀O′|┛ 参考了好多地方才弄出来 */
-        .category-group { margin-bottom: 1.5rem; border-radius: 0.75rem; background-color: #f9fafb; }
-        .dark .category-group { background-color: #1f2937; }
-        .category-summary { list-style: none; padding: 1rem; cursor: pointer; font-weight: 600; border-radius: 0.75rem; transition: background-color 0.2s; display: flex; justify-content: space-between; align-items: center; }
-        .category-summary:hover { background-color: #e5e7eb; }
-        .dark .category-summary:hover { background-color: #374151; }
-        .category-summary::-webkit-details-marker { display: none; }
-        .category-content { padding: 0 1rem 1rem 1rem; display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 0.75rem; }
-        /* 标签折叠相关样式 */
-        .tag-btn { transition: background-color 0.2s; }
-        .parent-tag-btn i { transition: transform 0.2s; }
-        .parent-tag-container { width: 100%; }
-        .child-tag-container { margin-left: 1rem; margin-top: 0.25rem; }
-    </style>
+    <!-- 自定义样式 -->
+    <link rel="stylesheet" href="assets/css/style.css">
     <meta name="theme-color" content="#10b981">
+    <style>
+        /* 补充暗色模式卡片样式（防止 Tailwind 覆盖） */
+        .dark .card {
+            background-color: #1f2937 !important;
+            border-color: #374151 !important;
+            color: #e5e7eb !important;
+        }
+        .dark .card .text-gray-600,
+        .dark .card .text-gray-700,
+        .dark .card .text-gray-800,
+        .dark .card .text-gray-900 {
+            color: #d1d5db !important;
+        }
+        .dark .card .bg-gray-100 {
+            background-color: #374151 !important;
+            color: #e5e7eb !important;
+        }
+        .dark .card .visit-link {
+            color: #34d399 !important;
+        }
+    </style>
 </head>
 <body class="bg-gray-50 font-sans antialiased transition-colors duration-300 dark:bg-gray-900 relative">
 
-    <!-- 复制成功小浮层 (￣▽￣)~* 每次复制都会弹一下，贼好用，不过有时候浏览器会拦截，烦 -->
+    <!-- 复制成功小浮层 (￣▽￣)~* -->
     <div id="copyToast" class="copy-toast">✅ 链接已复制</div>
-    <!-- 嗖的一下回顶部 (ﾉ◕ヮ◕)ﾉ*:･ﾟ✧ 长页面必备良药，摸鱼的时候点一下假装在工作 -->
     <button id="backToTop" class="fixed bottom-6 right-6 p-3 rounded-full bg-green-600 text-white shadow-lg hover:bg-green-700 transition opacity-0 invisible z-50"><i class="fas fa-arrow-up"></i></button>
 
-    <!-- 详情模态框 —— 想看详细介绍？点那个小眼睛吧！👀 里面有详细描述（如果有的话），没有就显示默认文案 -->
+    <!-- 详情模态框 -->
     <div id="detailModal" class="modal">
         <div class="modal-content">
             <div class="flex justify-between items-center mb-4">
@@ -68,45 +58,45 @@
         </div>
     </div>
 
-    <!-- 对比栏 —— 比一比谁更强！⚔️ 选两个以上工具就能对比啦，虽然只是弹个窗 (￣ε(#￣) -->
+    <!-- 对比栏 -->
     <div id="compareBar" class="fixed bottom-0 left-0 right-0 bg-white dark:bg-gray-800 shadow-lg border-t dark:border-gray-700 p-3 transform translate-y-full transition-transform z-40">
         <div class="max-w-7xl mx-auto flex items-center justify-between">
-            <span class="text-sm font-medium"><span id="compareCount">0</span> 个工具已选择</span>
+            <span class="text-sm font-medium"><span id="compareCount">0</span> <span id="compareText">个工具已选择</span></span>
             <div>
-                <button id="compareBtn" class="bg-green-600 text-white px-4 py-2 rounded-lg text-sm disabled:opacity-50 disabled:cursor-not-allowed" disabled>对比</button>
-                <button id="clearCompare" class="ml-2 text-gray-500 text-sm hover:underline">清空</button>
+                <button id="compareBtn" class="bg-green-600 text-white px-4 py-2 rounded-lg text-sm disabled:opacity-50 disabled:cursor-not-allowed" disabled><span id="compareBtnText">对比</span></button>
+                <button id="clearCompare" class="ml-2 text-gray-500 text-sm hover:underline"><span id="clearCompareText">清空</span></button>
             </div>
         </div>
     </div>
 
-    <!-- 提交新工具表单 ✨ 欢迎安利你喜欢的工具！不过我会手动审核，别乱发广告 (╯‵□′)╯︵┻━┻ -->
+    <!-- 提交新工具表单 -->
     <div id="submitModal" class="modal">
         <div class="modal-content">
-            <h3 class="text-xl font-bold mb-4">提交新工具</h3>
+            <h3 id="submitTitle" class="text-xl font-bold mb-4">提交新工具</h3>
             <form id="submitForm" action="https://api.web3forms.com/submit" method="POST">
                 <input type="hidden" name="access_key" value="bc43e518-f1ff-41e0-b1a3-549259c4ca62">
                 <input type="hidden" name="subject" value="新工具提交 - Minecraft工具">
-                <input type="text" name="name" placeholder="工具名称" class="w-full p-2 border rounded mb-2 dark:bg-gray-700 dark:border-gray-600" required>
-                <input type="url" name="url" placeholder="网址" class="w-full p-2 border rounded mb-2 dark:bg-gray-700 dark:border-gray-600" required>
-                <textarea name="desc" placeholder="简短描述" class="w-full p-2 border rounded mb-2 dark:bg-gray-700 dark:border-gray-600" required></textarea>
-                <select name="category" class="w-full p-2 border rounded mb-4 dark:bg-gray-700 dark:border-gray-600">
+                <input type="text" name="name" id="submitName" placeholder="工具名称" class="w-full p-2 border rounded mb-2 dark:bg-gray-700 dark:border-gray-600" required>
+                <input type="url" name="url" id="submitUrl" placeholder="网址" class="w-full p-2 border rounded mb-2 dark:bg-gray-700 dark:border-gray-600" required>
+                <textarea name="desc" id="submitDesc" placeholder="简短描述" class="w-full p-2 border rounded mb-2 dark:bg-gray-700 dark:border-gray-600" required></textarea>
+                <select name="category" id="submitCategory" class="w-full p-2 border rounded mb-4 dark:bg-gray-700 dark:border-gray-600">
                     <option value="工具类">工具类</option>
                     <option value="资源搜寻">资源搜寻</option>
                     <option value="其他资源">其他资源</option>
                 </select>
                 <div class="flex justify-end gap-2">
-                    <button type="button" onclick="closeSubmitModal()" class="px-4 py-2 bg-gray-300 rounded">取消</button>
-                    <button type="submit" class="px-4 py-2 bg-green-600 text-white rounded">提交</button>
+                    <button type="button" onclick="closeSubmitModal()" id="cancelBtn" class="px-4 py-2 bg-gray-300 rounded">取消</button>
+                    <button type="submit" id="submitBtn" class="px-4 py-2 bg-green-600 text-white rounded">提交</button>
                 </div>
             </form>
         </div>
     </div>
 
-    <!-- 反馈问题表单 —— 希望不要用到 awq 真的不希望，但万一呢 -->
+    <!-- 反馈问题表单 -->
     <div id="feedbackModal" class="modal">
         <div class="modal-content">
-            <h3 class="text-xl font-bold mb-4">反馈工具问题</h3>
-            <p class="mb-4 text-sm text-gray-500 dark:text-gray-400">希望不要用到 awq</p>
+            <h3 id="feedbackTitle" class="text-xl font-bold mb-4">反馈工具问题</h3>
+            <p id="feedbackHope" class="mb-4 text-sm text-gray-500 dark:text-gray-400">希望不要用到 awq</p>
             <form id="feedbackForm" action="https://api.web3forms.com/submit" method="POST">
                 <input type="hidden" name="access_key" value="bc43e518-f1ff-41e0-b1a3-549259c4ca62">
                 <input type="hidden" name="subject" value="工具反馈 - Minecraft工具">
@@ -114,81 +104,83 @@
                 <p class="mb-2 text-sm text-gray-600 dark:text-gray-400">工具：<span id="feedbackToolNameDisplay"></span></p>
                 <textarea name="message" id="feedbackMessage" placeholder="请描述您发现的错误或建议（如链接失效、描述错误等）" class="w-full p-2 border rounded mb-2 dark:bg-gray-700 dark:border-gray-600" rows="4" required></textarea>
                 <div class="flex justify-end gap-2">
-                    <button type="button" onclick="closeFeedbackModal()" class="px-4 py-2 bg-gray-300 rounded">取消</button>
-                    <button type="submit" class="px-4 py-2 bg-green-600 text-white rounded">提交反馈</button>
+                    <button type="button" onclick="closeFeedbackModal()" id="feedbackCancelBtn" class="px-4 py-2 bg-gray-300 rounded">取消</button>
+                    <button type="submit" id="feedbackSubmitBtn" class="px-4 py-2 bg-green-600 text-white rounded">提交反馈</button>
                 </div>
             </form>
         </div>
     </div>
 
-    <!-- 主容器 (✪ω✪) 所有的工具都住在这里面啦！ -->
+    <!-- 主容器 (✪ω✪) -->
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 pb-20">
-        <!-- 页眉 —— 简洁就是美，不加后缀！ -->
         <div class="flex flex-wrap items-center justify-between gap-4 mb-6">
-            <h1 class="text-4xl font-bold text-gray-900 dark:text-white">Minecraft 工具</h1>
+            <h1 id="siteTitleMain" class="text-4xl font-bold text-gray-900 dark:text-white">Minecraft 工具</h1>
             <div class="flex flex-wrap items-center gap-3">
-                <button id="randomBtn" class="px-3 py-2 bg-purple-100 dark:bg-purple-900 text-purple-700 dark:text-purple-200 rounded-lg text-sm hover:bg-purple-200"><i class="fas fa-dice"></i> 随机探索</button>
+                <button id="randomBtn" class="px-3 py-2 bg-purple-100 dark:bg-purple-900 text-purple-700 dark:text-purple-200 rounded-lg text-sm hover:bg-purple-200"><i class="fas fa-dice"></i> <span id="randomText">随机探索</span></button>
+                <select id="langSelect" class="bg-gray-100 dark:bg-gray-800 border border-gray-300 dark:border-gray-600 rounded-lg text-sm p-2">
+                    <option value="zh">中文</option>
+                    <option value="en">English</option>
+                    <option value="ar">العربية</option>
+                    <option value="fr">Français</option>
+                    <option value="ru">Русский</option>
+                    <option value="es">Español</option>
+                </select>
                 <button id="darkModeToggle" class="p-2 rounded-full bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-yellow-300 hover:bg-gray-300 dark:hover:bg-gray-600 transition" title="切换暗色模式">
                     <i id="darkIcon" class="fas fa-moon"></i>
                 </button>
             </div>
         </div>
 
-        <!-- 快捷键小贴士 (^_−)☆ 摸鱼必备，但很多人不知道这些快捷键 (；一_一) -->
-        <div class="text-xs text-gray-400 mb-2 text-right">快捷键: <kbd class="bg-gray-200 dark:bg-gray-700 px-1 rounded">/</kbd> 搜索 · <kbd class="bg-gray-200 dark:bg-gray-700 px-1 rounded">ESC</kbd> 清空</div>
+        <div id="shortcutHint" class="text-xs text-gray-400 mb-2 text-right">快捷键: <kbd class="bg-gray-200 dark:bg-gray-700 px-1 rounded">/</kbd> 搜索 · <kbd class="bg-gray-200 dark:bg-gray-700 px-1 rounded">ESC</kbd> 清空</div>
 
-        <!-- 搜索框 + 分类按钮 + 收藏（搜索框移至上，按钮组在下） -->
         <div class="flex flex-col gap-4 mb-4">
             <div class="relative flex-1 min-w-0 w-full">
                 <i class="fas fa-search absolute left-3 top-1/2 -translate-y-1/2 text-gray-400"></i>
-                <input type="text" id="search" placeholder="搜索工具名称或描述 (支持拼音)"
+                <input type="text" id="search" placeholder="搜索工具名称或描述 (支持拼音)" 
                        class="w-full pl-10 pr-4 py-3 border border-gray-300 dark:border-gray-600 dark:bg-gray-800 dark:text-white rounded-xl shadow-sm focus:ring-2 focus:ring-green-500 focus:border-transparent outline-none transition">
             </div>
             <div class="flex flex-wrap gap-2 items-center flex-shrink-0">
                 <div id="categoryButtons" class="flex flex-wrap gap-2 items-center">
-                    <!-- 分类按钮会由JS动态生成，稍等哦～ -->
+                    <!-- 分类按钮由JS生成 -->
                 </div>
-                <button id="favoriteBtn" class="px-3 py-2 rounded-full text-sm bg-yellow-100 dark:bg-yellow-900 text-yellow-700 dark:text-yellow-200 flex-shrink-0"><i class="far fa-star"></i> 收藏</button>
+                <button id="favoriteBtn" class="px-3 py-2 rounded-full text-sm bg-yellow-100 dark:bg-yellow-900 text-yellow-700 dark:text-yellow-200 flex-shrink-0"><i class="far fa-star"></i> <span id="favoriteBtnText">收藏</span></button>
             </div>
         </div>
 
-        <!-- 标签筛选 (ﾉ◕ヮ◕)ﾉ*:･ﾟ✧ 点击可以进一步缩小范围，合并后的标签点击展开子标签，现在映射表独立出去了，妈妈再也不用担心我改代码了 -->
+        <!-- 标签筛选容器 -->
         <div id="tagFilters" class="flex flex-col gap-3 mb-4"></div>
 
-        <!-- 统计图表 (可折叠) 数据可视化什么的最喜欢了～ 每次点开都有惊喜，虽然数据可能不准 (￣▽￣*) -->
         <details class="mb-6 bg-white dark:bg-gray-800 rounded-xl p-4 shadow-sm">
-            <summary class="font-medium cursor-pointer">📊 工具统计 (点击展开)</summary>
+            <summary id="statsSummary" class="font-medium cursor-pointer">📊 工具统计 (点击展开)</summary>
             <div class="mt-4 grid grid-cols-1 md:grid-cols-2 gap-4">
                 <canvas id="categoryChart" class="w-full h-auto"></canvas>
                 <canvas id="statusChart" class="w-full h-auto"></canvas>
             </div>
         </details>
 
-        <!-- 工具卡片容器 —— 所有的工具都住在这里面啦！(๑•̀ㅂ•́)و✧ -->
         <div id="tools-container" class="space-y-4"></div>
 
-        <!-- 页脚 —— 感谢GitHub，感谢每一位贡献者 (´▽`ʃ♡ƪ) 爱发电链接已移出页面，但彩蛋里还有哦～ -->
         <footer class="mt-12 text-center text-sm text-gray-500 dark:text-gray-400 border-t dark:border-gray-700 pt-6">
             <p>
-                <span>最后更新：2026年</span> ·
-                <span>所有链接均指向官方网站</span> ·
-                <a href="#" id="submitLink" class="text-green-600 hover:underline">提交新工具</a> ·
-                <a href="mailto:gt0507-001@qq.com?subject=失效报告-Minecraft工具" class="text-red-500 hover:underline" target="_blank">报告失效</a>
+                <span id="footerUpdate">最后更新：2026年</span> · 
+                <span id="footerOfficial">所有链接均指向官方网站</span> · 
+                <a href="#" id="submitLink" class="text-green-600 hover:underline"><span id="submitLinkText">提交新工具</span></a> · 
+                <a href="mailto:gt0507-001@qq.com?subject=失效报告-Minecraft工具" id="reportLink" class="text-red-500 hover:underline" target="_blank"><span id="reportLinkText">报告失效</span></a>
             </p>
             <div class="mt-4 flex items-center justify-center gap-2 text-xs">
                 <a href="https://github.com/lingxiaoGT/lingxiaoGT.github.io" target="_blank" rel="noopener noreferrer" class="text-gray-600 dark:text-gray-400 hover:text-gray-800 dark:hover:text-gray-200">
                     <i class="fab fa-github fa-2x"></i>
                 </a>
-                <span>鸣谢 GitHub 提供免费托管服务 (●'◡'●)</span>
+                <span id="thanksText">鸣谢 GitHub 提供免费托管服务 (●'◡'●)</span>
             </div>
-            <p class="mt-2">⚡ 全功能版 · 支持收藏/对比/拼音搜索/快捷键/统计图表/暗色模式</p>
+            <p id="footerFeatures" class="mt-2">⚡ 全功能版 · 支持收藏/对比/拼音搜索/快捷键/统计图表/暗色模式</p>
         </footer>
     </div>
 
-    <!-- 评论区域 (Giscus) —— 来聊聊吧！ (☞ﾟヮﾟ)☞ 需要登录GitHub才能发言哦，不过国内用户可能看不到 (；′⌒`) -->
+    <!-- 评论区域 (Giscus) -->
     <div class="max-w-7xl mx-auto px-4 mt-8">
         <div class="bg-white dark:bg-gray-800 rounded-xl p-4">
-            <h3 class="text-lg font-medium mb-2">💬 社区讨论</h3>
+            <h3 id="commentsTitle" class="text-lg font-medium mb-2">💬 社区讨论</h3>
             <div id="giscus-placeholder" class="text-gray-500 text-sm">评论功能在本地不可用，请部署后访问。</div>
             <script>
                 (function() {
@@ -216,558 +208,6 @@
         </div>
     </div>
 
-    <script>
-        // ═══════════════════════════════════════════
-        //   (◕‿◕) 下面是满满的 JavaScript 逻辑
-        //   所有工具数据都住在 tools.json 里，这里只是个空架子～
-        //   写代码的时候一边听着音乐一边敲，心情美滋滋
-        // ═══════════════════════════════════════════
-
-        let toolsData = [];                     // 工具数据，稍后从 JSON 加载
-        let tagMapping = {};                     // 标签映射表，将从外部 JSON 加载
-
-        // DOM 元素大集合 (～￣▽￣)～ 一个个抓出来真不容易
-        const container = document.getElementById('tools-container');
-        const searchInput = document.getElementById('search');
-        const copyToast = document.getElementById('copyToast');
-        const backToTop = document.getElementById('backToTop');
-        const modal = document.getElementById('detailModal');
-        const modalTitle = document.getElementById('modalTitle');
-        const modalDesc = document.getElementById('modalDesc');
-        const modalDetail = document.getElementById('modalDetail');
-        const modalLink = document.getElementById('modalLink');
-        const randomBtn = document.getElementById('randomBtn');
-        const darkModeToggle = document.getElementById('darkModeToggle');
-        const darkIcon = document.getElementById('darkIcon');
-        const favoriteBtn = document.getElementById('favoriteBtn');
-        const compareBar = document.getElementById('compareBar');
-        const compareCount = document.getElementById('compareCount');
-        const compareBtn = document.getElementById('compareBtn');
-        const clearCompare = document.getElementById('clearCompare');
-        const submitLink = document.getElementById('submitLink');
-        const submitModal = document.getElementById('submitModal');
-        const feedbackModal = document.getElementById('feedbackModal');
-        const feedbackToolName = document.getElementById('feedbackToolName');
-        const feedbackToolNameDisplay = document.getElementById('feedbackToolNameDisplay');
-        const categoryContainer = document.getElementById('categoryButtons');
-        const tagFilters = document.getElementById('tagFilters');
-
-        // 全局变量们 (✧∇✧) 收藏、对比都靠它们，还有图表
-        let currentCategory = 'all';
-        let currentSearch = '';
-        let selectedTags = [];
-        let favoriteIds = JSON.parse(localStorage.getItem('favorites')) || [];
-        let compareList = JSON.parse(localStorage.getItem('compareList')) || [];
-        let clickCounts = JSON.parse(localStorage.getItem('clickCounts')) || {};
-        let catChart, statusChart;
-
-        // 记录展开/折叠状态的父标签
-        let expandedParents = new Set();
-
-        // ═════════ 先加载标签映射表，再加载工具数据 ═════════
-        async function loadTagMapping() {
-            try {
-                const response = await fetch('tag-mapping.json');
-                if (!response.ok) throw new Error('加载失败，将使用空映射');
-                tagMapping = await response.json();
-                console.log('%c✅ 标签映射表加载成功！', 'color: #10b981; font-weight: bold;');
-            } catch (error) {
-                console.warn('⚠️ 标签映射表未找到，所有标签将归入“其他”', error);
-                tagMapping = {}; // 确保为空
-            }
-        }
-
-        async function loadToolsData() {
-            try {
-                await loadTagMapping(); // 先加载映射表
-                const response = await fetch('tools.json');
-                if (!response.ok) throw new Error('加载失败');
-                toolsData = await response.json();
-                // 数据加载完成后初始化一切
-                init();
-            } catch (error) {
-                console.error('呜哇～ 工具数据加载失败:', error);
-                if (container) container.innerHTML = '<div class="col-span-full text-center py-12 text-red-500">❌ 工具数据加载失败，请稍后重试。 (╥﹏╥)</div>';
-            }
-        }
-
-        // ═════════ 初始化函数（数据加载后执行） ═════════
-        function init() {
-            if (categoryContainer) renderCategoryButtons();
-            if (tagFilters) renderTags();
-            renderCards();
-            updateCompareBar();
-            initCharts();
-            loadTheme();
-
-            // 彩蛋1：爱发电支持 (●'◡'●)
-            console.log('%c✨ 嘿嘿，你发现隐藏彩蛋啦！ ✨', 'color: #10b981; font-size: 16px; font-weight: bold;');
-            console.log('%c如果你喜欢这个导航站，欢迎去爱发电支持作者～', 'color: #946ce6; font-size: 14px;');
-            console.log('%chttps://ifdian.net/a/gt0507', 'color: #3b82f6; text-decoration: underline;');
-
-            // 彩蛋2：新的ASCII画——你懂的那个 ( •̀ ω •́ )✧
-            console.log('%c你™故意 /                              \\', 'color: #8B4513');
-            console.log('%c找猹是  |   r   ﹀    一  ﹀  乀 |', 'color: #8B4513');
-            console.log('%c不是？  \\  |   ▂▂ ˉ _  ︻︻  \\', 'color: #8B4513');
-            console.log('%c                ⌒v  <●>      <●>  | |   ', 'color: #8B4513');
-            console.log('%c              __\\と       （ , .）,      /_', 'color: #8B4513');
-            console.log('%c         一ˉˉ    乀       ﾉ      乀   /    ˉˉ一', 'color: #8B4513');
-            console.log('%c   一ˉˉ              \\ ︶   ˉˉ ˉ   /             ˉˉ一', 'color: #8B4513');
-            console.log('%c/                  \\\\\\  ヽ二二 ”//                      \\', 'color: #8B4513');
-            console.log('%c|                      \\\\          /                              |  ', 'color: #8B4513');
-            console.log('%c||                \\/  \\/  \\\\      /  \\/                      \\\\', 'color: #8B4513');
-        }
-
-        // 渲染分类按钮 (～￣▽￣)～ 这些按钮点起来手感不错
-        function renderCategoryButtons() {
-            const categories = [
-                { key: 'all', name: '全部' },
-                { key: '网页版MC', name: '网页版MC' },
-                { key: '工具类', name: '工具类' },
-                { key: 'Wiki与百科', name: 'Wiki与百科' },
-                { key: '社区/论坛', name: '社区/论坛' },
-                { key: '模组/资源站', name: '模组/资源站' },
-                { key: '启动器/加载器', name: '启动器/加载器' },
-                { key: '材质/光影/皮肤装饰', name: '材质/光影/皮肤装饰' },
-                { key: '服务器/技术', name: '服务器/技术' },
-                { key: '其他资源', name: '其他资源' }
-            ];
-            categoryContainer.innerHTML = '';
-            categories.forEach(cat => {
-                const btn = document.createElement('button');
-                btn.dataset.category = cat.key;
-                btn.className = `cat-btn px-4 py-2 rounded-full text-sm font-medium ${cat.key === 'all' ? 'bg-green-600 text-white shadow-sm' : 'bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200 hover:bg-gray-300'}`;
-                btn.textContent = cat.name;
-                btn.onclick = () => {
-                    document.querySelectorAll('.cat-btn').forEach(b => {
-                        b.classList.remove('bg-green-600', 'text-white', 'shadow-sm');
-                        b.classList.add('bg-gray-200', 'dark:bg-gray-700', 'text-gray-800', 'dark:text-gray-200');
-                    });
-                    btn.classList.add('bg-green-600', 'text-white', 'shadow-sm');
-                    btn.classList.remove('bg-gray-200', 'dark:bg-gray-700', 'text-gray-800', 'dark:text-gray-200');
-                    currentCategory = cat.key;
-                    renderCards();
-                };
-                categoryContainer.appendChild(btn);
-            });
-        }
-
-        // 构建父标签到子标签的映射（所有未映射的归入“其他”）
-        function buildParentToChildren() {
-            const parentToChildren = {};
-            toolsData.forEach(tool => {
-                tool.tags.forEach(tag => {
-                    const parent = tagMapping[tag] || '其他';
-                    if (!parentToChildren[parent]) {
-                        parentToChildren[parent] = new Set();
-                    }
-                    if (tag !== parent) {
-                        parentToChildren[parent].add(tag);
-                    }
-                });
-            });
-            for (let parent in parentToChildren) {
-                parentToChildren[parent] = Array.from(parentToChildren[parent]).sort();
-            }
-            return parentToChildren;
-        }
-
-        // 创建单个标签按钮的辅助函数 ( ◕‿◕)
-        function createTagButton(tag) {
-            const btn = document.createElement('button');
-            btn.className = `tag-btn px-3 py-1 rounded-full text-xs font-medium ${selectedTags.includes(tag) ? 'bg-green-600 text-white' : 'bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-200'}`;
-            btn.dataset.tag = tag;
-            btn.textContent = tag;
-            btn.onclick = () => toggleTag(tag);
-            return btn;
-        }
-
-        // 渲染标签筛选按钮 (ﾉ◕ヮ◕)ﾉ*:･ﾟ✧ —— 新版，支持折叠，映射表独立后清爽多了
-        function renderTags() {
-            if (!tagFilters) return;
-
-            const parentToChildren = buildParentToChildren();
-            let parents = Object.keys(parentToChildren).sort();
-            if (parents.includes('其他')) {
-                parents = parents.filter(p => p !== '其他');
-                parents.push('其他');
-            }
-
-            tagFilters.innerHTML = '';
-
-            parents.forEach(parent => {
-                const children = parentToChildren[parent];
-                if (children.length === 0) return;
-
-                const parentContainer = document.createElement('div');
-                parentContainer.className = 'parent-tag-container';
-
-                const parentBtn = document.createElement('button');
-                parentBtn.className = `flex items-center gap-1 px-3 py-1 rounded-full text-xs font-medium bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-300 dark:hover:bg-gray-600`;
-                parentBtn.innerHTML = `<span>${parent}</span> <i class="fas fa-chevron-down transition-transform ${expandedParents.has(parent) ? 'rotate-180' : ''}"></i>`;
-                parentBtn.onclick = (e) => {
-                    e.stopPropagation();
-                    if (expandedParents.has(parent)) {
-                        expandedParents.delete(parent);
-                    } else {
-                        expandedParents.add(parent);
-                    }
-                    renderTags();
-                };
-                parentContainer.appendChild(parentBtn);
-
-                const childContainer = document.createElement('div');
-                childContainer.className = `flex flex-wrap gap-2 child-tag-container ${expandedParents.has(parent) ? '' : 'hidden'}`;
-                children.forEach(childTag => {
-                    const childBtn = createTagButton(childTag);
-                    childContainer.appendChild(childBtn);
-                });
-                parentContainer.appendChild(childContainer);
-
-                tagFilters.appendChild(parentContainer);
-            });
-        }
-
-        // 点击标签切换选中状态 (●ˇ∀ˇ●)
-        function toggleTag(tag) {
-            const index = selectedTags.indexOf(tag);
-            if (index === -1) selectedTags.push(tag);
-            else selectedTags.splice(index, 1);
-            renderTags(); // 重新渲染标签区域以更新高亮
-            renderCards();
-        }
-
-        // 渲染卡片们 (✪ω✪) 这里花了最多心思，每个卡片都是一个独立的小世界
-        function renderCards() {
-            if (!container) return;
-            let filtered = toolsData.filter(tool => {
-                if (currentCategory !== 'all' && tool.category !== currentCategory) return false;
-                if (selectedTags.length && !selectedTags.every(tag => tool.tags.includes(tag))) return false;
-                if (currentSearch) {
-                    const lowerSearch = currentSearch.toLowerCase();
-                    const match = tool.name.toLowerCase().includes(lowerSearch) || tool.desc.toLowerCase().includes(lowerSearch);
-                    if (!match && window.pinyin) {
-                        const namePinyin = window.pinyin(tool.name, { toneType: 'none' }).join('');
-                        const descPinyin = window.pinyin(tool.desc, { toneType: 'none' }).join('');
-                        if (namePinyin.includes(lowerSearch) || descPinyin.includes(lowerSearch)) return true;
-                    }
-                    return match;
-                }
-                return true;
-            });
-
-            container.innerHTML = '';
-
-            if (filtered.length === 0) {
-                container.innerHTML = '<div class="text-center py-12 text-gray-500 dark:text-gray-400 text-lg">没有找到匹配的工具 (；′⌒`)</div>';
-                return;
-            }
-
-            // 按分类分组
-            const categories = {};
-            filtered.forEach(tool => {
-                if (!categories[tool.category]) categories[tool.category] = [];
-                categories[tool.category].push(tool);
-            });
-
-            const categoryOrder = ['网页版MC', '工具类', 'Wiki与百科', '社区/论坛', '模组/资源站', '启动器/加载器', '材质/光影/皮肤装饰', '服务器/技术', '其他资源'];
-            categoryOrder.forEach(cat => {
-                if (categories[cat]) {
-                    const details = document.createElement('details');
-                    details.className = 'category-group';
-                    details.open = true; // 默认展开，方便浏览
-                    details.innerHTML = `
-                        <summary class="category-summary">
-                            <span>${cat} (${categories[cat].length})</span>
-                            <i class="fas fa-chevron-down transition-transform"></i>
-                        </summary>
-                        <div class="category-content"></div>
-                    `;
-                    container.appendChild(details);
-                    const contentDiv = details.querySelector('.category-content');
-                    categories[cat].forEach(tool => {
-                        const card = createCard(tool);
-                        contentDiv.appendChild(card);
-                    });
-                }
-            });
-        }
-
-        // 创建单个卡片的函数 ( ◕‿◕) 整个卡片都可以点击，内部按钮单独处理
-        function createCard(tool) {
-            const card = document.createElement('div');
-            card.className = 'card bg-white dark:bg-gray-800 rounded-xl shadow-md overflow-hidden border border-gray-100 dark:border-gray-700 flex flex-col cursor-pointer';
-            card.onclick = () => window.open(tool.url, '_blank');
-
-            const statusText = tool.status === 'normal' ? '正常' : (tool.warningText || '注意');
-            const isFavorite = favoriteIds.includes(tool.name);
-            const isCompare = compareList.includes(tool.name);
-
-            card.innerHTML = `
-                <div class="p-4 flex-1">
-                    <div class="flex items-start justify-between mb-2">
-                        <h3 class="text-lg font-semibold text-gray-900 dark:text-white">${tool.name}</h3>
-                        <span class="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium ${tool.status === 'normal' ? 'bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-200' : 'bg-yellow-100 dark:bg-yellow-900 text-yellow-800 dark:text-yellow-200'}">${statusText}</span>
-                    </div>
-                    <p class="text-gray-600 dark:text-gray-300 text-sm mb-3">${tool.desc}</p>
-                    <div class="flex flex-wrap gap-1 mb-3">
-                        ${tool.tags.map(tag => `<span class="px-2 py-0.5 bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 rounded-full text-xs">${tag}</span>`).join('')}
-                    </div>
-                    <div class="mt-auto flex items-center justify-between" onclick="event.stopPropagation()">
-                        <div class="flex items-center gap-2">
-                            <a href="${tool.url}" target="_blank" rel="noopener noreferrer" class="visit-link text-green-600 dark:text-green-400 hover:text-green-800 dark:hover:text-green-300 font-medium text-sm" data-url="${tool.url}" onclick="event.stopPropagation()">访问网站</a>
-                            <button onclick="showDetail('${tool.name}'); event.stopPropagation()" class="text-blue-500 hover:text-blue-700 text-sm"><i class="far fa-eye"></i></button>
-                        </div>
-                        <div class="flex items-center gap-2">
-                            <button onclick="toggleFavorite('${tool.name}'); event.stopPropagation()" class="text-yellow-500 hover:text-yellow-600" title="收藏">
-                                <i class="${isFavorite ? 'fas' : 'far'} fa-star"></i>
-                            </button>
-                            <button onclick="toggleCompare('${tool.name}'); event.stopPropagation()" class="text-gray-400 hover:text-gray-600" title="对比">
-                                <i class="${isCompare ? 'fas fa-check-square' : 'far fa-square'}"></i>
-                            </button>
-                            <button onclick="copyToClipboard('${tool.url}'); event.stopPropagation()" class="text-gray-400 hover:text-gray-600" title="复制链接">
-                                <i class="far fa-copy"></i>
-                            </button>
-                            <button onclick="openFeedbackModal('${tool.name}'); event.stopPropagation()" class="text-gray-400 hover:text-gray-600 feedback-btn" title="反馈问题">
-                                <i class="fas fa-pencil-alt"></i>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            `;
-            return card;
-        }
-
-        // 打开反馈弹窗 (｡•̀ᴗ-)✧
-        function openFeedbackModal(toolName) {
-            if (feedbackModal && feedbackToolName && feedbackToolNameDisplay) {
-                feedbackToolName.value = toolName;
-                feedbackToolNameDisplay.textContent = toolName;
-                feedbackModal.classList.add('show');
-            }
-        }
-        window.closeFeedbackModal = () => {
-            if (feedbackModal) feedbackModal.classList.remove('show');
-        };
-
-        // 复制链接到剪贴板 (￣︶￣)↗ 现代浏览器都支持，稳！
-        function copyToClipboard(text) {
-            if (!copyToast) return;
-            navigator.clipboard.writeText(text).then(() => {
-                copyToast.textContent = '✅ 链接已复制';
-                copyToast.classList.add('show');
-                setTimeout(() => copyToast.classList.remove('show'), 2000);
-            }).catch(() => alert('复制失败，请手动复制 (；一_一)'));
-        }
-
-        // 显示详情
-        function showDetail(name) {
-            const tool = toolsData.find(t => t.name === name);
-            if (tool && modal && modalTitle && modalDesc && modalDetail && modalLink) {
-                modalTitle.textContent = tool.name;
-                modalDesc.textContent = tool.desc;
-                modalDetail.textContent = tool.detail || '暂无详细介绍';
-                modalLink.href = tool.url;
-                modal.classList.add('show');
-            }
-        }
-        window.closeModal = () => {
-            if (modal) modal.classList.remove('show');
-        };
-
-        // 收藏/取消收藏
-        function toggleFavorite(name) {
-            const index = favoriteIds.indexOf(name);
-            if (index === -1) favoriteIds.push(name);
-            else favoriteIds.splice(index, 1);
-            localStorage.setItem('favorites', JSON.stringify(favoriteIds));
-            renderCards();
-        }
-
-        // 对比 添加/移除
-        function toggleCompare(name) {
-            const index = compareList.indexOf(name);
-            if (index === -1) compareList.push(name);
-            else compareList.splice(index, 1);
-            localStorage.setItem('compareList', JSON.stringify(compareList));
-            updateCompareBar();
-            renderCards();
-        }
-
-        // 更新对比栏显示
-        function updateCompareBar() {
-            if (!compareCount || !compareBtn || !compareBar) return;
-            compareCount.textContent = compareList.length;
-            if (compareList.length >= 2) compareBtn.disabled = false;
-            else compareBtn.disabled = true;
-            if (compareList.length > 0) compareBar.classList.remove('translate-y-full');
-            else compareBar.classList.add('translate-y-full');
-        }
-
-        if (clearCompare) {
-            clearCompare.addEventListener('click', () => {
-                compareList = [];
-                localStorage.setItem('compareList', JSON.stringify(compareList));
-                updateCompareBar();
-                renderCards();
-            });
-        }
-
-        if (compareBtn) {
-            compareBtn.addEventListener('click', () => {
-                if (compareList.length < 2) return;
-                const tools = toolsData.filter(t => compareList.includes(t.name));
-                let msg = '对比工具：\n';
-                tools.forEach(t => msg += `${t.name}: ${t.url}\n`);
-                alert(msg);
-            });
-        }
-
-        if (randomBtn) {
-            randomBtn.addEventListener('click', () => {
-                const filtered = toolsData.filter(t => {
-                    if (currentCategory !== 'all' && t.category !== currentCategory) return false;
-                    if (selectedTags.length && !selectedTags.every(tag => t.tags.includes(tag))) return false;
-                    return true;
-                });
-                if (filtered.length === 0) return;
-                const random = filtered[Math.floor(Math.random() * filtered.length)];
-                window.open(random.url, '_blank');
-            });
-        }
-
-        document.addEventListener('keydown', (e) => {
-            if (e.key === '/' && document.activeElement !== searchInput && searchInput) {
-                e.preventDefault();
-                searchInput.focus();
-            }
-            if (e.key === 'Escape' && searchInput) {
-                searchInput.value = '';
-                currentSearch = '';
-                renderCards();
-            }
-        });
-
-        function initCharts() {
-            const catCanvas = document.getElementById('categoryChart');
-            const statusCanvas = document.getElementById('statusChart');
-            if (!catCanvas || !statusCanvas) return;
-            const catCtx = catCanvas.getContext('2d');
-            const statusCtx = statusCanvas.getContext('2d');
-            const catCount = {};
-            const statusCount = { normal: 0, warning: 0 };
-            toolsData.forEach(t => {
-                catCount[t.category] = (catCount[t.category] || 0) + 1;
-                statusCount[t.status] = (statusCount[t.status] || 0) + 1;
-            });
-
-            catChart = new Chart(catCtx, {
-                type: 'pie',
-                data: {
-                    labels: Object.keys(catCount),
-                    datasets: [{ data: Object.values(catCount), backgroundColor: ['#10b981', '#f59e0b', '#3b82f6', '#8b5cf6', '#ec4899'] }]
-                },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: true,
-                    plugins: {
-                        legend: { labels: { color: document.documentElement.classList.contains('dark') ? '#fff' : '#333' } }
-                    }
-                }
-            });
-
-            statusChart = new Chart(statusCtx, {
-                type: 'doughnut',
-                data: {
-                    labels: ['正常', '注意'],
-                    datasets: [{ data: [statusCount.normal, statusCount.warning], backgroundColor: ['#10b981', '#f59e0b'] }]
-                },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: true,
-                    plugins: {
-                        legend: { labels: { color: document.documentElement.classList.contains('dark') ? '#fff' : '#333' } }
-                    }
-                }
-            });
-        }
-
-        if (darkModeToggle && darkIcon) {
-            darkModeToggle.addEventListener('click', () => {
-                document.documentElement.classList.toggle('dark');
-                if (document.documentElement.classList.contains('dark')) {
-                    darkIcon.classList.remove('fa-moon');
-                    darkIcon.classList.add('fa-sun');
-                    localStorage.setItem('theme', 'dark');
-                } else {
-                    darkIcon.classList.remove('fa-sun');
-                    darkIcon.classList.add('fa-moon');
-                    localStorage.setItem('theme', 'light');
-                }
-                if (catChart && statusChart) {
-                    catChart.options.plugins.legend.labels.color = document.documentElement.classList.contains('dark') ? '#fff' : '#333';
-                    statusChart.options.plugins.legend.labels.color = document.documentElement.classList.contains('dark') ? '#fff' : '#333';
-                    catChart.update();
-                    statusChart.update();
-                }
-            });
-        }
-
-        function loadTheme() {
-            if (localStorage.getItem('theme') === 'dark' && darkIcon) {
-                document.documentElement.classList.add('dark');
-                darkIcon.classList.remove('fa-moon');
-                darkIcon.classList.add('fa-sun');
-            }
-        }
-
-        if (favoriteBtn) {
-            favoriteBtn.addEventListener('click', () => {
-                if (currentCategory === 'favorite') {
-                    currentCategory = 'all';
-                    favoriteBtn.classList.remove('bg-yellow-500', 'text-white');
-                } else {
-                    currentCategory = 'favorite';
-                    favoriteBtn.classList.add('bg-yellow-500', 'text-white');
-                }
-                renderCards();
-            });
-        }
-
-        if (submitLink && submitModal) {
-            submitLink.addEventListener('click', (e) => {
-                e.preventDefault();
-                submitModal.classList.add('show');
-            });
-        }
-        window.closeSubmitModal = () => {
-            if (submitModal) submitModal.classList.remove('show');
-        };
-
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 300 && backToTop) {
-                backToTop.classList.add('opacity-100', 'visible');
-            } else if (backToTop) {
-                backToTop.classList.remove('opacity-100', 'visible');
-            }
-        });
-        if (backToTop) {
-            backToTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
-        }
-
-        if (searchInput) {
-            searchInput.addEventListener('input', (e) => {
-                currentSearch = e.target.value.trim();
-                renderCards();
-            });
-        }
-
-        // 启动一切！
-        loadToolsData();
-
-        if ('serviceWorker' in navigator) {
-            navigator.serviceWorker.register('/sw.js').catch(err => console.log('SW注册失败，不过没关系～', err));
-        }
-    </script>
+    <script type="module" src="assets/js/main.js"></script>
 </body>
 </html>
