@@ -209,19 +209,16 @@ function createCard(tool) {
     return card;
 }
 
-// 简单防XSS
 function escapeHtml(str) {
     return str.replace(/[&<>]/g, function(m) {
         if (m === '&') return '&amp;';
         if (m === '<') return '&lt;';
         if (m === '>') return '&gt;';
         return m;
-    }).replace(/[\uD800-\uDBFF][\uDC00-\uDFFF]/g, function(c) {
-        return c;
     });
 }
 
-// 导出其他工具函数
+// ========== 导出的函数 ==========
 export function toggleTag(tag) {
     const idx = window.selectedTags.indexOf(tag);
     if (idx === -1) window.selectedTags.push(tag);
